@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{a5ec170c-806d-4a6f-a855-069da6fcdafd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Animation">
+      <UniqueIdentifier>{4ae1b111-5b0f-4562-bfa6-8d4596d54f60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Animation\Animation">
+      <UniqueIdentifier>{571f1b48-15b1-441a-a200-d55f2f0d6f47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Animation\Animations">
+      <UniqueIdentifier>{c282666c-f91d-4e2e-a3dd-e382e6440ee2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Animation\AnimationSets">
+      <UniqueIdentifier>{665d3843-b32b-4b5d-8829-51ed93d0729d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scence">
+      <UniqueIdentifier>{f4fb5edf-5efc-463a-a9f8-8dd9ee35f972}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Scence\Scence">
+      <UniqueIdentifier>{ff331dc8-0268-426f-a9f3-633f216ba493}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\PlayScence">
+      <UniqueIdentifier>{bb8e0070-9a75-4e64-b4a9-8d14d93e5c8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Game">
+      <UniqueIdentifier>{4ee47110-18b5-4b89-8312-871c8dd1abca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\GameObject">
+      <UniqueIdentifier>{2e6e35d2-0914-4d5b-8720-d4aa1b9f7641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Map">
+      <UniqueIdentifier>{be134056-df7b-4b6c-9b2e-c2792b21be54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Sprite">
+      <UniqueIdentifier>{6ef36369-e006-4c43-bed6-b5ce9d289754}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Sprite\Sprite">
+      <UniqueIdentifier>{a82de40c-c6a0-4f29-a47c-efd5027d0d81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Sprite\Sprites">
+      <UniqueIdentifier>{2d36d1e6-6503-4538-bb8c-eaa8b8bd26c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Portal">
+      <UniqueIdentifier>{a1117d00-8768-41aa-906a-b728ef35b428}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Utils">
+      <UniqueIdentifier>{2499d3d5-ad43-4b96-b15a-567c880ee483}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Textures">
+      <UniqueIdentifier>{198e2e66-327e-426b-8e09-6d7b34449f0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Collision">
+      <UniqueIdentifier>{53f5a770-b932-4325-a7a9-6a8e2875280d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\KeyEventHandler">
+      <UniqueIdentifier>{d1bbf3ba-d101-402b-885d-6f355db0ce9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{1f335b20-e0a5-483a-9cee-413821c9e12e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Mario">
+      <UniqueIdentifier>{2db5e2c5-3bf0-423d-a2d1-a61f5c53b190}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Goomba">
+      <UniqueIdentifier>{fd883d9d-8762-4bf6-bee8-68187d2d08c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Koopas">
+      <UniqueIdentifier>{fb8a7ccd-436d-48ab-bf1c-f4ab482aadc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Brick">
+      <UniqueIdentifier>{41ec845b-81c6-45d6-96ac-1a1901e65a04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Coin">
+      <UniqueIdentifier>{ff9288d4-9dcc-4589-82f9-fe524336ae88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Related">
+      <UniqueIdentifier>{a2ad85c8-f651-4ef3-a7ae-e694fe050c46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Camera">
+      <UniqueIdentifier>{5c1ceada-e5a3-4b69-a9a0-b5c9184a78d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Platform">
+      <UniqueIdentifier>{69203bef-28d6-49fe-88df-1ba51fb34d57}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Animation.h">
+      <Filter>Framework\Animation\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animations.h">
+      <Filter>Framework\Animation\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationSets.h">
+      <Filter>Framework\Animation\AnimationSets</Filter>
+    </ClInclude>
+    <ClInclude Include="Scence.h">
+      <Filter>Framework\Scence\Scence</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayScence.h">
+      <Filter>Framework\PlayScence</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Framework\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Framework\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Framework\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Framework\Sprite\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprites.h">
+      <Filter>Framework\Sprite\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Object\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Portal.h">
+      <Filter>Framework\Portal</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Framework\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Textures.h">
+      <Filter>Framework\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Framework\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyEventHandler.h">
+      <Filter>Framework\KeyEventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario.h">
+      <Filter>Object\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="Goomba.h">
+      <Filter>Object\Goomba</Filter>
+    </ClInclude>
+    <ClInclude Include="Koopas.h">
+      <Filter>Object\Koopas</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick.h">
+      <Filter>Object\Brick</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>Object\Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="debug.h">
+      <Filter>Related</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Framework\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationFrame.h">
+      <Filter>Framework\Animation\Animation</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Framework\Animation\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animations.cpp">
+      <Filter>Framework\Animation\Animations</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationSets.cpp">
+      <Filter>Framework\Animation\AnimationSets</Filter>
+    </ClCompile>
+    <ClCompile Include="Scence.cpp">
+      <Filter>Framework\Scence\Scence</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayScence.cpp">
+      <Filter>Framework\PlayScence</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Framework\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Framework\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Framework\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Framework\Sprite\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprites.cpp">
+      <Filter>Framework\Sprite\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Object\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="Portal.cpp">
+      <Filter>Framework\Portal</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Framework\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Textures.cpp">
+      <Filter>Framework\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Framework\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario.cpp">
+      <Filter>Object\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="Goomba.cpp">
+      <Filter>Object\Goomba</Filter>
+    </ClCompile>
+    <ClCompile Include="Koopas.cpp">
+      <Filter>Object\Koopas</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick.cpp">
+      <Filter>Object\Brick</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>Object\Coin</Filter>
+    </ClCompile>
+    <ClCompile Include="debug.cpp">
+      <Filter>Related</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Framework\Camera</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
