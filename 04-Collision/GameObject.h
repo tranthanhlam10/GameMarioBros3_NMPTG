@@ -38,10 +38,10 @@ public:
 	float x; 
 	float y;
 
-	float vx;
-	float vy;
+	float vx;  //vector vận tốc theo phương x
+	float vy;  //vector vận tốc theo phương y
 
-	int nx;	 
+	int nx;	 // hướng
 
 	float dx;	// dx = vx*dt
 	float dy;	// dy = vy*dt

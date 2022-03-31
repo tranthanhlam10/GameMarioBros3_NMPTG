@@ -23,41 +23,51 @@
 #define MARIO_STATE_SIT						9000
 
 
-// mario nho
-#define MARIO_ANI_SMALL_IDLE_RIGHT		0
-#define MARIO_ANI_SMALL_IDLE_LEFT			1
-#define MARIO_ANI_SMALL_WALKING_RIGHT		2
-#define MARIO_ANI_SMALL_WALKING_LEFT		3
+
 
 
 // mario lon
-#define MARIO_ANI_BIG_IDLE_RIGHT		4
-#define MARIO_ANI_BIG_IDLE_LEFT			5
-#define MARIO_ANI_BIG_WALKING_RIGHT			6
-#define MARIO_ANI_BIG_WALKING_LEFT			7
+#define MARIO_ANI_BIG_IDLE_RIGHT		0
+#define MARIO_ANI_BIG_IDLE_LEFT			1
+#define MARIO_ANI_BIG_WALKING_RIGHT			2
+#define MARIO_ANI_BIG_WALKING_LEFT			3
+#define MARIO_ANI_BIG_JUMP_RIGHT			4
+#define MARIO_ANI_BIG_JUMP_LEFT				5
+
+// mario nho
+#define MARIO_ANI_SMALL_IDLE_RIGHT		6
+#define MARIO_ANI_SMALL_IDLE_LEFT			7
+#define MARIO_ANI_SMALL_WALKING_RIGHT		8
+#define MARIO_ANI_SMALL_WALKING_LEFT		9
+#define MARIO_ANI_SMALL_JUMP_RIGHT			10
+#define MARIO_ANI_SMALL_JUMP_LEFT				11
 
 // raccoon mario
-#define MARIO_ANI_RACOON_IDLE_RIGHT			8
-#define MARIO_ANI_RACOON_IDLE_LEFT			9
-#define MARIO_ANI_RACOON_WALK_RIGHT			10
-#define MARIO_ANI_RACOON_WALK_LEFT			11
+#define MARIO_ANI_RACOON_IDLE_RIGHT			12
+#define MARIO_ANI_RACOON_IDLE_LEFT			13
+#define MARIO_ANI_RACOON_WALK_RIGHT			14
+#define MARIO_ANI_RACOON_WALK_LEFT			15
+#define MARIO_ANI_RACOON_JUMP_RIGHT			16
+#define MARIO_ANI_RACOON_JUMP_LEFT				17
 
 
 
 // mario lua
-#define MARIO_ANI_FIRE_IDLE_RIGHT			12
-#define MARIO_ANI_FIRE_IDLE_LEFT			13
-#define MARIO_ANI_FIRE_WALK_RIGHT			14
-#define MARIO_ANI_FIRE_WALK_LEFT			15
+#define MARIO_ANI_FIRE_IDLE_RIGHT			18
+#define MARIO_ANI_FIRE_IDLE_LEFT			19
+#define MARIO_ANI_FIRE_WALK_RIGHT			20
+#define MARIO_ANI_FIRE_WALK_LEFT			21
+#define MARIO_ANI_FIRE_JUMP_RIGHT			22
+#define MARIO_ANI_FIRE_JUMP_LEFT				23
 
-#define MARIO_ANI_DIE				16
+#define MARIO_ANI_DIE				24
 
 
 
 
 #define	MARIO_LEVEL_BIG		1
 #define	MARIO_LEVEL_SMALL	2
-#define MARIO_LEVEL_RACCOON 3
+#define MARIO_LEVEL_RACOON 3
 #define MARIO_LEVEL_FIRE 4
 
 
@@ -91,8 +101,12 @@ class CMario : public CGameObject // khởi tạo object mario
 	int coin; 
 
 
-	// mario nhay
+	// mario bay
 	bool isFlying = false;
+	BOOLEAN isJumping = false;
+	BOOLEAN isOnFlatform = false;
+	
+
 
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e); // va chạm với nấm
 	void OnCollisionWithCoin(LPCOLLISIONEVENT e); // va chạm với tiền
@@ -105,6 +119,7 @@ public:
 		untouchable = 0;
 		SetState(MARIO_STATE_IDLE);
 		isSitting = false;
+		isOnPlatform = false;
 		maxVx = 0.0f;
 		ax = MARIO_ACCELERATION;
 		ay = MARIO_GRAVITY; // mario phải chịu tác động của trọng lực hướng xuống

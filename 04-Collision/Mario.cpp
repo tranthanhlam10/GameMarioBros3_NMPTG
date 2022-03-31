@@ -111,18 +111,37 @@ void CMario::Render()
 	else
 		if (level == MARIO_LEVEL_BIG)
 		{
-			if (vx == 0)
-			{
-				if (nx > 0) ani = MARIO_ANI_BIG_IDLE_RIGHT;
-				else ani = MARIO_ANI_BIG_IDLE_LEFT;
+			if (vy <0 ) {
+				if (nx > 0)
+					ani = MARIO_ANI_BIG_JUMP_RIGHT;
+				else
+					ani = MARIO_ANI_BIG_JUMP_LEFT;
 			}
-			else if (vx > 0)
-				ani = MARIO_ANI_BIG_WALKING_RIGHT;
-			else ani = MARIO_ANI_BIG_WALKING_LEFT;
-		}
+			else
+			{
+				if (vx == 0)
+				{
+					if (nx > 0) ani = MARIO_ANI_BIG_IDLE_RIGHT;
+					else ani = MARIO_ANI_BIG_IDLE_LEFT;
+				}
+				else if (vx > 0)
+					ani = MARIO_ANI_BIG_WALKING_RIGHT;
+				else ani = MARIO_ANI_BIG_WALKING_LEFT;
+			}
+
+		} 
+	  
+
 
 		else if (level == MARIO_LEVEL_SMALL)
 		{
+			if (vy < 0) {
+				if (nx > 0)
+					ani = MARIO_ANI_SMALL_JUMP_RIGHT;
+				else
+					ani = MARIO_ANI_SMALL_JUMP_LEFT;
+
+			} else
 			if (vx == 0)
 			{
 				if (nx > 0) ani = MARIO_ANI_SMALL_IDLE_RIGHT;
@@ -131,10 +150,19 @@ void CMario::Render()
 			else if (vx > 0)
 				ani = MARIO_ANI_SMALL_WALKING_RIGHT;
 			else ani = MARIO_ANI_SMALL_WALKING_LEFT;
+	
 		} 
 
-		else if (level == MARIO_LEVEL_RACCOON)
+		else if (level == MARIO_LEVEL_RACOON)
 		{
+			if (vy < 0) {
+				if (nx > 0)
+					ani = MARIO_ANI_RACOON_JUMP_RIGHT;
+				else
+					ani = MARIO_ANI_RACOON_JUMP_LEFT;
+
+			}
+			else
 			if (vx == 0)
 			{
 				if (nx > 0) ani = MARIO_ANI_RACOON_IDLE_RIGHT;
@@ -148,6 +176,14 @@ void CMario::Render()
 		}
 		else if (level == MARIO_LEVEL_FIRE)
 		{
+			if (vy < 0) {
+				if (nx > 0)
+					ani = MARIO_ANI_FIRE_JUMP_RIGHT;
+				else
+					ani = MARIO_ANI_FIRE_JUMP_LEFT;
+
+			}
+			else
 			if (vx == 0)
 			{
 				if (nx > 0) ani = MARIO_ANI_FIRE_IDLE_RIGHT;
@@ -180,7 +216,7 @@ void CMario::WalkRight() // sử lí chuyển động mario qua phải
 
 }
 
-void CMario::WalkLeft() // hàm sử lí chuyển động mario qua phải	
+void CMario::WalkLeft() // hàm sử lí chuyển động mario qua trái
 {
 	if (abs(vx) > MARIO_WALKING_MAXSPEED)
 	{
@@ -204,6 +240,7 @@ void CMario::SetState(int state) // set trạng thái cho mario
 		break;
 	case MARIO_STATE_JUMP:
 		// TODO: need to check if Mario is *current* on a platform before allowing to jump again
+		
 		vy = -MARIO_JUMP_SPEED_Y;
 		break;
 	case MARIO_STATE_IDLE:
@@ -222,7 +259,7 @@ void CMario::GetBoundingBox(float &left, float &top, float &right, float &bottom
 	left = x;
 	top = y;
 
-	if (level == MARIO_LEVEL_BIG || level == MARIO_LEVEL_RACCOON)
+	if (level == MARIO_LEVEL_BIG || level == MARIO_LEVEL_RACOON)
 	{
 		right = x + MARIO_BIG_BBOX_WIDTH;
 	    bottom = y + MARIO_BIG_BBOX_HEIGHT;
@@ -252,7 +289,7 @@ void CMario::SetLevel(int level) // set cấp độ cho mario
 void CMario::Reset()
 {
 	SetState(MARIO_STATE_IDLE);
-	SetLevel(MARIO_LEVEL_FIRE);
+	SetLevel(MARIO_LEVEL_BIG);
 	SetPosition(start_x, start_y);
 	SetSpeed(0, 0);
 }
