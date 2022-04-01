@@ -111,6 +111,7 @@ void CMario::Render()
 	else
 		if (level == MARIO_LEVEL_BIG)
 		{
+			//mario jump
 			if (vy <0 ) {
 				if (nx > 0)
 					ani = MARIO_ANI_BIG_JUMP_RIGHT;
@@ -119,14 +120,29 @@ void CMario::Render()
 			}
 			else
 			{
-				if (vx == 0)
-				{
-					if (nx > 0) ani = MARIO_ANI_BIG_IDLE_RIGHT;
-					else ani = MARIO_ANI_BIG_IDLE_LEFT;
-				}
+				if (vx == 0) 
+					{
+						//mario dung yen
+						if (nx > 0) ani = MARIO_ANI_BIG_IDLE_RIGHT;
+						else ani = MARIO_ANI_BIG_IDLE_LEFT;
+					}
 				else if (vx > 0)
+				{
+					if (nx < 0)
+						//mario di bo
+						ani = MARIO_ANI_BIG_TURN_RIGHT_BACK_LEFT;
+					else
 					ani = MARIO_ANI_BIG_WALKING_RIGHT;
-				else ani = MARIO_ANI_BIG_WALKING_LEFT;
+				}
+
+				else 
+				{
+					if (nx > 0)
+						ani = MARIO_ANI_BIG_TURN_LEFT_BACK_RIGHT;
+					else
+					ani = MARIO_ANI_BIG_WALKING_LEFT;
+				
+				}
 			}
 
 		} 
