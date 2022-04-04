@@ -314,6 +314,24 @@ void CPlayScene::Unload() // xóa hết tất cả các object
 	DebugOut(L"[INFO] Scene %s unloaded! \n", sceneFilePath);
 }
 
+void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
+{
+	//DebugOut(L"[INFO] KeyUp: %d\n", KeyCode);
+
+	CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	switch (KeyCode)
+	{
+	
+	case DIK_RIGHT:
+		mario->SetState(MARIO_STATE_IDLE);
+		break;
+	case DIK_LEFT:
+		mario->SetState(MARIO_STATE_IDLE);
+		break;
+	}
+
+}
+
 void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 {
 	DebugOut(L"[INFO] KeyDown: %d\n", KeyCode);
@@ -321,14 +339,16 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 	CMario* mario = ((CPlayScene*)scence)->GetPlayer();
 	switch (KeyCode)
 	{
-	case DIK_SPACE:
-		mario->SetState(MARIO_STATE_JUMP);
-		break;
 	case DIK_A:
 		mario->Reset();
 		break;
+	case DIK_S: // hanh dong khi nhan phim nhay
+		mario->SetState(MARIO_STATE_JUMP);
+		break;
+
 	}
 }
+	
 
 void CPlayScenceKeyHandler::KeyState(BYTE* states)
 {
@@ -347,7 +367,11 @@ void CPlayScenceKeyHandler::KeyState(BYTE* states)
 		mario->SetState(MARIO_STATE_WALKING_LEFT);
 		mario->WalkLeft();
 	}
-
+	else if (game->IsKeyDown(DIK_S))
+	{
+		mario->SetState(MARIO_STATE_JUMP);
+		
+	}
 	else
 		mario->SetState(MARIO_STATE_IDLE);
 }

@@ -24,6 +24,16 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) //cần phải vi
 
      vy += ay * dt; // đây là công thức tính trọng lực tác động lên mario
 
+	 // gioi han di chuyen theo phuong y
+	 if (vy <= -MARIO_JUMP_SPEED_MAX && !isRunningMax) {
+		 vy = -MARIO_JUMP_SPEED_MAX;
+		 ay = MARIO_GRAVITY;
+	 }
+
+	 if (vy <= -MARIO_JUMP_RUN_SPEED_Y && isRunningMax) {
+		 vy = -MARIO_JUMP_RUN_SPEED_Y;
+		 ay = MARIO_GRAVITY;
+	 }
 	// reset untouchable timer if untouchable time has passed
 	if ( GetTickCount64() - untouchable_start > MARIO_UNTOUCHABLE_TIME) 
 	{
@@ -31,7 +41,9 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) //cần phải vi
 		untouchable = 0;
 	}
 
-	isOnPlatform = true; // chỗ này true false có ý nghĩa gì
+
+
+	isOnPlatform = true; 
 
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
@@ -48,7 +60,11 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 	if (e->ny != 0 && e->obj->IsBlocking()) // điều kiện để xảy ra va chạm
 	{
 		vy = 0;
-		if (e->ny < 0) isOnPlatform = true; // va chạm với platform
+		if (e->ny < 0) { 
+			isOnPlatform = true; // va chạm với platform
+			vy = 0;
+			isJumping = false; // lí do sai khong phai cho nay
+		}
 	}
 	else 
 	if (e->nx != 0 && e->obj->IsBlocking())
@@ -158,14 +174,31 @@ void CMario::Render()
 					ani = MARIO_ANI_SMALL_JUMP_LEFT;
 
 			} else
-			if (vx == 0)
 			{
-				if (nx > 0) ani = MARIO_ANI_SMALL_IDLE_RIGHT;
-				else ani = MARIO_ANI_SMALL_IDLE_LEFT;
+				if (vx == 0)
+				{
+					//mario dung yen
+					if (nx > 0) ani = MARIO_ANI_SMALL_IDLE_RIGHT;
+					else ani = MARIO_ANI_SMALL_IDLE_LEFT;
+				}
+				else if (vx > 0)
+				{
+					if (nx < 0)
+						//mario di bo
+						ani = MARIO_ANI_SMALL_TURN_RIGHT_BACK_LEFT;
+					else
+						ani = MARIO_ANI_SMALL_WALKING_RIGHT;
+				}
+
+				else
+				{
+					if (nx > 0)
+						ani = MARIO_ANI_SMALL_TURN_LEFT_BACK_RIGHT;
+					else
+						ani = MARIO_ANI_SMALL_WALKING_LEFT;
+
+				}
 			}
-			else if (vx > 0)
-				ani = MARIO_ANI_SMALL_WALKING_RIGHT;
-			else ani = MARIO_ANI_SMALL_WALKING_LEFT;
 	
 		} 
 
@@ -179,14 +212,31 @@ void CMario::Render()
 
 			}
 			else
-			if (vx == 0)
 			{
-				if (nx > 0) ani = MARIO_ANI_RACOON_IDLE_RIGHT;
-				else ani = MARIO_ANI_RACOON_IDLE_LEFT;
+				if (vx == 0)
+				{
+					//mario dung yen
+					if (nx > 0) ani = MARIO_ANI_RACOON_IDLE_RIGHT;
+					else ani = MARIO_ANI_RACOON_IDLE_LEFT;
+				}
+				else if (vx > 0)
+				{
+					if (nx < 0)
+						//mario di bo
+						ani = MARIO_ANI_RACOON_TURN_RIGHT_BACK_LEFT;
+					else
+						ani = MARIO_ANI_RACOON_WALKING_RIGHT;
+				}
+
+				else
+				{
+					if (nx > 0)
+						ani = MARIO_ANI_RACOON_TURN_LEFT_BACK_RIGHT;
+					else
+						ani = MARIO_ANI_RACOON_WALKING_LEFT;
+
+				}
 			}
-			else if (vx > 0)
-				ani = MARIO_ANI_RACOON_WALK_RIGHT;   // cho ny nen su lai cai define walking left
-			else ani = MARIO_ANI_RACOON_WALK_LEFT;
 
 
 		}
@@ -200,19 +250,35 @@ void CMario::Render()
 
 			}
 			else
-			if (vx == 0)
+			
 			{
-				if (nx > 0) ani = MARIO_ANI_FIRE_IDLE_RIGHT;
-				else ani = MARIO_ANI_FIRE_IDLE_LEFT;
+				if (vx == 0)
+				{
+					//mario dung yen
+					if (nx > 0) ani = MARIO_ANI_FIRE_IDLE_RIGHT;
+					else ani = MARIO_ANI_FIRE_IDLE_LEFT;
+				}
+				else if (vx > 0)
+				{
+					if (nx < 0)
+						//mario di bo
+						ani = MARIO_ANI_FIRE_TURN_RIGHT_BACK_LEFT;
+					else
+						ani = MARIO_ANI_FIRE_WALKING_RIGHT;
+				}
+
+				else
+				{
+					if (nx > 0)
+						ani = MARIO_ANI_FIRE_TURN_LEFT_BACK_RIGHT;
+					else
+						ani = MARIO_ANI_FIRE_WALKING_LEFT;
+
+				}
 			}
-			else if (vx > 0)
-				ani = MARIO_ANI_FIRE_WALK_RIGHT;   // cho ny nen su lai cai define walking left
-			else ani = MARIO_ANI_FIRE_WALK_LEFT;
 
 
 		}
-
-	DebugOut(L"[INFO] ani: %d\n", ani);
 
 	int alpha = 255;
 	if (untouchable) alpha = 128;
@@ -242,6 +308,7 @@ void CMario::WalkLeft() // hàm sử lí chuyển động mario qua trái
 
 }
 
+
 void CMario::SetState(int state) // set trạng thái cho mario
 {
 	CGameObject::SetState(state);
@@ -254,10 +321,27 @@ void CMario::SetState(int state) // set trạng thái cho mario
 	case MARIO_STATE_WALKING_LEFT:
 		nx = -1;
 		break;
-	case MARIO_STATE_JUMP:
-		// TODO: need to check if Mario is *current* on a platform before allowing to jump again
-		
-		vy = -MARIO_JUMP_SPEED_Y;
+	case MARIO_STATE_JUMP: // State nay khong van de
+
+	    isJumping = true;
+		if (isOnPlatform) {
+
+			if (vy > -MARIO_JUMP_SPEED_MIN)
+			{
+				vy = -MARIO_JUMP_SPEED_MIN;
+				
+			}
+			if (isRunningMax)
+			{
+				vy = -MARIO_JUMP_RUN_SPEED_Y;
+
+				if (level == MARIO_LEVEL_RACOON) {
+					isFlying = true;
+					flying_start = GetTickCount64(); // lay thoi gian hien tai cua game
+				}
+			}
+		ay = -MARIO_ACCEL_JUMP_Y;
+		}
 		break;
 	case MARIO_STATE_IDLE:
 		vx = 0;
@@ -305,7 +389,7 @@ void CMario::SetLevel(int level) // set cấp độ cho mario
 void CMario::Reset()
 {
 	SetState(MARIO_STATE_IDLE);
-	SetLevel(MARIO_LEVEL_BIG);
+	SetLevel(MARIO_LEVEL_SMALL);
 	SetPosition(start_x, start_y);
 	SetSpeed(0, 0);
 }

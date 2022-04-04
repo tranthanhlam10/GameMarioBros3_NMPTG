@@ -12,7 +12,14 @@
 #define MARIO_JUMP_SPEED_Y		0.5f
 #define MARIO_JUMP_DEFLECT_SPEED 0.2f
 #define MARIO_GRAVITY			0.002f
+#define MARIO_DECELERATE_SPEED 0.00012f
 #define MARIO_DIE_DEFLECT_SPEED	 0.5f
+
+#define MARIO_JUMP_RUN_SPEED_Y	0.5f
+#define MARIO_ACCEL_JUMP_Y 0.0005f
+#define MARIO_JUMP_SPEED_MIN 0.18f
+#define MARIO_JUMP_SPEED_MAX 0.28f
+
 
 #define MARIO_STATE_IDLE			0
 #define MARIO_STATE_WALKING_RIGHT	1000
@@ -43,26 +50,32 @@
 #define MARIO_ANI_SMALL_WALKING_LEFT		11
 #define MARIO_ANI_SMALL_JUMP_RIGHT			12
 #define MARIO_ANI_SMALL_JUMP_LEFT				13
+#define MARIO_ANI_SMALL_TURN_RIGHT_BACK_LEFT			14
+#define MARIO_ANI_SMALL_TURN_LEFT_BACK_RIGHT				15
 
 // raccoon mario
-#define MARIO_ANI_RACOON_IDLE_RIGHT			14
-#define MARIO_ANI_RACOON_IDLE_LEFT			15
-#define MARIO_ANI_RACOON_WALK_RIGHT			16
-#define MARIO_ANI_RACOON_WALK_LEFT			17
-#define MARIO_ANI_RACOON_JUMP_RIGHT			18
-#define MARIO_ANI_RACOON_JUMP_LEFT				19
+#define MARIO_ANI_RACOON_IDLE_RIGHT			16
+#define MARIO_ANI_RACOON_IDLE_LEFT			17
+#define MARIO_ANI_RACOON_WALKING_RIGHT			18
+#define MARIO_ANI_RACOON_WALKING_LEFT			19
+#define MARIO_ANI_RACOON_JUMP_RIGHT			20
+#define MARIO_ANI_RACOON_JUMP_LEFT				21
+#define MARIO_ANI_RACOON_TURN_RIGHT_BACK_LEFT			22
+#define MARIO_ANI_RACOON_TURN_LEFT_BACK_RIGHT				23
 
 
 
 // mario lua
-#define MARIO_ANI_FIRE_IDLE_RIGHT			20
-#define MARIO_ANI_FIRE_IDLE_LEFT			21
-#define MARIO_ANI_FIRE_WALK_RIGHT			22
-#define MARIO_ANI_FIRE_WALK_LEFT			23
-#define MARIO_ANI_FIRE_JUMP_RIGHT			24
-#define MARIO_ANI_FIRE_JUMP_LEFT				25
+#define MARIO_ANI_FIRE_IDLE_RIGHT			24
+#define MARIO_ANI_FIRE_IDLE_LEFT			25
+#define MARIO_ANI_FIRE_WALKING_RIGHT			26
+#define MARIO_ANI_FIRE_WALKING_LEFT			27
+#define MARIO_ANI_FIRE_JUMP_RIGHT			28
+#define MARIO_ANI_FIRE_JUMP_LEFT				29
+#define MARIO_ANI_FIRE_TURN_RIGHT_BACK_LEFT			30
+#define MARIO_ANI_FIRE_TURN_LEFT_BACK_RIGHT				31
 
-#define MARIO_ANI_DIE				26
+#define MARIO_ANI_DIE				32
 
 
 
@@ -84,7 +97,8 @@
 #define MARIO_ACCELERATION					0.0003f
 #define MARIO_WALKING_MAXSPEED 0.12f
 
-
+//time
+#define LIMIT_MARIO_RACCOON_FLY_TIME 5000
 
 
 
@@ -103,10 +117,7 @@ class CMario : public CGameObject // khởi tạo object mario
 	int coin; 
 
 
-	// mario bay
-	bool isFlying = false;
-	BOOLEAN isJumping = false;
-	BOOLEAN isOnFlatform = false;
+	
 	
 
 
@@ -131,12 +142,22 @@ public:
 		this->y = y;
 		//eType = Type::MARIO;
 	}
+	// mario bay
+	BOOLEAN isFlying = false;
+	BOOLEAN isJumping = false;
+	BOOLEAN isOnFlatform = false;
+	BOOLEAN isRunningMax = false;
+	BOOLEAN isFallSlow = false;
+
+	//time
+	ULONGLONG flying_start = -1;
 
 	
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 	void Render();
 	void SetState(int state);
 	void Reset();
+
 	int IsCollidable()
 	{ 
 		return (state != MARIO_STATE_DIE); 
@@ -147,6 +168,7 @@ public:
 
 	void WalkRight();
 	void WalkLeft();
+
 
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
