@@ -34,6 +34,9 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) //cần phải vi
 		 vy = -MARIO_JUMP_RUN_SPEED_Y;
 		 ay = MARIO_GRAVITY;
 	 }
+	 if (vy < 0) {
+		 isOnPlatform = false;
+	 }
 	// reset untouchable timer if untouchable time has passed
 	if ( GetTickCount64() - untouchable_start > MARIO_UNTOUCHABLE_TIME) 
 	{
@@ -41,9 +44,6 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) //cần phải vi
 		untouchable = 0;
 	}
 
-
-
-	isOnPlatform = true; 
 
 	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
@@ -163,8 +163,6 @@ void CMario::Render()
 
 		} 
 	  
-
-
 		else if (level == MARIO_LEVEL_SMALL)
 		{
 			if (vy < 0) {
@@ -322,7 +320,6 @@ void CMario::SetState(int state) // set trạng thái cho mario
 		nx = -1;
 		break;
 	case MARIO_STATE_JUMP: // State nay khong van de
-
 	    isJumping = true;
 		if (isOnPlatform) {
 
@@ -337,10 +334,10 @@ void CMario::SetState(int state) // set trạng thái cho mario
 
 				if (level == MARIO_LEVEL_RACOON) {
 					isFlying = true;
-					flying_start = GetTickCount64(); // lay thoi gian hien tai cua game
+					flying_start = GetTickCount64(); 
 				}
 			}
-		ay = -MARIO_ACCEL_JUMP_Y;
+		    ay = -MARIO_ACCEL_JUMP_Y;
 		}
 		break;
 	case MARIO_STATE_IDLE:
@@ -354,7 +351,6 @@ void CMario::SetState(int state) // set trạng thái cho mario
 
 void CMario::GetBoundingBox(float &left, float &top, float &right, float &bottom) // bbox là cái nền màu đỏ trong object
 {
-
 
 	left = x;
 	top = y;

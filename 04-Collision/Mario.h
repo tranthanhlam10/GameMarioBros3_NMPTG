@@ -163,7 +163,7 @@ public:
 		return (state != MARIO_STATE_DIE); 
 	}
 
-	//int IsBlocking() { return (state != MARIO_STATE_DIE && untouchable==0); }
+	int IsBlocking() { return (state != MARIO_STATE_DIE && untouchable==0); }
 
 
 	void WalkRight();
