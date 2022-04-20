@@ -23,6 +23,17 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) //cần phải vi
   
 
      vy += ay * dt; // đây là công thức tính trọng lực tác động lên mario
+	 vx += ax * dt + nx * ax;
+
+
+
+	 
+
+	 if (abs(vx) > MARIO_WALKING_SPEED) {
+
+		 vx = nx * MARIO_WALKING_SPEED;
+	 }
+
 
 	 // gioi han di chuyen theo phuong y
 	 if (vy <= -MARIO_JUMP_SPEED_MAX && !isRunningMax) {
@@ -283,28 +294,10 @@ void CMario::Render()
 
 	animation_set->at(ani)->Render(x, y);
 
-   //RenderBoundingBox();
+   RenderBoundingBox();
 }
 
-void CMario::WalkRight() // sử lí chuyển động mario qua phải
-{
-	if (abs(vx) > MARIO_WALKING_MAXSPEED)
-	{
-		vx = MARIO_WALKING_MAXSPEED;
-	}
-	vx += MARIO_WALKING_SPEED * dt; 
 
-}
-
-void CMario::WalkLeft() // hàm sử lí chuyển động mario qua trái
-{
-	if (abs(vx) > MARIO_WALKING_MAXSPEED)
-	{
-		vx = -MARIO_WALKING_MAXSPEED;
-	}
-	vx -= MARIO_WALKING_SPEED * dt;
-
-}
 
 
 void CMario::SetState(int state) // set trạng thái cho mario
@@ -314,9 +307,13 @@ void CMario::SetState(int state) // set trạng thái cho mario
 	switch (state)
 	{
 	case MARIO_STATE_WALKING_RIGHT:
+		ax = MARIO_ACCEL_WALK_X;
+		isWalking = true;
 		nx = 1;
 		break;
 	case MARIO_STATE_WALKING_LEFT:
+		ax = -MARIO_ACCEL_WALK_X;
+		isWalking = true;
 		nx = -1;
 		break;
 	case MARIO_STATE_JUMP: // State nay khong van de

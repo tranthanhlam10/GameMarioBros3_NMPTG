@@ -360,12 +360,10 @@ void CPlayScenceKeyHandler::KeyState(BYTE* states)
 	if (game->IsKeyDown(DIK_RIGHT))
 	{
 		mario->SetState(MARIO_STATE_WALKING_RIGHT);
-		mario->WalkRight();
 	}
 	else if (game->IsKeyDown(DIK_LEFT)) // thằng đi qua trái này có vấn đề, cần phải fix lại
 	{
 		mario->SetState(MARIO_STATE_WALKING_LEFT);
-		mario->WalkLeft();
 	}
 	else if (game->IsKeyDown(DIK_S))
 	{
