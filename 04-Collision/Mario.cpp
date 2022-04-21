@@ -28,10 +28,21 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) //cần phải vi
 
 
 	 
-
+	 // giới hạn chuyển động theo phuong x
 	 if (abs(vx) > MARIO_WALKING_SPEED) {
-
+			
 		 vx = nx * MARIO_WALKING_SPEED;
+	 }
+
+	 if (vx < 0 && nx > 0 && !isWalking)
+	 {
+		 vx = 0;
+		 ax = 0;
+	 }
+	 if (vx > 0 && nx < 0 && !isWalking)
+	 {
+		 vx = 0;
+		 ax = 0;
 	 }
 
 
@@ -298,6 +309,18 @@ void CMario::Render()
 }
 
 
+void CMario::Decelerate()
+{
+	if (vx > 0)
+	{
+		ax = -MARIO_DECELERATE_SPEED;
+	}
+	if (vx < 0)
+	{
+		ax = MARIO_DECELERATE_SPEED;
+	}
+}
+
 
 
 void CMario::SetState(int state) // set trạng thái cho mario
@@ -338,7 +361,9 @@ void CMario::SetState(int state) // set trạng thái cho mario
 		}
 		break;
 	case MARIO_STATE_IDLE:
-		vx = 0;
+		Decelerate();
+		isWalking = false;
+		ay = MARIO_GRAVITY;
 		break;
 	case MARIO_STATE_DIE:
 		vy = -MARIO_DIE_DEFLECT_SPEED;

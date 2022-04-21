@@ -134,10 +134,6 @@ class CMario : public CGameObject // khởi tạo object mario
 	int coin; 
 
 
-	
-	
-
-
 	void OnCollisionWithGoomba(LPCOLLISIONEVENT e); // va chạm với nấm
 	void OnCollisionWithCoin(LPCOLLISIONEVENT e); // va chạm với tiền
 
@@ -145,7 +141,7 @@ class CMario : public CGameObject // khởi tạo object mario
 public:
 	CMario::CMario(float x = 0.0f , float y = 0.0f) : CGameObject()
 	{
-		level = MARIO_LEVEL_BIG;
+		level = MARIO_LEVEL_RACOON;
 		untouchable = 0;
 		SetState(MARIO_STATE_IDLE);
 		isSitting = false;
@@ -192,5 +188,6 @@ public:
 	void SetLevel(int l);
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
 
+	void Decelerate();
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 };
