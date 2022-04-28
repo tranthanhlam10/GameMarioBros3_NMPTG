@@ -23,15 +23,26 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) //cần phải vi
   
 
      vy += ay * dt; // đây là công thức tính trọng lực tác động lên mario
-	 vx += ax * dt + nx * ax;
+	 vx += ax * dt + nx * runningStack * ax;
 
 
 
 	 
 	 // giới hạn chuyển động theo phuong x
-	 if (abs(vx) > MARIO_WALKING_SPEED) {
-			
-		 vx = nx * MARIO_WALKING_SPEED;
+	 if (abs(vx) > MARIO_WALKING_SPEED) 
+	 {
+		 if (!isRunning) {
+			 vx = nx * MARIO_WALKING_SPEED;
+		 }
+		 else if (abs(vx) >= MARIO_RUNNING_SPEED){
+			 if (runningStack < MARIO_POWER_FULL) {
+				 vx = nx * MARIO_RUNNING_SPEED;
+			 }
+			 else
+			 {
+				 vx = nx * MARIO_RUNNING_MAX_SPEED;
+			 }
+		 }
 	 }
 
 	 if (vx < 0 && nx > 0 && !isWalking)
@@ -64,6 +75,29 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) //cần phải vi
 	{
 		untouchable_start = 0;
 		untouchable = 0;
+	}
+	if (GetTickCount64() - running_start > POWER_STACK_TIME && isRunning )
+	{
+		running_start = GetTickCount64();
+		runningStack++;
+		if (runningStack > MARIO_POWER_FULL)
+		{
+			runningStack = MARIO_POWER_FULL;
+			isRunningMax = true;
+		}
+	
+	}
+
+	if (GetTickCount64() - running_stop > POWER_STACK_LOST_TIME && runningStack && !isRunning)
+	{
+		running_stop = GetTickCount64();
+		isRunningMax = false;
+		runningStack--;
+		if (runningStack <= 0)
+		{
+			(runningStack = 0);
+
+		}
 	}
 
 
@@ -169,6 +203,10 @@ void CMario::Render()
 					if (nx < 0)
 						//mario di bo
 						ani = MARIO_ANI_BIG_TURN_RIGHT_BACK_LEFT;
+					else if (isRunning)
+						ani = MARIO_ANI_BIG_RUN_RIGHT;
+					else if (isRunningMax)
+						ani = MARIO_ANI_BIG_RUN_MAX_RIGHT;
 					else
 					ani = MARIO_ANI_BIG_WALKING_RIGHT;
 				}
@@ -177,6 +215,10 @@ void CMario::Render()
 				{
 					if (nx > 0)
 						ani = MARIO_ANI_BIG_TURN_LEFT_BACK_RIGHT;
+					else if (isRunning)
+						ani = MARIO_ANI_BIG_RUN_LEFT;
+					else if (isRunningMax)
+						ani = MARIO_ANI_BIG_RUN_MAX_LEFT;
 					else
 					ani = MARIO_ANI_BIG_WALKING_LEFT;
 				
@@ -206,6 +248,10 @@ void CMario::Render()
 					if (nx < 0)
 						//mario di bo
 						ani = MARIO_ANI_SMALL_TURN_RIGHT_BACK_LEFT;
+					else if (isRunning)
+						ani = MARIO_ANI_SMALL_RUN_RIGHT;
+					else if (isRunningMax)
+						ani = MARIO_ANI_SMALL_RUN_MAX_RIGHT;
 					else
 						ani = MARIO_ANI_SMALL_WALKING_RIGHT;
 				}
@@ -214,6 +260,10 @@ void CMario::Render()
 				{
 					if (nx > 0)
 						ani = MARIO_ANI_SMALL_TURN_LEFT_BACK_RIGHT;
+					else if (isRunning)
+						ani = MARIO_ANI_SMALL_RUN_LEFT;
+					else if (isRunningMax)
+						ani = MARIO_ANI_SMALL_RUN_MAX_LEFT;
 					else
 						ani = MARIO_ANI_SMALL_WALKING_LEFT;
 
@@ -244,6 +294,10 @@ void CMario::Render()
 					if (nx < 0)
 						//mario di bo
 						ani = MARIO_ANI_RACOON_TURN_RIGHT_BACK_LEFT;
+					else if (isRunning)
+						ani = MARIO_ANI_RACOON_RUN_RIGHT;
+					else if (isRunningMax)
+						ani = MARIO_ANI_RACOON_RUN_MAX_RIGHT;
 					else
 						ani = MARIO_ANI_RACOON_WALKING_RIGHT;
 				}
@@ -252,6 +306,10 @@ void CMario::Render()
 				{
 					if (nx > 0)
 						ani = MARIO_ANI_RACOON_TURN_LEFT_BACK_RIGHT;
+					else if (isRunning)
+						ani = MARIO_ANI_RACOON_RUN_LEFT;
+					else if (isRunningMax)
+						ani = MARIO_ANI_RACOON_RUN_MAX_LEFT;
 					else
 						ani = MARIO_ANI_RACOON_WALKING_LEFT;
 
@@ -283,6 +341,10 @@ void CMario::Render()
 					if (nx < 0)
 						//mario di bo
 						ani = MARIO_ANI_FIRE_TURN_RIGHT_BACK_LEFT;
+					else if (isRunning)
+						ani = MARIO_ANI_FIRE_RUN_LEFT;
+					else if (isRunningMax)
+						ani = MARIO_ANI_FIRE_RUN_MAX_RIGHT;
 					else
 						ani = MARIO_ANI_FIRE_WALKING_RIGHT;
 				}
@@ -291,6 +353,10 @@ void CMario::Render()
 				{
 					if (nx > 0)
 						ani = MARIO_ANI_FIRE_TURN_LEFT_BACK_RIGHT;
+					else if (isRunning)
+						ani = MARIO_ANI_FIRE_RUN_LEFT;
+					else if (isRunningMax)
+						ani = MARIO_ANI_FIRE_RUN_MAX_LEFT;
 					else
 						ani = MARIO_ANI_FIRE_WALKING_LEFT;
 
@@ -329,6 +395,7 @@ void CMario::SetState(int state) // set trạng thái cho mario
 
 	switch (state)
 	{
+
 	case MARIO_STATE_WALKING_RIGHT:
 		ax = MARIO_ACCEL_WALK_X;
 		isWalking = true;
@@ -338,6 +405,16 @@ void CMario::SetState(int state) // set trạng thái cho mario
 		ax = -MARIO_ACCEL_WALK_X;
 		isWalking = true;
 		nx = -1;
+		break;
+	case MARIO_STATE_RUNNING_RIGHT:
+		running_start = GetTickCount64();
+		nx = 1;
+		isRunning = true;
+		break;
+	case MARIO_STATE_RUNNING_LEFT:
+		running_start = GetTickCount64();
+		nx = -1;
+		isRunning = true;
 		break;
 	case MARIO_STATE_JUMP: // State nay khong van de
 	    isJumping = true;

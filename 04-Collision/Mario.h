@@ -9,6 +9,8 @@
 
 #define MARIO_WALKING_SPEED		0.08f 
 #define MARIO_ACCEL_WALK_X	0.00015f
+#define MARIO_RUNNING_SPEED		0.2f
+#define MARIO_RUNNING_MAX_SPEED 0.3f
 
 #define MARIO_JUMP_SPEED_Y		0.5f
 #define MARIO_JUMP_DEFLECT_SPEED 0.2f
@@ -31,7 +33,8 @@
 #define MARIO_STATE_RELEASE_JUMP    301
 #define MARIO_STATE_DIE				8000
 #define MARIO_STATE_SIT						9000
-
+#define MARIO_STATE_RUNNING_RIGHT						4000
+#define MARIO_STATE_RUNNING_LEFT						5000
 
 
 
@@ -46,9 +49,9 @@
 #define MARIO_ANI_BIG_TURN_RIGHT_BACK_LEFT			6
 #define MARIO_ANI_BIG_TURN_LEFT_BACK_RIGHT				7
 #define MARIO_ANI_BIG_RUN_RIGHT				8
-#define MARIO_ANI_BIGL_RUN_LEFT				9
+#define MARIO_ANI_BIG_RUN_LEFT				9
 #define MARIO_ANI_BIG_RUN_MAX_RIGHT				10
-#define MARIO_ANI_BIGL_RUN_MAX_LEFT				11
+#define MARIO_ANI_BIG_RUN_MAX_LEFT				11
 
 // mario nho
 #define MARIO_ANI_SMALL_IDLE_RIGHT		12
@@ -91,6 +94,8 @@
 #define MARIO_ANI_FIRE_TURN_LEFT_BACK_RIGHT				43
 #define MARIO_ANI_FIRE_RUN_RIGHT				44
 #define MARIO_ANI_FIRE_RUN_LEFT				45
+#define MARIO_ANI_FIRE_RUN_MAX_RIGHT				46
+#define MARIO_ANI_FIRE_RUN_MAX_LEFT				47
 
 #define MARIO_ANI_DIE				999
 
@@ -116,7 +121,14 @@
 
 //time
 #define LIMIT_MARIO_RACCOON_FLY_TIME 5000
+#define POWER_STACK_TIME 250
+#define POWER_STACK_LOST_TIME 250
 
+
+
+
+
+#define MARIO_POWER_FULL 7
 
 
 class CMario : public CGameObject // khởi tạo object mario
@@ -141,7 +153,7 @@ class CMario : public CGameObject // khởi tạo object mario
 public:
 	CMario::CMario(float x = 0.0f , float y = 0.0f) : CGameObject()
 	{
-		level = MARIO_LEVEL_RACOON;
+		level = MARIO_LEVEL_BIG;
 		untouchable = 0;
 		SetState(MARIO_STATE_IDLE);
 		isSitting = false;
@@ -159,13 +171,16 @@ public:
 	BOOLEAN isFlying = false;
 	BOOLEAN isJumping = false;
 	BOOLEAN isOnFlatform = false;
+	BOOLEAN isRunning = false;
 	BOOLEAN isRunningMax = false;
 	BOOLEAN isFallSlow = false;
 	BOOLEAN isWalking = false;
-	int powerstack = 0;
+	int runningStack = 0;
 
 	//time
 	ULONGLONG flying_start = -1;
+	ULONGLONG running_start = -1;
+	ULONGLONG running_stop = -1;
 
 	
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
