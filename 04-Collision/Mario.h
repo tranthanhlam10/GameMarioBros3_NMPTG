@@ -35,6 +35,7 @@
 #define MARIO_STATE_SIT						9000
 #define MARIO_STATE_RUNNING_RIGHT						4000
 #define MARIO_STATE_RUNNING_LEFT						5000
+#define MARIO_STATE_SIT_RELEASE						    6000					
 
 
 
@@ -52,50 +53,56 @@
 #define MARIO_ANI_BIG_RUN_LEFT				9
 #define MARIO_ANI_BIG_RUN_MAX_RIGHT				10
 #define MARIO_ANI_BIG_RUN_MAX_LEFT				11
+#define MARIO_ANI_BIG_SIT_RIGHT				12
+#define MARIO_ANI_BIG_SIT_LEFT				13
 
 // mario nho
-#define MARIO_ANI_SMALL_IDLE_RIGHT		12
-#define MARIO_ANI_SMALL_IDLE_LEFT			13
-#define MARIO_ANI_SMALL_WALKING_RIGHT		14
-#define MARIO_ANI_SMALL_WALKING_LEFT		15
-#define MARIO_ANI_SMALL_JUMP_RIGHT			16
-#define MARIO_ANI_SMALL_JUMP_LEFT				17
-#define MARIO_ANI_SMALL_TURN_RIGHT_BACK_LEFT			18
-#define MARIO_ANI_SMALL_TURN_LEFT_BACK_RIGHT				19
-#define MARIO_ANI_SMALL_RUN_RIGHT				20
-#define MARIO_ANI_SMALL_RUN_LEFT				21
-#define MARIO_ANI_SMALL_RUN_MAX_RIGHT				22
-#define MARIO_ANI_SMALL_RUN_MAX_LEFT				23
+#define MARIO_ANI_SMALL_IDLE_RIGHT		14
+#define MARIO_ANI_SMALL_IDLE_LEFT			15
+#define MARIO_ANI_SMALL_WALKING_RIGHT		16
+#define MARIO_ANI_SMALL_WALKING_LEFT		17
+#define MARIO_ANI_SMALL_JUMP_RIGHT			18
+#define MARIO_ANI_SMALL_JUMP_LEFT				19
+#define MARIO_ANI_SMALL_TURN_RIGHT_BACK_LEFT			20
+#define MARIO_ANI_SMALL_TURN_LEFT_BACK_RIGHT				21
+#define MARIO_ANI_SMALL_RUN_RIGHT				22
+#define MARIO_ANI_SMALL_RUN_LEFT				23
+#define MARIO_ANI_SMALL_RUN_MAX_RIGHT				24
+#define MARIO_ANI_SMALL_RUN_MAX_LEFT				25
 
 // raccoon mario
-#define MARIO_ANI_RACOON_IDLE_RIGHT			24
-#define MARIO_ANI_RACOON_IDLE_LEFT			25
-#define MARIO_ANI_RACOON_WALKING_RIGHT			26
-#define MARIO_ANI_RACOON_WALKING_LEFT			27
-#define MARIO_ANI_RACOON_JUMP_RIGHT			28
-#define MARIO_ANI_RACOON_JUMP_LEFT				29
-#define MARIO_ANI_RACOON_TURN_RIGHT_BACK_LEFT			30
-#define MARIO_ANI_RACOON_TURN_LEFT_BACK_RIGHT				31
-#define MARIO_ANI_RACOON_RUN_RIGHT				32
-#define MARIO_ANI_RACOON_RUN_LEFT				33
-#define MARIO_ANI_RACOON_RUN_MAX_RIGHT				34
-#define MARIO_ANI_RACOON_RUN_MAX_LEFT				35
+#define MARIO_ANI_RACOON_IDLE_RIGHT			26
+#define MARIO_ANI_RACOON_IDLE_LEFT			27
+#define MARIO_ANI_RACOON_WALKING_RIGHT			28
+#define MARIO_ANI_RACOON_WALKING_LEFT			29
+#define MARIO_ANI_RACOON_JUMP_RIGHT			30
+#define MARIO_ANI_RACOON_JUMP_LEFT				31
+#define MARIO_ANI_RACOON_TURN_RIGHT_BACK_LEFT			32
+#define MARIO_ANI_RACOON_TURN_LEFT_BACK_RIGHT				33
+#define MARIO_ANI_RACOON_RUN_RIGHT				34
+#define MARIO_ANI_RACOON_RUN_LEFT				35
+#define MARIO_ANI_RACOON_RUN_MAX_RIGHT				36
+#define MARIO_ANI_RACOON_RUN_MAX_LEFT				37
+#define MARIO_ANI_RACOON_SIT_RIGHT				38
+#define MARIO_ANI_RACOON_SIT_LEFT				39
 
 
 
 // mario lua
-#define MARIO_ANI_FIRE_IDLE_RIGHT			36
-#define MARIO_ANI_FIRE_IDLE_LEFT			37
-#define MARIO_ANI_FIRE_WALKING_RIGHT			38
-#define MARIO_ANI_FIRE_WALKING_LEFT			39
-#define MARIO_ANI_FIRE_JUMP_RIGHT			40
-#define MARIO_ANI_FIRE_JUMP_LEFT				41
-#define MARIO_ANI_FIRE_TURN_RIGHT_BACK_LEFT			42
-#define MARIO_ANI_FIRE_TURN_LEFT_BACK_RIGHT				43
-#define MARIO_ANI_FIRE_RUN_RIGHT				44
-#define MARIO_ANI_FIRE_RUN_LEFT				45
-#define MARIO_ANI_FIRE_RUN_MAX_RIGHT				46
-#define MARIO_ANI_FIRE_RUN_MAX_LEFT				47
+#define MARIO_ANI_FIRE_IDLE_RIGHT			40
+#define MARIO_ANI_FIRE_IDLE_LEFT			41
+#define MARIO_ANI_FIRE_WALKING_RIGHT			42
+#define MARIO_ANI_FIRE_WALKING_LEFT			43
+#define MARIO_ANI_FIRE_JUMP_RIGHT			44
+#define MARIO_ANI_FIRE_JUMP_LEFT				45
+#define MARIO_ANI_FIRE_TURN_RIGHT_BACK_LEFT			46
+#define MARIO_ANI_FIRE_TURN_LEFT_BACK_RIGHT				47
+#define MARIO_ANI_FIRE_RUN_RIGHT				48
+#define MARIO_ANI_FIRE_RUN_LEFT				49
+#define MARIO_ANI_FIRE_RUN_MAX_RIGHT				50
+#define MARIO_ANI_FIRE_RUN_MAX_LEFT				51
+#define MARIO_ANI_FIRE_SIT_RIGHT				52
+#define MARIO_ANI_FIRE_SIT_LEFT				53
 
 #define MARIO_ANI_DIE				999
 
@@ -108,11 +115,16 @@
 #define MARIO_LEVEL_FIRE 4
 
 
-#define MARIO_BIG_BBOX_WIDTH  15
-#define MARIO_BIG_BBOX_HEIGHT 24
+#define MARIO_BIG_BBOX_WIDTH  14
+#define MARIO_BIG_BBOX_HEIGHT 20
 
 #define MARIO_SMALL_BBOX_WIDTH  13
-#define MARIO_SMALL_BBOX_HEIGHT 15
+#define MARIO_SMALL_BBOX_HEIGHT 14
+
+#define MARIO_BIG_SITTING_BBOX_WIDTH  14
+#define MARIO_BIG_SITTING_BBOX_HEIGHT 16
+
+#define MARIO_SIT_HEIGHT_ADJUST ((MARIO_BIG_BBOX_HEIGHT-MARIO_BIG_SITTING_BBOX_HEIGHT))
 
 #define MARIO_UNTOUCHABLE_TIME 5000
 
@@ -133,7 +145,6 @@
 
 class CMario : public CGameObject // khởi tạo object mario
 {
-	BOOLEAN isSitting;
 	float maxVx;
 	float ax;				// acceleration on x 
 	float ay;				// acceleration on y 
@@ -142,7 +153,7 @@ class CMario : public CGameObject // khởi tạo object mario
 	int level; 
 	int untouchable; 
 	ULONGLONG untouchable_start;
-	BOOLEAN isOnPlatform;
+	
 	int coin; 
 
 
@@ -156,7 +167,6 @@ public:
 		level = MARIO_LEVEL_BIG;
 		untouchable = 0;
 		SetState(MARIO_STATE_IDLE);
-		isSitting = false;
 		isOnPlatform = false;
 		maxVx = 0.0f;
 		ax = MARIO_ACCELERATION;
@@ -170,11 +180,12 @@ public:
 	// mario bay
 	BOOLEAN isFlying = false;
 	BOOLEAN isJumping = false;
-	BOOLEAN isOnFlatform = false;
+	BOOLEAN isOnPlatform = false;
 	BOOLEAN isRunning = false;
 	BOOLEAN isRunningMax = false;
 	BOOLEAN isFallSlow = false;
 	BOOLEAN isWalking = false;
+	BOOLEAN isSitting = false;
 	int runningStack = 0;
 
 	//time
@@ -201,6 +212,9 @@ public:
 	void OnCollisionWith(LPCOLLISIONEVENT e);
 
 	void SetLevel(int l);
+	int GetLevel() {
+		return level;
+	}
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
 
 	void Decelerate();

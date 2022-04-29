@@ -183,6 +183,7 @@ void CMario::Render()
 	else
 		if (level == MARIO_LEVEL_BIG)
 		{
+		
 			//mario jump
 			if (vy <0 ) {
 				if (nx > 0)
@@ -192,7 +193,14 @@ void CMario::Render()
 			}
 			else
 			{
-				if (vx == 0) 
+				if (isSitting)
+				{
+					if (nx > 0)
+						ani = MARIO_ANI_BIG_SIT_RIGHT;
+					else
+						ani = MARIO_ANI_BIG_SIT_LEFT;
+				}
+				else if (vx == 0) 
 					{
 						//mario dung yen
 						if (nx > 0) ani = MARIO_ANI_BIG_IDLE_RIGHT;
@@ -283,7 +291,14 @@ void CMario::Render()
 			}
 			else
 			{
-				if (vx == 0)
+				if (isSitting)
+				{
+					if (nx > 0)
+						ani = MARIO_ANI_RACOON_SIT_RIGHT;
+					else
+						ani = MARIO_ANI_RACOON_SIT_LEFT;
+				}
+				else if (vx == 0)
 				{
 					//mario dung yen
 					if (nx > 0) ani = MARIO_ANI_RACOON_IDLE_RIGHT;
@@ -328,9 +343,15 @@ void CMario::Render()
 
 			}
 			else
-			
 			{
-				if (vx == 0)
+				if (isSitting)
+				{
+					if (nx > 0)
+						ani = MARIO_ANI_FIRE_SIT_RIGHT;
+					else
+						ani = MARIO_ANI_FIRE_SIT_LEFT;
+				}
+				else if (vx == 0)
 				{
 					//mario dung yen
 					if (nx > 0) ani = MARIO_ANI_FIRE_IDLE_RIGHT;
@@ -437,6 +458,24 @@ void CMario::SetState(int state) // set trạng thái cho mario
 		    ay = -MARIO_ACCEL_JUMP_Y;
 		}
 		break;
+	case MARIO_STATE_SIT:
+		if (isOnPlatform && level != MARIO_LEVEL_SMALL)
+		{
+			state = MARIO_STATE_IDLE;
+			isSitting = true;
+			Decelerate();
+			vy = 0.0f;
+			//y += MARIO_SIT_HEIGHT_ADJUST;
+		}
+		break;
+	case MARIO_STATE_SIT_RELEASE:
+		if (isSitting)
+		{
+			isSitting = false;
+			state = MARIO_STATE_IDLE;
+			y -= MARIO_SIT_HEIGHT_ADJUST;
+		}
+		break;
 	case MARIO_STATE_IDLE:
 		Decelerate();
 		isWalking = false;
@@ -451,19 +490,29 @@ void CMario::SetState(int state) // set trạng thái cho mario
 void CMario::GetBoundingBox(float &left, float &top, float &right, float &bottom) // bbox là cái nền màu đỏ trong object
 {
 
-	left = x;
-	top = y;
-
-	if (level == MARIO_LEVEL_BIG || level == MARIO_LEVEL_RACOON)
+	if (level != MARIO_LEVEL_SMALL)
 	{
-		right = x + MARIO_BIG_BBOX_WIDTH;
-	    bottom = y + MARIO_BIG_BBOX_HEIGHT;
-	
+		if (isSitting)
+		{
+			left = x ;
+			top = y ;
+			right = left + MARIO_BIG_SITTING_BBOX_WIDTH;
+			bottom = top + MARIO_BIG_SITTING_BBOX_HEIGHT;
+		}
+		else
+		{
+			left = x;
+			top = y;
+			right = left + MARIO_BIG_BBOX_WIDTH;
+			bottom = top + MARIO_BIG_BBOX_HEIGHT;
+		}
 	}
 	else
 	{
-		right = x + MARIO_SMALL_BBOX_WIDTH;
-		bottom = y + MARIO_SMALL_BBOX_HEIGHT;
+		left = x;
+		top = y	;
+		right = left + MARIO_SMALL_BBOX_WIDTH;
+		bottom = top + MARIO_SMALL_BBOX_HEIGHT;
 	}
 }
 
@@ -476,9 +525,6 @@ void CMario::SetLevel(int level) // set cấp độ cho mario
 
 	}
 	this->level = level ;	
-
-	DebugOut(L"[INFO] Mario Level: %d\n", this->level);
-	DebugOut(L"[INFO] Mario Level: %d\n", this->state);
 
 }
 void CMario::Reset()

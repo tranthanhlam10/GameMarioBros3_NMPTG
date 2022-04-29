@@ -328,6 +328,9 @@ void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 	case DIK_LEFT:
 		mario->SetState(MARIO_STATE_IDLE);
 		break;
+	case DIK_DOWN:
+		mario->SetState(MARIO_STATE_SIT_RELEASE);
+		break;
 	}
 
 }
@@ -339,7 +342,31 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 	CMario* mario = ((CPlayScene*)scence)->GetPlayer();
 	switch (KeyCode)
 	{
-	case DIK_A:
+	case DIK_DOWN:
+		mario->SetState(MARIO_STATE_SIT);
+		break;
+	case DIK_1:
+		mario->SetLevel(MARIO_LEVEL_SMALL);
+		break;
+	case DIK_2:
+		if (mario->GetLevel() == MARIO_LEVEL_SMALL) {
+			mario->y -= MARIO_BIG_BBOX_HEIGHT;
+		}
+		mario->SetLevel(MARIO_LEVEL_BIG);
+		break;
+	case DIK_3:
+		if (mario->GetLevel() == MARIO_LEVEL_SMALL) {
+			mario->y -= MARIO_BIG_BBOX_HEIGHT;
+		}
+		mario->SetLevel(MARIO_LEVEL_RACOON);
+		break;
+	case DIK_4:
+		if (mario->GetLevel() == MARIO_LEVEL_SMALL) {
+			mario->y -= MARIO_BIG_BBOX_HEIGHT;
+		}
+		mario->SetLevel(MARIO_LEVEL_FIRE);
+		break;
+	case DIK_R:
 		mario->Reset();
 		break;
 	case DIK_S: // hanh dong khi nhan phim nhay
@@ -364,7 +391,12 @@ void CPlayScenceKeyHandler::KeyState(BYTE* states)
 			mario->SetState(MARIO_STATE_RUNNING_RIGHT);
 		}
 		else
-		mario->SetState(MARIO_STATE_WALKING_RIGHT);
+		{
+			mario->SetState(MARIO_STATE_WALKING_RIGHT);
+		}
+		if (mario->isSitting) {
+			mario->SetState(MARIO_STATE_SIT_RELEASE);
+		}
 	}
 	else if (game->IsKeyDown(DIK_LEFT))
 	{
@@ -373,15 +405,23 @@ void CPlayScenceKeyHandler::KeyState(BYTE* states)
 			mario->SetState(MARIO_STATE_RUNNING_LEFT);
 		}
 		else
-		mario->SetState(MARIO_STATE_WALKING_LEFT);
+		{
+			mario->SetState(MARIO_STATE_WALKING_LEFT);
+		}
+		if (mario->isSitting) {
+			mario->SetState(MARIO_STATE_SIT_RELEASE);
+		}
 	}
 	else if (game->IsKeyDown(DIK_S))
 	{
 		mario->SetState(MARIO_STATE_JUMP);
+	
 		
 	}
 	else
 		mario->SetState(MARIO_STATE_IDLE);
+	
+	
 }
 
 
