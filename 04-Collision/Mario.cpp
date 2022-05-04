@@ -183,15 +183,24 @@ void CMario::Render()
 	else
 		if (level == MARIO_LEVEL_BIG)
 		{
-		
-			//mario jump
-			if (vy <0 ) {
-				if (nx > 0)
-					ani = MARIO_ANI_BIG_JUMP_RIGHT;
-				else
-					ani = MARIO_ANI_BIG_JUMP_LEFT;
+			if (!isOnPlatform) {
+
+				//mario jump
+				if (vy < 0) {
+					if (nx > 0)
+						ani = MARIO_ANI_BIG_JUMP_RIGHT;
+					else
+						ani = MARIO_ANI_BIG_JUMP_LEFT;
+				}
+
+				else {
+					if (nx >= 0)
+						ani = MARIO_ANI_BIG_FALL_RIGHT;
+					else
+						ani = MARIO_ANI_BIG_FALL_LEFT;
+				}
 			}
-			else
+			else 
 			{
 				if (isSitting)
 				{
@@ -237,13 +246,24 @@ void CMario::Render()
 	  
 		else if (level == MARIO_LEVEL_SMALL)
 		{
-			if (vy < 0) {
-				if (nx > 0)
-					ani = MARIO_ANI_SMALL_JUMP_RIGHT;
-				else
-					ani = MARIO_ANI_SMALL_JUMP_LEFT;
+			if (!isOnPlatform)
+			{
+				if (vy < 0) {
+					if (nx > 0)
+						ani = MARIO_ANI_SMALL_JUMP_RIGHT;
+					else
+						ani = MARIO_ANI_SMALL_JUMP_LEFT;
 
-			} else
+				}
+				else {
+					if (nx >= 0)
+						ani = MARIO_ANI_SMALL_FALL_RIGHT;
+					else
+						ani = MARIO_ANI_SMALL_FALL_LEFT;
+				}
+
+			}
+			else
 			{
 				if (vx == 0)
 				{
@@ -282,12 +302,23 @@ void CMario::Render()
 
 		else if (level == MARIO_LEVEL_RACOON)
 		{
-			if (vy < 0) {
-				if (nx > 0)
-					ani = MARIO_ANI_RACOON_JUMP_RIGHT;
-				else
-					ani = MARIO_ANI_RACOON_JUMP_LEFT;
+			if (!isOnPlatform)
+			{
 
+
+				if (vy < 0) {
+					if (nx > 0)
+						ani = MARIO_ANI_RACOON_JUMP_RIGHT;
+					else
+						ani = MARIO_ANI_RACOON_JUMP_LEFT;
+
+				}
+				else {
+					if (nx >= 0)
+						ani = MARIO_ANI_RACOON_FALL_RIGHT;
+					else
+						ani = MARIO_ANI_RACOON_FALL_LEFT;
+				}
 			}
 			else
 			{
@@ -335,12 +366,21 @@ void CMario::Render()
 		}
 		else if (level == MARIO_LEVEL_FIRE)
 		{
-			if (vy < 0) {
-				if (nx > 0)
-					ani = MARIO_ANI_FIRE_JUMP_RIGHT;
-				else
-					ani = MARIO_ANI_FIRE_JUMP_LEFT;
+			if (!isOnPlatform)
+			{
+				if (vy < 0) {
+					if (nx > 0)
+						ani = MARIO_ANI_FIRE_JUMP_RIGHT;
+					else
+						ani = MARIO_ANI_FIRE_JUMP_LEFT;
 
+				}
+				else {
+					if (nx >= 0)
+						ani = MARIO_ANI_FIRE_FALL_RIGHT;
+					else
+						ani = MARIO_ANI_FIRE_FALL_LEFT;
+				}
 			}
 			else
 			{
@@ -392,7 +432,7 @@ void CMario::Render()
 
 	animation_set->at(ani)->Render(x, y);
 
-   RenderBoundingBox();
+  // RenderBoundingBox();
 }
 
 
