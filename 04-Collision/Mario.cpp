@@ -85,7 +85,6 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) //cần phải vi
 			runningStack = MARIO_POWER_FULL;
 			isRunningMax = true;
 		}
-	
 	}
 
 	if (GetTickCount64() - running_stop > POWER_STACK_LOST_TIME && runningStack && !isRunning)
@@ -119,7 +118,7 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 		if (e->ny < 0) { 
 			isOnPlatform = true; // va chạm với platform
 			vy = 0;
-			isJumping = false; // lí do sai khong phai cho nay
+			isJumping = false; 
 		}
 	}
 	else 
@@ -183,21 +182,33 @@ void CMario::Render()
 	else
 		if (level == MARIO_LEVEL_BIG)
 		{
-			if (!isOnPlatform) {
-
-				//mario jump
-				if (vy < 0) {
-					if (nx > 0)
-						ani = MARIO_ANI_BIG_JUMP_RIGHT;
-					else
-						ani = MARIO_ANI_BIG_JUMP_LEFT;
-				}
-
-				else {
+			if (!isOnPlatform)
+			{
+				if (isRunningMax) 
+				{
 					if (nx >= 0)
-						ani = MARIO_ANI_BIG_FALL_RIGHT;
+						ani = MARIO_ANI_BIG_JUMP_RUN_RIGHT;
 					else
-						ani = MARIO_ANI_BIG_FALL_LEFT;
+						ani = MARIO_ANI_BIG_JUMP_RUN_LEFT;
+				}
+				else
+				{
+
+
+					//mario jump
+					if (vy < 0) {
+						if (nx > 0)
+							ani = MARIO_ANI_BIG_JUMP_RIGHT;
+						else
+							ani = MARIO_ANI_BIG_JUMP_LEFT;
+					}
+
+					else {
+						if (nx >= 0)
+							ani = MARIO_ANI_BIG_FALL_RIGHT;
+						else
+							ani = MARIO_ANI_BIG_FALL_LEFT;
+					}
 				}
 			}
 			else 
@@ -225,7 +236,7 @@ void CMario::Render()
 					else if (isRunningMax)
 						ani = MARIO_ANI_BIG_RUN_MAX_RIGHT;
 					else
-					ani = MARIO_ANI_BIG_WALKING_RIGHT;
+					    ani = MARIO_ANI_BIG_WALKING_RIGHT;
 				}
 
 				else 
@@ -237,7 +248,7 @@ void CMario::Render()
 					else if (isRunningMax)
 						ani = MARIO_ANI_BIG_RUN_MAX_LEFT;
 					else
-					ani = MARIO_ANI_BIG_WALKING_LEFT;
+					    ani = MARIO_ANI_BIG_WALKING_LEFT;
 				
 				}
 			}
@@ -248,20 +259,29 @@ void CMario::Render()
 		{
 			if (!isOnPlatform)
 			{
-				if (vy < 0) {
-					if (nx > 0)
-						ani = MARIO_ANI_SMALL_JUMP_RIGHT;
-					else
-						ani = MARIO_ANI_SMALL_JUMP_LEFT;
-
-				}
-				else {
+				if (isRunningMax)
+				{
 					if (nx >= 0)
-						ani = MARIO_ANI_SMALL_FALL_RIGHT;
+						ani = MARIO_ANI_SMALL_JUMP_RUN_RIGHT;
 					else
-						ani = MARIO_ANI_SMALL_FALL_LEFT;
+						ani = MARIO_ANI_SMALL_JUMP_RUN_LEFT;
 				}
+				else
+				{
+					if (vy < 0) {
+						if (nx > 0)
+							ani = MARIO_ANI_SMALL_JUMP_RIGHT;
+						else
+							ani = MARIO_ANI_SMALL_JUMP_LEFT;
 
+					}
+					else {
+						if (nx >= 0)
+							ani = MARIO_ANI_SMALL_FALL_RIGHT;
+						else
+							ani = MARIO_ANI_SMALL_FALL_LEFT;
+					}
+				}
 			}
 			else
 			{
@@ -304,20 +324,28 @@ void CMario::Render()
 		{
 			if (!isOnPlatform)
 			{
-
-
-				if (vy < 0) {
-					if (nx > 0)
-						ani = MARIO_ANI_RACOON_JUMP_RIGHT;
-					else
-						ani = MARIO_ANI_RACOON_JUMP_LEFT;
-
-				}
-				else {
+				if (isRunningMax)
+				{
 					if (nx >= 0)
-						ani = MARIO_ANI_RACOON_FALL_RIGHT;
+						ani = MARIO_ANI_RACOON_JUMP_RUN_RIGHT;
 					else
-						ani = MARIO_ANI_RACOON_FALL_LEFT;
+						ani = MARIO_ANI_RACOON_JUMP_RUN_LEFT;
+				}
+				else
+				{
+					if (vy < 0) {
+						if (nx > 0)
+							ani = MARIO_ANI_RACOON_JUMP_RIGHT;
+						else
+							ani = MARIO_ANI_RACOON_JUMP_LEFT;
+
+					}
+					else {
+						if (nx >= 0)
+							ani = MARIO_ANI_RACOON_FALL_RIGHT;
+						else
+							ani = MARIO_ANI_RACOON_FALL_LEFT;
+					}
 				}
 			}
 			else
@@ -368,18 +396,28 @@ void CMario::Render()
 		{
 			if (!isOnPlatform)
 			{
-				if (vy < 0) {
-					if (nx > 0)
-						ani = MARIO_ANI_FIRE_JUMP_RIGHT;
-					else
-						ani = MARIO_ANI_FIRE_JUMP_LEFT;
-
-				}
-				else {
+				if (isRunningMax)
+				{
 					if (nx >= 0)
-						ani = MARIO_ANI_FIRE_FALL_RIGHT;
+						ani = MARIO_ANI_FIRE_JUMP_RUN_RIGHT;
 					else
-						ani = MARIO_ANI_FIRE_FALL_LEFT;
+						ani = MARIO_ANI_FIRE_JUMP_RUN_LEFT;
+				}
+				else
+				{
+					if (vy < 0) {
+						if (nx > 0)
+							ani = MARIO_ANI_FIRE_JUMP_RIGHT;
+						else
+							ani = MARIO_ANI_FIRE_JUMP_LEFT;
+
+					}
+					else {
+						if (nx >= 0)
+							ani = MARIO_ANI_FIRE_FALL_RIGHT;
+						else
+							ani = MARIO_ANI_FIRE_FALL_LEFT;
+					}
 				}
 			}
 			else
@@ -403,7 +441,7 @@ void CMario::Render()
 						//mario di bo
 						ani = MARIO_ANI_FIRE_TURN_RIGHT_BACK_LEFT;
 					else if (isRunning)
-						ani = MARIO_ANI_FIRE_RUN_LEFT;
+						ani = MARIO_ANI_FIRE_RUN_RIGHT;
 					else if (isRunningMax)
 						ani = MARIO_ANI_FIRE_RUN_MAX_RIGHT;
 					else
@@ -516,6 +554,10 @@ void CMario::SetState(int state) // set trạng thái cho mario
 			y -= MARIO_SIT_HEIGHT_ADJUST;
 		}
 		break;
+	case MARIO_STATE_RELEASE_RUN:
+		isRunning = false;
+		running_stop = GetTickCount64();
+		break;
 	case MARIO_STATE_IDLE:
 		Decelerate();
 		isWalking = false;
@@ -524,6 +566,7 @@ void CMario::SetState(int state) // set trạng thái cho mario
 	case MARIO_STATE_DIE:
 		vy = -MARIO_DIE_DEFLECT_SPEED;
 		break;
+
 	}
 }
 

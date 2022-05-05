@@ -331,6 +331,10 @@ void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 	case DIK_DOWN:
 		mario->SetState(MARIO_STATE_SIT_RELEASE);
 		break;
+	case DIK_A:
+		mario->SetState(MARIO_STATE_RELEASE_RUN);
+		break;
+
 	}
 
 }
