@@ -27,6 +27,7 @@ enum Type {
 	PLATFORM = 1,
 	GOOMBA = 2,
 	KOOPAS = 3,
+	QUESTIONBRICK = 4,
 };
 class CGameObject
 {
@@ -49,6 +50,7 @@ public:
 	int state;
 
 	bool isDeleted; 
+	int model = 0;
 
 	LPANIMATION_SET animation_set;
 
@@ -56,10 +58,14 @@ public:
 	DWORD dt;
 
 public: 
+
 	void SetPosition(float x, float y) { this->x = x, this->y = y; } // set vị trí object, lỗi con trỏ this ngày chỗ này
 	void SetSpeed(float vx, float vy) { this->vx = vx, this->vy = vy; } // set vận tốc object
 	void GetPosition(float &x, float &y) { x = this->x; y = this->y; } // lấy vị trí object
 	void GetSpeed(float &vx, float &vy) { vx = this->vx; vy = this->vy; } // lấy vận tốc object
+
+	void SetModel(int model) { this->model = model; }
+	int GetModel() { return model; }
 
 	int GetState() { return this->state; } // lấy trạng thái
 	virtual void Delete() { isDeleted = true;  }

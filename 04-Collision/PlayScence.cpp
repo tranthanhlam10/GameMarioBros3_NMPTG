@@ -159,6 +159,8 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 			break;
 		}
 
+	    // loi la do tk object nay ???
+
 		case OBJECT_TYPE_PORTAL: // đối tượng chuyển cảnh
 		{
 			float r = (float)atof(tokens[4].c_str());
