@@ -231,10 +231,10 @@ void CMario::Render()
 					if (nx < 0)
 						//mario di bo
 						ani = MARIO_ANI_BIG_TURN_RIGHT_BACK_LEFT;
-					else if (isRunning)
-						ani = MARIO_ANI_BIG_RUN_RIGHT;
 					else if (isRunningMax)
 						ani = MARIO_ANI_BIG_RUN_MAX_RIGHT;
+					else if (isRunning)
+						ani = MARIO_ANI_BIG_RUN_RIGHT;
 					else
 					    ani = MARIO_ANI_BIG_WALKING_RIGHT;
 				}
@@ -243,10 +243,10 @@ void CMario::Render()
 				{
 					if (nx > 0)
 						ani = MARIO_ANI_BIG_TURN_LEFT_BACK_RIGHT;
-					else if (isRunning)
-						ani = MARIO_ANI_BIG_RUN_LEFT;
 					else if (isRunningMax)
 						ani = MARIO_ANI_BIG_RUN_MAX_LEFT;
+					else if (isRunning)
+						ani = MARIO_ANI_BIG_RUN_LEFT;
 					else
 					    ani = MARIO_ANI_BIG_WALKING_LEFT;
 				
@@ -296,10 +296,10 @@ void CMario::Render()
 					if (nx < 0)
 						//mario di bo
 						ani = MARIO_ANI_SMALL_TURN_RIGHT_BACK_LEFT;
-					else if (isRunning)
-						ani = MARIO_ANI_SMALL_RUN_RIGHT;
 					else if (isRunningMax)
 						ani = MARIO_ANI_SMALL_RUN_MAX_RIGHT;
+					else if (isRunning)
+						ani = MARIO_ANI_SMALL_RUN_RIGHT;
 					else
 						ani = MARIO_ANI_SMALL_WALKING_RIGHT;
 				}
@@ -308,10 +308,10 @@ void CMario::Render()
 				{
 					if (nx > 0)
 						ani = MARIO_ANI_SMALL_TURN_LEFT_BACK_RIGHT;
-					else if (isRunning)
-						ani = MARIO_ANI_SMALL_RUN_LEFT;
 					else if (isRunningMax)
 						ani = MARIO_ANI_SMALL_RUN_MAX_LEFT;
+					else if (isRunning)
+						ani = MARIO_ANI_SMALL_RUN_LEFT;
 					else
 						ani = MARIO_ANI_SMALL_WALKING_LEFT;
 
@@ -368,10 +368,10 @@ void CMario::Render()
 					if (nx < 0)
 						//mario di bo
 						ani = MARIO_ANI_RACOON_TURN_RIGHT_BACK_LEFT;
-					else if (isRunning)
-						ani = MARIO_ANI_RACOON_RUN_RIGHT;
 					else if (isRunningMax)
 						ani = MARIO_ANI_RACOON_RUN_MAX_RIGHT;
+					else if (isRunning)
+						ani = MARIO_ANI_RACOON_RUN_RIGHT;
 					else
 						ani = MARIO_ANI_RACOON_WALKING_RIGHT;
 				}
@@ -380,10 +380,10 @@ void CMario::Render()
 				{
 					if (nx > 0)
 						ani = MARIO_ANI_RACOON_TURN_LEFT_BACK_RIGHT;
-					else if (isRunning)
-						ani = MARIO_ANI_RACOON_RUN_LEFT;
 					else if (isRunningMax)
 						ani = MARIO_ANI_RACOON_RUN_MAX_LEFT;
+					else if (isRunning)
+						ani = MARIO_ANI_RACOON_RUN_LEFT;
 					else
 						ani = MARIO_ANI_RACOON_WALKING_LEFT;
 
@@ -440,10 +440,10 @@ void CMario::Render()
 					if (nx < 0)
 						//mario di bo
 						ani = MARIO_ANI_FIRE_TURN_RIGHT_BACK_LEFT;
-					else if (isRunning)
-						ani = MARIO_ANI_FIRE_RUN_RIGHT;
 					else if (isRunningMax)
 						ani = MARIO_ANI_FIRE_RUN_MAX_RIGHT;
+					else if (isRunning)
+						ani = MARIO_ANI_FIRE_RUN_RIGHT;
 					else
 						ani = MARIO_ANI_FIRE_WALKING_RIGHT;
 				}
@@ -452,13 +452,12 @@ void CMario::Render()
 				{
 					if (nx > 0)
 						ani = MARIO_ANI_FIRE_TURN_LEFT_BACK_RIGHT;
-					else if (isRunning)
-						ani = MARIO_ANI_FIRE_RUN_LEFT;
 					else if (isRunningMax)
 						ani = MARIO_ANI_FIRE_RUN_MAX_LEFT;
+					else if (isRunning)
+						ani = MARIO_ANI_FIRE_RUN_LEFT;
 					else
 						ani = MARIO_ANI_FIRE_WALKING_LEFT;
-
 				}
 			}
 
