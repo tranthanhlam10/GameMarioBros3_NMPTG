@@ -40,14 +40,14 @@ void CQuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 void CQuestionBrick::Render()
 {
-	int aniId = ID_ANI_QUESTION_BRICK;
+	int ani = ID_ANI_QUESTION_BRICK;
 
 	if (isEmpty) {
-		aniId = ID_ANI_QUESTION_BRICK_EMPTY;
+		ani = ID_ANI_QUESTION_BRICK_EMPTY;
 	}
 
-	CAnimations::GetInstance()->Get(aniId)->Render(x, y);
-	//RenderBoundingBox();
+	animation_set->at(ani)->Render(x, y);
+	RenderBoundingBox();
 }
 
 void CQuestionBrick::SetState(int state)

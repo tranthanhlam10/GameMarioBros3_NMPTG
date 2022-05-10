@@ -98,7 +98,7 @@ public:
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e) {};
 	
 	// Is this object blocking other object? If YES, collision framework will automatically push the other object
-	virtual int IsBlocking() { return 1; }
+	virtual int IsBlocking() { return 1; } // return 1 thi chan mario lai con return 0 la di xuyen
 
 	~CGameObject();
 

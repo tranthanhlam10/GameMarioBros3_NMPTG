@@ -30,6 +30,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 #define OBJECT_TYPE_KOOPAS	3
 #define OBJECT_TYPE_COIN 4
 #define OBJECT_TYPE_PLATFORM 7
+#define OBJECT_TYPE_QUESTION_BRICK 8
 #define OBJECT_TYPE_PORTAL	52
 #define MAX_SCENE_LINE 1024
 
@@ -155,7 +156,12 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 			float w = (float)atof(tokens[3].c_str());
 			float h = (float)atof(tokens[4].c_str());
 			obj = new Platform();
-			DebugOut(L"[INFO] Platform object created!\n");
+			//DebugOut(L"[INFO] Platform object created!\n");
+			break;
+		}
+		case OBJECT_TYPE_QUESTION_BRICK: {
+			float model = (float)atof(tokens[4].c_str());
+			obj = new CQuestionBrick(x, y, model);
 			break;
 		}
 

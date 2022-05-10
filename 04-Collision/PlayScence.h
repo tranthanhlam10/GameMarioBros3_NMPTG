@@ -17,6 +17,7 @@
 #include "Utils.h"
 #include "Camera.h"
 #include "Platform.h"
+#include "QuestionBrick.h"
 
 
 
