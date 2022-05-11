@@ -170,6 +170,9 @@
     <ClInclude Include="QuestionBrick.h">
       <Filter>Object\Brick</Filter>
     </ClInclude>
+    <ClInclude Include="ColorBlock.h">
+      <Filter>Object\Brick</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -242,6 +245,9 @@
       <Filter>Framework\Camera</Filter>
     </ClCompile>
     <ClCompile Include="QuestionBrick.cpp">
+      <Filter>Object\Brick</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorBlock.cpp">
       <Filter>Object\Brick</Filter>
     </ClCompile>
   </ItemGroup>
