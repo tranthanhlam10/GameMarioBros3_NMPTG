@@ -12,8 +12,8 @@ CColorBlock::CColorBlock(float x, float y, float width, float height) : CGameObj
 
 void CColorBlock::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	left = x - width / 2;
-	right = left + width;
-	top = y - height / 2;
-	bottom = top + height;
+	left = x;
+	top = y;
+	right = x + width;
+	bottom = y +1 ;
 }

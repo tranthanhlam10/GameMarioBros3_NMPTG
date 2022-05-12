@@ -19,8 +19,7 @@
 #include "Platform.h"
 #include "QuestionBrick.h"
 #include "ColorBlock.h"
-
-
+#include "Pipe.h"
 
 class CPlayScene : public CScene // màn hình giao diện của trò chơi, không phải intro scene hay là end scene
 {

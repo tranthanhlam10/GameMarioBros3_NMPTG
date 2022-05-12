@@ -28,6 +28,7 @@ enum Type {
 	GOOMBA = 2,
 	KOOPAS = 3,
 	QUESTIONBRICK = 4,
+	PIPE = 5,
 };
 class CGameObject
 {

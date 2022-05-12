@@ -29,6 +29,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 #define OBJECT_TYPE_GOOMBA	2
 #define OBJECT_TYPE_KOOPAS	3
 #define OBJECT_TYPE_COIN 4
+#define OBJECT_TYPE_PIPE 6
 #define OBJECT_TYPE_PLATFORM 7
 #define OBJECT_TYPE_QUESTION_BRICK 8
 #define OBJECT_TYPE_COLOR_BLOCK 9
@@ -173,8 +174,11 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 			obj = new CColorBlock(x, y, width, height);
 			break;
 		}
-
-	    // loi la do tk object nay ???
+		case OBJECT_TYPE_PIPE: {
+			float model = (float)atof(tokens[4].c_str());
+			obj = new CPipe(x, y, model);
+			break;
+		}
 
 		case OBJECT_TYPE_PORTAL: // đối tượng chuyển cảnh
 		{

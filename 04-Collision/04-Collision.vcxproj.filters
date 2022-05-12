@@ -93,6 +93,9 @@
     <Filter Include="Object\Platform">
       <UniqueIdentifier>{69203bef-28d6-49fe-88df-1ba51fb34d57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Pipe">
+      <UniqueIdentifier>{da3fbd95-d620-412a-ae36-3993a1932229}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -173,6 +176,9 @@
     <ClInclude Include="ColorBlock.h">
       <Filter>Object\Brick</Filter>
     </ClInclude>
+    <ClInclude Include="Pipe.h">
+      <Filter>Object\Pipe</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -249,6 +255,9 @@
     </ClCompile>
     <ClCompile Include="ColorBlock.cpp">
       <Filter>Object\Brick</Filter>
+    </ClCompile>
+    <ClCompile Include="Pipe.cpp">
+      <Filter>Object\Pipe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
