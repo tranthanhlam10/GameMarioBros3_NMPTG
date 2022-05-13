@@ -8,7 +8,7 @@ class Platform : public CGameObject
 public:
 	Platform();
 	virtual void Render();
-	virtual void GetBoundingBox(float& l, float& t, float& r, float& b);
+	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	float GetWidth() { return width; }
 	
 };

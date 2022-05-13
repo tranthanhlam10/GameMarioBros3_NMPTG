@@ -6,12 +6,12 @@ Platform::Platform()
 	eType = Type::PLATFORM;
 }
 
-void Platform::GetBoundingBox(float& l, float& t, float& r, float& b)
+void Platform::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	l = x;
-	t = y  ;
-	r = x + BRICK_BBOX_WIDTH;
-	b = y + BRICK_BBOX_HEIGHT;
+	left = x;
+	top = y  ;
+	right = x + BRICK_BBOX_WIDTH;
+	bottom = y + BRICK_BBOX_HEIGHT;
 }
 
 void Platform::Render()
