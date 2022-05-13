@@ -148,6 +148,8 @@
 #define MARIO_ACCELERATION					0.0003f
 #define MARIO_WALKING_MAXSPEED 0.12f
 
+#define ADJUST_MARIO_COLLISION_WITH_COLOR_BLOCK 1
+
 //time
 #define LIMIT_MARIO_RACCOON_FLY_TIME 2500
 #define POWER_STACK_TIME 250
@@ -194,7 +196,7 @@ public:
 		this->y = y;
 		//eType = Type::MARIO;
 	}
-	// mario bay
+
 	BOOLEAN isFlying = false;
 	BOOLEAN isJumping = false;
 	BOOLEAN isOnPlatform = false;
@@ -203,6 +205,8 @@ public:
 	BOOLEAN isFallSlow = false;
 	BOOLEAN isWalking = false;
 	BOOLEAN isSitting = false;
+	BOOLEAN isMoveOverBlockColor = false;
+	
 	int runningStack = 0;
 
 	//time
@@ -227,6 +231,7 @@ public:
 
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
+	void OnCollisionWithColorBlock(LPCOLLISIONEVENT e);
 
 	void SetLevel(int l);
 	int GetLevel() {

@@ -10,6 +10,7 @@
 #include "GameObject.h"
 #include "Collision.h"
 #include "PlayScence.h"
+#include "ColorBlock.h"
 
 
 
@@ -56,7 +57,6 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) //cần phải vi
 		 ax = 0;
 	 }
 
-
 	 // gioi han di chuyen theo phuong y
 	 if (vy <= -MARIO_JUMP_SPEED_MAX && !isRunningMax) {
 		 vy = -MARIO_JUMP_SPEED_MAX;
@@ -98,6 +98,11 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) //cần phải vi
 
 		}
 	}
+	if (isMoveOverBlockColor) {
+		y -= ADJUST_MARIO_COLLISION_WITH_COLOR_BLOCK;
+		vy = -MARIO_JUMP_SPEED_MAX;
+		isMoveOverBlockColor = false;
+	}
 
 
 	CCollision::GetInstance()->Process(this, dt, coObjects);
@@ -131,6 +136,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 		OnCollisionWithGoomba(e);
 	else if (dynamic_cast<CCoin*>(e->obj))
 		OnCollisionWithCoin(e);
+	else if (dynamic_cast<CColorBlock*>(e->obj))
+		OnCollisionWithColorBlock(e);
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e) // sử lí va chạm khi cham nấm
@@ -171,6 +178,14 @@ void CMario::OnCollisionWithCoin(LPCOLLISIONEVENT e) // sử lí khi va chạm v
 {
 	e->obj->Delete();
 	coin++;
+}
+
+
+void CMario::OnCollisionWithColorBlock(LPCOLLISIONEVENT e) // sử lí khi va chạm với tiền
+{
+	if (e->ny > 0) {
+		isMoveOverBlockColor = true;
+	}
 }
 
 void CMario::Render()
@@ -514,7 +529,7 @@ void CMario::SetState(int state) // set trạng thái cho mario
 		nx = -1;
 		isRunning = true;
 		break;
-	case MARIO_STATE_JUMP: // State nay khong van de
+	case MARIO_STATE_JUMP:
 	    isJumping = true;
 		if (isOnPlatform) {
 
@@ -542,7 +557,6 @@ void CMario::SetState(int state) // set trạng thái cho mario
 			isSitting = true;
 			Decelerate();
 			vy = 0.0f;
-			//y += MARIO_SIT_HEIGHT_ADJUST;
 		}
 		break;
 	case MARIO_STATE_SIT_RELEASE:

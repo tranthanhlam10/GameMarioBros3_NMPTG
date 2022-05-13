@@ -17,10 +17,21 @@ CQuestionBrick::CQuestionBrick(float x, float y, int model) :CGameObject(x, y)
 
 void CQuestionBrick::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	left = x;
-	top = y;
-	right = x + QUESTION_BRICK_BBOX_WIDTH;
-	bottom = y + QUESTION_BRICK_BBOX_HEIGHT;
+
+	CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	if (mario->GetLevel() == MARIO_LEVEL_SMALL)
+	{
+		left = x;
+		top = y;
+		right = x + QUESTION_BRICK_BBOX_WIDTH;
+		bottom = y + QUESTION_BRICK_BBOX_HEIGHT;
+	}
+	else {
+		left = x;
+		top = y;
+		right = x + QUESTION_BRICK_BBOX_WIDTH;
+		bottom = y + QUESTION_BRICK_BBOX_HEIGHT + 4;
+	}
 }
 
 void CQuestionBrick::OnNoCollision(DWORD dt)
@@ -47,7 +58,7 @@ void CQuestionBrick::Render()
 	}
 
 	animation_set->at(ani)->Render(x, y);
-	RenderBoundingBox();
+	//RenderBoundingBox();
 }
 
 void CQuestionBrick::SetState(int state)

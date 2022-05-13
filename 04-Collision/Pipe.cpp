@@ -10,7 +10,7 @@ CPipe::CPipe(float x, float y, int model) : CGameObject(x, y) {
 
 void CPipe::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	/*left = x - PIPE_BBOX_WIDTH / 2;
+	left = x - PIPE_BBOX_WIDTH / 2;
 	right = left + PIPE_BBOX_WIDTH;
 
 	if (model == PIPE_LONG) {
@@ -20,9 +20,9 @@ void CPipe::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 	else if (model == PIPE_MEDIUM) {
 		top = y - PIPE_MEDIUM_BBOX_HEIGHT / 2;
 		bottom = top + PIPE_MEDIUM_BBOX_HEIGHT;
-	}*/
+	}
 
-	left = this->x;
+	/*left = this->x;
 	top = y;
 	right = this->x + PIPE_BBOX_WIDTH;
 	if (model == PIPE_MEDIUM)
@@ -32,7 +32,7 @@ void CPipe::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 	if (model == PIPE_LONG)
 	{
 		bottom = y + PIPE_LONG_BBOX_HEIGHT;
-	}
+	}*/
 }
 
 
