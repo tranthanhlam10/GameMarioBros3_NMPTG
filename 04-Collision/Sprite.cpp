@@ -21,8 +21,8 @@ CSprite::CSprite(int id, int left, int top, int right, int bottom, LPTEXTURE tex
 	int spriteWidth = (this->right - this->left );
 	int spriteHeight = (this->bottom - this->top );
 
-	sprite.TexSize.x = (float)(spriteWidth / texWidth);
-	sprite.TexSize.y = (float)(spriteHeight / texHeight);  // coi chừng lỗi nằm ở đây
+	sprite.TexSize.x = spriteWidth / texWidth;
+	sprite.TexSize.y = spriteHeight / texHeight;  // coi chừng lỗi nằm ở đây
 
 	sprite.ColorModulate = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 	sprite.TextureIndex = 0;

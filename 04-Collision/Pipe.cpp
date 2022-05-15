@@ -1,4 +1,6 @@
 #include "Pipe.h"
+#include "Utils.h"
+#include "debug.h"
 
 CPipe::CPipe(float x, float y, int model) : CGameObject(x, y) {
 
@@ -12,27 +14,16 @@ void CPipe::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	left = x - PIPE_BBOX_WIDTH / 2;
 	right = left + PIPE_BBOX_WIDTH;
-
 	if (model == PIPE_LONG) {
-		top = y - PIPE_LONG_BBOX_HEIGHT / 2;
+		top = y - PIPE_LONG_BBOX_HEIGHT/2;
 		bottom = top + PIPE_LONG_BBOX_HEIGHT;
 	}
 	else if (model == PIPE_MEDIUM) {
-		top = y - PIPE_MEDIUM_BBOX_HEIGHT / 2;
+		top = y - PIPE_MEDIUM_BBOX_HEIGHT/2;
 		bottom = top + PIPE_MEDIUM_BBOX_HEIGHT;
 	}
 
-	/*left = this->x;
-	top = y;
-	right = this->x + PIPE_BBOX_WIDTH;
-	if (model == PIPE_MEDIUM)
-	{
-		bottom = y + PIPE_MEDIUM_BBOX_HEIGHT;
-	}
-	if (model == PIPE_LONG)
-	{
-		bottom = y + PIPE_LONG_BBOX_HEIGHT;
-	}*/
+
 }
 
 

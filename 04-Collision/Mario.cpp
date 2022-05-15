@@ -117,7 +117,7 @@ void CMario::OnNoCollision(DWORD dt) // Không có va chạm
 
 void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm với ai
 {
-	if (e->ny != 0 && e->obj->IsBlocking()) // điều kiện để xảy ra va chạm
+	if (e->ny < 0 && e->obj->IsBlocking()) // điều kiện để xảy ra va chạm
 	{
 		vy = 0;
 		if (e->ny < 0) { 
@@ -126,7 +126,10 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 			isJumping = false; 
 		}
 	}
-	else 
+	if (e->ny > 0) {
+		vy = 0;
+		ay = MARIO_GRAVITY;
+	}
 	if (e->nx != 0 && e->obj->IsBlocking())
 	{
 		vx = 0;
@@ -136,8 +139,11 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 		OnCollisionWithGoomba(e);
 	else if (dynamic_cast<CCoin*>(e->obj))
 		OnCollisionWithCoin(e);
+	else if (dynamic_cast<CQuestionBrick*>(e->obj))
+		OnCollisionWithQuestionBrick(e);
 	else if (dynamic_cast<CColorBlock*>(e->obj))
 		OnCollisionWithColorBlock(e);
+
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e) // sử lí va chạm khi cham nấm
@@ -179,8 +185,12 @@ void CMario::OnCollisionWithCoin(LPCOLLISIONEVENT e) // sử lí khi va chạm v
 	e->obj->Delete();
 	coin++;
 }
-
-
+void CMario::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e) {
+	CQuestionBrick* questionBrick = dynamic_cast<CQuestionBrick*>(e->obj);
+	if (e->ny > 0 && !questionBrick->isEmpty) {
+		questionBrick->SetState(QUESTION_BRICK_STATE_UP);
+	}
+}
 void CMario::OnCollisionWithColorBlock(LPCOLLISIONEVENT e) // sử lí khi va chạm với tiền
 {
 	if (e->ny > 0) {
@@ -484,7 +494,7 @@ void CMario::Render()
 
 	animation_set->at(ani)->Render(x, y);
 
-  RenderBoundingBox();
+  //RenderBoundingBox();
 }
 
 
@@ -598,9 +608,10 @@ void CMario::GetBoundingBox(float &left, float &top, float &right, float &bottom
 		else
 		{
 			left = x;
-			top = y;
+			top = y ;
 			right = left + MARIO_BIG_BBOX_WIDTH;
-			bottom = top + MARIO_BIG_BBOX_HEIGHT;
+			bottom = top + MARIO_BIG_BBOX_HEIGHT ;
+
 		}
 	}
 	else

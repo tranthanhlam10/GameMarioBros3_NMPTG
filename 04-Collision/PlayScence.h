@@ -27,7 +27,7 @@ protected:
 	CMario* player;					// A play scene has to have player, right? 
 	Map* map;
 	CGame* game = CGame::GetInstance();
-	vector<LPGAMEOBJECT> objects; // con trỏ đến tất cả các đối tượng
+	
 	void _ParseSection_TEXTURES(string line);
 	void _ParseSection_SPRITES(string line);
 	void _ParseSection_ANIMATIONS(string line);
@@ -38,7 +38,8 @@ protected:
 
 public:
 	CPlayScene(int id, LPCWSTR filePath);
-
+	
+	vector<LPGAMEOBJECT> objects; // con trỏ đến tất cả các đối tượng
 	virtual void Load();
 	virtual void Update(DWORD dt);
 	virtual void Render();

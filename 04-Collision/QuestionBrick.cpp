@@ -1,6 +1,7 @@
 #include "QuestionBrick.h"
 #include "PlayScence.h"
-
+#include "QuestionBrickCoin.h"
+#include "PlayScence.h"
 
 
 
@@ -19,6 +20,7 @@ void CQuestionBrick::GetBoundingBox(float& left, float& top, float& right, float
 {
 
 	CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+
 	if (mario->GetLevel() == MARIO_LEVEL_SMALL)
 	{
 		left = x;
@@ -46,6 +48,31 @@ void CQuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	vy += ay * dt;
 	vx += ax * dt;
 
+	CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	CPlayScene* scene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
+
+	if (y <= minY)
+	{
+		vy = QUESTION_BRICK_SPEED_DOWN;
+
+	}
+	if (y > startY)
+	{
+		y = startY;
+		vy = 0;
+		isEmpty = true;
+		isUnbox = true;
+	}
+
+	if (isUnbox)
+	{
+		QuestionBrickCoin* QBcoin = new  QuestionBrickCoin(x, y);
+		QBcoin->SetState(QB_COIN_STATE_UP);
+		//scene->objects.insert(scene->objects.begin() + 1,QBcoin); co the la do minh tile sai ??
+	}
+
+	CGameObject::Update(dt, coObjects);
+	CCollision::GetInstance()->Process(this, dt, coObjects);
 }
 
 
@@ -58,7 +85,7 @@ void CQuestionBrick::Render()
 	}
 
 	animation_set->at(ani)->Render(x, y);
-	//RenderBoundingBox();
+	/*RenderBoundingBox();*/
 }
 
 void CQuestionBrick::SetState(int state)

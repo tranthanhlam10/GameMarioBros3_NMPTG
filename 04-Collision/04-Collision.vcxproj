@@ -151,6 +151,7 @@
     <ClInclude Include="PlayScence.h" />
     <ClInclude Include="Portal.h" />
     <ClInclude Include="QuestionBrick.h" />
+    <ClInclude Include="QuestionBrickCoin.h" />
     <ClInclude Include="Scence.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Sprites.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="PlayScence.cpp" />
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="QuestionBrick.cpp" />
+    <ClCompile Include="QuestionBrickCoin.cpp" />
     <ClCompile Include="Scence.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Sprites.cpp" />

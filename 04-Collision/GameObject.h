@@ -14,6 +14,7 @@
 using namespace std;
 
 #define ID_TEX_BBOX -100		// special texture to draw object bounding box
+#define BBOX_ALPHA 0.25f
 
 //#define TILE_WIDTH 16.0f
 //#define TILE_HEIGHT 16.0f

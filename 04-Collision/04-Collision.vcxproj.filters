@@ -96,6 +96,9 @@
     <Filter Include="Object\Pipe">
       <UniqueIdentifier>{da3fbd95-d620-412a-ae36-3993a1932229}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Items">
+      <UniqueIdentifier>{cae2c673-2e68-49a8-b2a7-b8998810e19c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -179,6 +182,9 @@
     <ClInclude Include="Pipe.h">
       <Filter>Object\Pipe</Filter>
     </ClInclude>
+    <ClInclude Include="QuestionBrickCoin.h">
+      <Filter>Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -258,6 +264,9 @@
     </ClCompile>
     <ClCompile Include="Pipe.cpp">
       <Filter>Object\Pipe</Filter>
+    </ClCompile>
+    <ClCompile Include="QuestionBrickCoin.cpp">
+      <Filter>Items</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

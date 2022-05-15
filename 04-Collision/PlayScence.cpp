@@ -158,7 +158,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 			float w = (float)atof(tokens[3].c_str());
 			float h = (float)atof(tokens[4].c_str());
 			obj = new Platform();
-			//DebugOut(L"[INFO] Platform object created!\n");
+			DebugOut(L"[INFO] Platform object created!\n");
 			break;
 		}
 		case OBJECT_TYPE_QUESTION_BRICK: {
@@ -179,7 +179,6 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 			obj = new CPipe(x, y, model);
 			break;
 		}
-
 		case OBJECT_TYPE_PORTAL: // đối tượng chuyển cảnh
 		{
 			float r = (float)atof(tokens[4].c_str());

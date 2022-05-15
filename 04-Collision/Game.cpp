@@ -170,12 +170,12 @@ void CGame::SetPointSamplerState()
 	NOTE: This function is very inefficient because it has to convert
 	from texture to sprite every time we need to draw it
 */
-void CGame::Draw(float x, float y, LPTEXTURE tex, RECT* rect, float alpha)
+void CGame::Draw(float x, float y, LPTEXTURE tex, RECT* rect, float alpha, int sprite_width, int sprite_height)
 {
 	if (tex == NULL) return;
 
-	int spriteWidth = 0;
-	int spriteHeight = 0;
+	int spriteWidth = sprite_width;
+	int spriteHeight = sprite_height;
 
 	D3DX10_SPRITE sprite;
 
