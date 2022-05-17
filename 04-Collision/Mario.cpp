@@ -14,7 +14,7 @@
 
 
 
-void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) //cần phải viết lại hàm update
+void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
 	CGame* game = CGame::GetInstance();
 	CGameObject::Update(dt);
@@ -23,10 +23,8 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects) //cần phải vi
 	float mh = ((CPlayScene*)game->GetCurrentScene())->GetMap()->GetMapHeight(); 
   
 
-     vy += ay * dt; // đây là công thức tính trọng lực tác động lên mario
+     vy += ay * dt; 
 	 vx += ax * dt + nx * runningStack * ax;
-
-
 
 	 
 	 // giới hạn chuyển động theo phuong x
@@ -117,7 +115,7 @@ void CMario::OnNoCollision(DWORD dt) // Không có va chạm
 
 void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm với ai
 {
-	if (e->ny < 0 && e->obj->IsBlocking()) // điều kiện để xảy ra va chạm
+	if (e->ny < 0 && e->obj->IsBlocking())
 	{
 		vy = 0;
 		if (e->ny < 0) { 

@@ -1,8 +1,10 @@
 #include "QuestionBrick.h"
 #include "PlayScence.h"
 #include "QuestionBrickCoin.h"
-#include "PlayScence.h"
-
+#include "Leaf.h"
+#include "MushRoom.h"
+#include "Flower.h"
+#include "Mario.h"
 
 
 
@@ -66,9 +68,31 @@ void CQuestionBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 	if (isUnbox)
 	{
+		if (model == QUESTION_BRICK_ITEM)
+		{
+			if (mario->GetLevel() == MARIO_LEVEL_BIG)
+			{
+				Leaf* leaf = new Leaf(x, y);
+				leaf->SetState(LEAF_STATE_UP);
+				scene->objects.insert(scene->objects.begin() + 1, leaf);
+			}
+			else if (mario->GetLevel() == MARIO_LEVEL_SMALL) {
+				MushRoom* mushroom = new MushRoom(x, y, RED_MUSHROOM);
+				mushroom->SetState(MUSHROOM_STATE_UP);
+				scene->objects.insert(scene->objects.begin() + 1, mushroom);
+			}
+			else if (mario->GetLevel() == MARIO_LEVEL_RACOON || mario->GetLevel() == MARIO_LEVEL_FIRE) {
+				Flower* flower = new Flower(x, y);
+				flower->SetState(FLOWER_STATE_UP);
+				scene->objects.insert(scene->objects.begin() + 1, flower);
+			}
+		}
+		else {
 		QuestionBrickCoin* QBcoin = new  QuestionBrickCoin(x, y);
 		QBcoin->SetState(QB_COIN_STATE_UP);
-		//scene->objects.insert(scene->objects.begin() + 1,QBcoin); co the la do minh tile sai ??
+		scene->objects.insert(scene->objects.begin() + 1,QBcoin); 
+		}
+		isUnbox = false;
 	}
 
 	CGameObject::Update(dt, coObjects);

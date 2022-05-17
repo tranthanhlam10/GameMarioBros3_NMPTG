@@ -12,18 +12,15 @@ CPipe::CPipe(float x, float y, int model) : CGameObject(x, y) {
 
 void CPipe::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	left = x - PIPE_BBOX_WIDTH / 2;
-	right = left + PIPE_BBOX_WIDTH;
-	if (model == PIPE_LONG) {
-		top = y - PIPE_LONG_BBOX_HEIGHT/2;
+	left = x;
+	right = x + PIPE_BBOX_WIDTH;
+	top = y;
+	if (model == PIPE_LONG) {	
 		bottom = top + PIPE_LONG_BBOX_HEIGHT;
 	}
 	else if (model == PIPE_MEDIUM) {
-		top = y - PIPE_MEDIUM_BBOX_HEIGHT/2;
 		bottom = top + PIPE_MEDIUM_BBOX_HEIGHT;
 	}
-
-
 }
 
 
@@ -35,6 +32,6 @@ void CPipe::Render()
 		ani = ID_ANI_PIPE_MEDIUM;
 	}
 
-	animation_set->at(ani)->Render(x, y);
+	animation_set->at(ani)->Render(x , y);
 	RenderBoundingBox();
 }

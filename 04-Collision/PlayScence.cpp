@@ -162,7 +162,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 			break;
 		}
 		case OBJECT_TYPE_QUESTION_BRICK: {
-			float model = (float)atof(tokens[4].c_str());
+			int model = (int)atof(tokens[4].c_str());
 			obj = new CQuestionBrick(x, y, model);
 			break;
 		}
@@ -175,7 +175,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 			break;
 		}
 		case OBJECT_TYPE_PIPE: {
-			float model = (float)atof(tokens[4].c_str());
+			int model = (int)atof(tokens[4].c_str());
 			obj = new CPipe(x, y, model);
 			break;
 		}
@@ -311,7 +311,7 @@ void CPlayScene::Update(DWORD dt)
 void CPlayScene::Render()
 {
 	map->DrawMap();
-	player->Render();
+	//player->Render();
 	for (size_t i = 0; i < objects.size(); i++)
 	{
 

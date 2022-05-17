@@ -185,6 +185,15 @@
     <ClInclude Include="QuestionBrickCoin.h">
       <Filter>Items</Filter>
     </ClInclude>
+    <ClInclude Include="Leaf.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Mushroom.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Flower.h">
+      <Filter>Items</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -266,6 +275,15 @@
       <Filter>Object\Pipe</Filter>
     </ClCompile>
     <ClCompile Include="QuestionBrickCoin.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Leaf.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Mushroom.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Flower.cpp">
       <Filter>Items</Filter>
     </ClCompile>
   </ItemGroup>

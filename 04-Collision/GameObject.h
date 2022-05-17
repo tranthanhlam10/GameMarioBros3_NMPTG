@@ -26,10 +26,12 @@ using namespace std;
 enum Type {
 	MARIO = 0,
 	PLATFORM = 1,
-	GOOMBA = 2,
-	KOOPAS = 3,
-	QUESTIONBRICK = 4,
-	PIPE = 5,
+	QUESTIONBRICK = 2,
+	PIPE = 3,
+	QUESTIONBRICKCOIN = 4,
+	MUSHROOM = 5,
+	FLOWER = 6,
+	LEAF = 7,
 };
 class CGameObject
 {

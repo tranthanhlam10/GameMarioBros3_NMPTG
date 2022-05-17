@@ -1,6 +1,7 @@
 #include "QuestionBrickCoin.h"
 #include "PlayScence.h"
 
+
 QuestionBrickCoin::QuestionBrickCoin(float x, float y) : CGameObject(x, y)
 {
 
@@ -8,7 +9,8 @@ QuestionBrickCoin::QuestionBrickCoin(float x, float y) : CGameObject(x, y)
 	this->ax = 0;
 	this->x = x;
 	this->y = y;
-
+	SetAnimationSet(CAnimationSets::GetInstance()->Get(LOAD_QB_COIN));
+	eType = Type::QUESTIONBRICKCOIN;
 	minY = y - QB_COIN_MAX_HEIGHT;
 	heightFinish = y - HEIGHT_FINISH;
 }
@@ -47,7 +49,6 @@ void QuestionBrickCoin::Render()
 	int ani= ID_ANI_QB_COIN;
 
 	animation_set->at(ani)->Render(x, y);
-	//RenderBoundingBox();
 }
 
 void QuestionBrickCoin::SetState(int state)
