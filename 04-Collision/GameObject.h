@@ -16,12 +16,6 @@ using namespace std;
 #define ID_TEX_BBOX -100		// special texture to draw object bounding box
 #define BBOX_ALPHA 0.25f
 
-//#define TILE_WIDTH 16.0f
-//#define TILE_HEIGHT 16.0f
-//
-//#define SCREEN_WIDTH 300
-//#define SCREEN_HEIGHT 300
-
 
 enum Type {
 	MARIO = 0,
@@ -32,6 +26,7 @@ enum Type {
 	MUSHROOM = 5,
 	FLOWER = 6,
 	LEAF = 7,
+	COIN = 10,
 };
 class CGameObject
 {

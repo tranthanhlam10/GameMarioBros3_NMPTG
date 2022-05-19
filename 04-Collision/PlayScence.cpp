@@ -28,7 +28,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 #define OBJECT_TYPE_BRICK	1
 #define OBJECT_TYPE_GOOMBA	2
 #define OBJECT_TYPE_KOOPAS	3
-#define OBJECT_TYPE_COIN 4
+#define OBJECT_TYPE_COIN 10
 #define OBJECT_TYPE_PIPE 6
 #define OBJECT_TYPE_PLATFORM 7
 #define OBJECT_TYPE_QUESTION_BRICK 8
@@ -186,6 +186,10 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 			float scene_id = (float)atoi(tokens[6].c_str()); // cảnh này giúp mình nhảy tới cảnh nào
 			obj = new CPortal(x, y, r, b, scene_id);
 		}
+		case OBJECT_TYPE_COIN: {
+			obj = new CCoin(x,y);
+			break;
+		}
 		break;
 		default:
 			DebugOut(L"[ERR] Invalid object type: %d\n", object_type);
@@ -193,7 +197,6 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 		}
 
 		// General object setup
-		// các hàm này điều load đúng
 		obj->SetPosition(x, y);
 		LPANIMATION_SET ani_set = animation_sets->Get(ani_set_id);
 		obj->SetAnimationSet(ani_set);

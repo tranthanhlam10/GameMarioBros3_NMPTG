@@ -3,7 +3,7 @@
 
 Platform::Platform()
 {
-	eType = Type::PLATFORM;
+	eType = Type::COIN;
 }
 
 void Platform::GetBoundingBox(float& left, float& top, float& right, float& bottom)

@@ -16,10 +16,10 @@ void CPipe::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 	right = x + PIPE_BBOX_WIDTH;
 	top = y;
 	if (model == PIPE_LONG) {	
-		bottom = top + PIPE_LONG_BBOX_HEIGHT;
+		bottom = y + PIPE_LONG_BBOX_HEIGHT;
 	}
 	else if (model == PIPE_MEDIUM) {
-		bottom = top + PIPE_MEDIUM_BBOX_HEIGHT;
+		bottom = y + PIPE_MEDIUM_BBOX_HEIGHT;
 	}
 }
 

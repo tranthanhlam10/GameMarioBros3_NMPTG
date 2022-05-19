@@ -11,7 +11,7 @@
 #include "Collision.h"
 #include "PlayScence.h"
 #include "ColorBlock.h"
-
+#include "Flower.h"
 
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
@@ -141,6 +141,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 		OnCollisionWithQuestionBrick(e);
 	else if (dynamic_cast<CColorBlock*>(e->obj))
 		OnCollisionWithColorBlock(e);
+	else if (dynamic_cast<Flower*>(e->obj))
+		OnCollisionWithFlower(e);
 
 }
 
@@ -195,6 +197,15 @@ void CMario::OnCollisionWithColorBlock(LPCOLLISIONEVENT e) // sử lí khi va ch
 		isMoveOverBlockColor = true;
 	}
 }
+
+void CMario::OnCollisionWithFlower(LPCOLLISIONEVENT e)
+{
+	level = MARIO_LEVEL_FIRE;
+	//obj = new CEffectScore(x, y, SCORE_EFFECT_1000);
+	//ListEffect.push_back(obj);
+	//e->obj->Delete();
+}
+
 
 void CMario::Render()
 {CAnimations* animations = CAnimations::GetInstance();

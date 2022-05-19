@@ -1,17 +1,16 @@
 #include "Coin.h"
-
 void CCoin::Render()
 {
-	CAnimations* animations = CAnimations::GetInstance();
-	animations->Get(ID_ANI_COIN)->Render(x, y);
+	int ani = ID_ANI_COIN;
+	animation_set->at(ani)->Render(x, y);
 
 	RenderBoundingBox();
 }
 
-void CCoin::GetBoundingBox(float& l, float& t, float& r, float& b)
+void CCoin::GetBoundingBox(float& left, float& top, float& right, float& bot)
 {
-	l = x - COIN_BBOX_WIDTH / 2;
-	t = y - COIN_BBOX_HEIGHT / 2;
-	r = l + COIN_BBOX_WIDTH;
-	b = t + COIN_BBOX_HEIGHT;
+	left = x - COIN_BBOX_WIDTH / 2;
+	top = y - COIN_BBOX_HEIGHT / 2;
+	right = left + COIN_BBOX_WIDTH;
+	bot = top + COIN_BBOX_HEIGHT;
 }

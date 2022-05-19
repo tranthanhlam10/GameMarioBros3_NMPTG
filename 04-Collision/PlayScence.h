@@ -20,6 +20,7 @@
 #include "QuestionBrick.h"
 #include "ColorBlock.h"
 #include "Pipe.h"
+#include "Coin.h"
 
 class CPlayScene : public CScene // màn hình giao diện của trò chơi, không phải intro scene hay là end scene
 {
@@ -49,7 +50,6 @@ public:
 	CMario* GetPlayer() { return player; }
 	Map* GetMap() { return map; }
 	void PurgeDeletedObjects();
-	//friend class CPlayScenceKeyHandler;
 
 	static bool IsGameObjectDeleted(const LPGAMEOBJECT& o);
 };

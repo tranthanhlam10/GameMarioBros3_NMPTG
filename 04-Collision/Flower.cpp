@@ -14,8 +14,8 @@ Flower::Flower(float x, float y) :CGameObject(x, y)
 
 void Flower::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	left = x - FLOWER_BBOX_WIDTH / 2;
-	top = y - FLOWER_BBOX_HEIGHT / 2;
+	left = x;
+	top = y;
 	right = x + FLOWER_BBOX_WIDTH;
 	bottom = y + FLOWER_BBOX_HEIGHT;
 }
@@ -45,6 +45,7 @@ void Flower::Render()
 	int ani = ID_ANI_FLOWER;
 
 	animation_set->at(ani)->Render(x, y);
+	RenderBoundingBox();
 }
 
 void Flower::SetState(int state)

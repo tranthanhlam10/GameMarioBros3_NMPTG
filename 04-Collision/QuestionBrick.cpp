@@ -34,7 +34,7 @@ void CQuestionBrick::GetBoundingBox(float& left, float& top, float& right, float
 		left = x;
 		top = y;
 		right = x + QUESTION_BRICK_BBOX_WIDTH;
-		bottom = y + QUESTION_BRICK_BBOX_HEIGHT + 4;
+		bottom = y + QUESTION_BRICK_BBOX_HEIGHT + (QUESTION_BRICK_BBOX_HEIGHT/4);
 	}
 }
 

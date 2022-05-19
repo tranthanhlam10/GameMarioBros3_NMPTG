@@ -71,7 +71,7 @@ void MushRoom::Render()
 	}
 
 	animation_set->at(ani)->Render(x, y);
-	//RenderBoundingBox();
+	
 }
 
 void MushRoom::SetState(int state)
