@@ -399,8 +399,14 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 	case DIK_S: // hanh dong khi nhan phim nhay
 		mario->SetState(MARIO_STATE_JUMP);
 		break;
-
+	case DIK_A:
+		if (mario->GetLevel() == MARIO_LEVEL_FIRE) {
+			if (!mario->isShootingFireBall) {
+				mario->SetState(MARIO_STATE_SHOOTING);
+			}
+		}
 	}
+	
 }
 	
 

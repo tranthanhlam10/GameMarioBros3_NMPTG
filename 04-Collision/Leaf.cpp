@@ -67,7 +67,7 @@ void Leaf::Render()
 	}
 
 	animation_set->at(ani)->Render(x, y);
-	RenderBoundingBox();
+	//RenderBoundingBox();
 }
 
 void Leaf::SetState(int state)

@@ -37,6 +37,8 @@
 #define MARIO_STATE_RUNNING_LEFT						5000
 #define MARIO_STATE_SIT_RELEASE						    6000
 #define MARIO_STATE_RELEASE_RUN	                        7000
+#define MARIO_STATE_SHOOTING							10000
+
 
 
 
@@ -196,10 +198,17 @@
 
 #define ADJUST_MARIO_COLLISION_WITH_COLOR_BLOCK 1
 
+#define MARIO_FIRE_BALL_LIMIT 10
+// ADJUST
+#define ADJUST_HEIGHT_MARIO_SMALL_TRANSFORM_BIG 10
+#define ADJUST_MARIO_SHOOT_FIRE_X 5
+#define ADJUST_MARIO_SHOOT_FIRE_Y 5
+
 //time
 #define LIMIT_MARIO_RACCOON_FLY_TIME 2500
 #define POWER_STACK_TIME 250
 #define POWER_STACK_LOST_TIME 250
+#define MARIO_FIRE_TIME_SHOOT 500
 
 
 
@@ -252,6 +261,8 @@ public:
 	BOOLEAN isSitting = false;
 	BOOLEAN isMoveOverBlockColor = false;
 	BOOLEAN isTransform = false;
+	BOOLEAN isPendingShootFireBall = false;
+	BOOLEAN isShootingFireBall = false;
 	
 	int runningStack = 0;
 
@@ -259,7 +270,9 @@ public:
 	ULONGLONG flying_start = -1;
 	ULONGLONG running_start = -1;
 	ULONGLONG running_stop = -1;
+	ULONGLONG shoot_start = -1;
 
+	vector<LPGAMEOBJECT> TotalFire;
 	
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 	void Render();
@@ -290,5 +303,6 @@ public:
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
 
 	void Decelerate();
+	void MarioShootFireBall();
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 };

@@ -45,7 +45,7 @@ void Flower::Render()
 	int ani = ID_ANI_FLOWER;
 
 	animation_set->at(ani)->Render(x, y);
-	RenderBoundingBox();
+	//RenderBoundingBox();
 }
 
 void Flower::SetState(int state)

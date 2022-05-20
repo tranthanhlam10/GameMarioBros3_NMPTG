@@ -12,7 +12,7 @@
 #include "PlayScence.h"
 #include "ColorBlock.h"
 #include "Flower.h"
-
+#include "FireBall.h"
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
@@ -101,6 +101,30 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		vy = -MARIO_JUMP_SPEED_MAX;
 		isMoveOverBlockColor = false;
 	}
+
+	if (GetTickCount64() - shoot_start > MARIO_FIRE_TIME_SHOOT && isPendingShootFireBall) {
+		shoot_start = -1;
+		isPendingShootFireBall = false;
+	}
+
+	if (isShootingFireBall && level == MARIO_LEVEL_FIRE)
+	{
+		if (TotalFire.size() < MARIO_FIRE_BALL_LIMIT)
+		{
+			MarioShootFireBall();
+			isPendingShootFireBall = true;
+			isShootingFireBall = false;
+		}
+	}
+
+	for (size_t i = 0; i < TotalFire.size(); i++)
+	{
+		TotalFire[i]->Update(dt, coObjects);
+		if (TotalFire[i]->isDeleted) {
+			TotalFire.erase(TotalFire.begin() + i);
+		}
+	}
+
 
 
 	CCollision::GetInstance()->Process(this, dt, coObjects);
@@ -463,6 +487,15 @@ void CMario::Render()
 					else
 						ani = MARIO_ANI_FIRE_SIT_LEFT;
 				}
+				else if (isPendingShootFireBall) 
+				{
+					if (nx > 0) 
+					{
+						ani = MARIO_ANI_FIRE_SHOOT_RIGHT;
+					}
+					else
+						ani = MARIO_ANI_FIRE_SHOOT_LEFT;
+				}
 				else if (vx == 0)
 				{
 					//mario dung yen
@@ -498,6 +531,11 @@ void CMario::Render()
 
 		}
 
+		for (int i = 0; i < TotalFire.size(); i++)
+		{
+			TotalFire[i]->Render();
+		}
+
 	int alpha = 255;
 	if (untouchable) alpha = 128;
 
@@ -517,6 +555,13 @@ void CMario::Decelerate()
 	{
 		ax = MARIO_DECELERATE_SPEED;
 	}
+}
+
+void CMario::MarioShootFireBall()
+{
+	FireBall* fireBall = new FireBall(x + ADJUST_MARIO_SHOOT_FIRE_X, y + ADJUST_MARIO_SHOOT_FIRE_Y);
+	fireBall->SetState(FIRE_BALL_STATE_MARIO_SHOOT);
+	TotalFire.push_back(fireBall);
 }
 
 
@@ -597,6 +642,10 @@ void CMario::SetState(int state) // set trạng thái cho mario
 		break;
 	case MARIO_STATE_DIE:
 		vy = -MARIO_DIE_DEFLECT_SPEED;
+		break;
+	case MARIO_STATE_SHOOTING:
+		isShootingFireBall = true;
+		shoot_start = GetTickCount64();
 		break;
 
 	}

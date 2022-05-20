@@ -26,7 +26,8 @@ enum Type {
 	MUSHROOM = 5,
 	FLOWER = 6,
 	LEAF = 7,
-	COIN = 10,
+	COIN = 11,
+	FIREBALL = 10,
 };
 class CGameObject
 {
@@ -42,6 +43,7 @@ public:
 	float vy;  //vector vận tốc theo phương y
 
 	int nx;	 // hướng
+	int ny;
 
 	float dx;	// dx = vx*dt
 	float dy;	// dy = vy*dt
@@ -65,6 +67,7 @@ public:
 
 	void SetModel(int model) { this->model = model; }
 	int GetModel() { return model; }
+	int GetDirection() { return this->nx; }
 
 	int GetState() { return this->state; } // lấy trạng thái
 	virtual void Delete() { isDeleted = true;  }
