@@ -33,6 +33,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 #define OBJECT_TYPE_PLATFORM 7
 #define OBJECT_TYPE_QUESTION_BRICK 8
 #define OBJECT_TYPE_COLOR_BLOCK 9
+#define OBJECT_TYPE_PLANT 11
 #define OBJECT_TYPE_PORTAL	52
 #define MAX_SCENE_LINE 1024
 
@@ -189,6 +190,10 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 		case OBJECT_TYPE_COIN: {
 			obj = new CCoin(x,y);
 			break;
+		}
+		case OBJECT_TYPE_PLANT: {
+			float model = (float)atof(tokens[4].c_str());
+			obj = new Plant(x, y, model); break; 
 		}
 		break;
 		default:
@@ -357,7 +362,6 @@ void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 	case DIK_A:
 		mario->SetState(MARIO_STATE_RELEASE_RUN);
 		break;
-
 	}
 
 }
@@ -444,12 +448,6 @@ void CPlayScenceKeyHandler::KeyState(BYTE* states)
 		if (mario->isSitting) {
 			mario->SetState(MARIO_STATE_SIT_RELEASE);
 		}
-	}
-	else if (game->IsKeyDown(DIK_S))
-	{
-		mario->SetState(MARIO_STATE_JUMP);
-	
-		
 	}
 	else
 		mario->SetState(MARIO_STATE_IDLE);

@@ -16,7 +16,7 @@ public:
 	CPipe(float x, float y, int model);
 	void Render();
 	void Update(DWORD dt) {}
-
+	virtual int IsBlocking() { return 1; }
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 };
 

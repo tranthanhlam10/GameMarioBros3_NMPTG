@@ -26,8 +26,10 @@ enum Type {
 	MUSHROOM = 5,
 	FLOWER = 6,
 	LEAF = 7,
-	COIN = 11,
+	COIN = 8,
 	FIREBALL = 10,
+	PLANT = 11,
+	FIREPLANT = 12,
 };
 class CGameObject
 {
@@ -68,7 +70,7 @@ public:
 	void SetModel(int model) { this->model = model; }
 	int GetModel() { return model; }
 	int GetDirection() { return this->nx; }
-
+	float GetX() { return this->x; }
 	int GetState() { return this->state; } // lấy trạng thái
 	virtual void Delete() { isDeleted = true;  }
 	bool IsDeleted() { return isDeleted; }

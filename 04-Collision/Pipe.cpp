@@ -15,7 +15,7 @@ CPipe::CPipe(float x, float y, int model) : CGameObject(x, y) {
 
 void CPipe::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	   CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+	 /*  CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 	
 	   if (mario->GetLevel() == MARIO_LEVEL_RACOON) {
 
@@ -47,7 +47,20 @@ void CPipe::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 			   top = y - PIPE_MEDIUM_BBOX_HEIGHT / 2 + (PIPE_BBOX_WIDTH / 4);
 			   bottom = top + PIPE_MEDIUM_BBOX_HEIGHT;
 		   }
-	   }
+	   }*/
+
+
+	left = x - PIPE_BBOX_WIDTH / 2;
+	right = left + PIPE_BBOX_WIDTH;
+
+	if (model == PIPE_LONG) {
+		top = y - PIPE_LONG_BBOX_HEIGHT / 2;
+		bottom = top + PIPE_LONG_BBOX_HEIGHT;
+	}
+	else if (model == PIPE_MEDIUM) {
+		top = y - PIPE_MEDIUM_BBOX_HEIGHT / 2;
+		bottom = top + PIPE_MEDIUM_BBOX_HEIGHT;
+	}
 }
 
 
@@ -60,5 +73,5 @@ void CPipe::Render()
 	}
 
 	animation_set->at(ani)->Render(x , y);
-	//RenderBoundingBox();
+	RenderBoundingBox();
 }

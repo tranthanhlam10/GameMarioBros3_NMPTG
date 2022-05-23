@@ -102,6 +102,9 @@
     <Filter Include="Object\FireBall">
       <UniqueIdentifier>{2c10027b-7cd3-464e-8b64-bcc32d87a810}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\FirePlant">
+      <UniqueIdentifier>{3554bc69-9f2d-42d8-9afe-cc9022764b08}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -200,6 +203,12 @@
     <ClInclude Include="FireBall.h">
       <Filter>Object\FireBall</Filter>
     </ClInclude>
+    <ClInclude Include="Plant.h">
+      <Filter>Object\FirePlant</Filter>
+    </ClInclude>
+    <ClInclude Include="FirePlant.h">
+      <Filter>Object\FirePlant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -294,6 +303,12 @@
     </ClCompile>
     <ClCompile Include="FireBall.cpp">
       <Filter>Object\FireBall</Filter>
+    </ClCompile>
+    <ClCompile Include="Plant.cpp">
+      <Filter>Object\FirePlant</Filter>
+    </ClCompile>
+    <ClCompile Include="FirePlant.cpp">
+      <Filter>Object\FirePlant</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

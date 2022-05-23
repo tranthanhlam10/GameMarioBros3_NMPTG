@@ -18,6 +18,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
 	CGame* game = CGame::GetInstance();
 	CGameObject::Update(dt);
+	CPlayScene* scene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
 	
 	float mw = ((CPlayScene*)game->GetCurrentScene())->GetMap()->GetMapWidth();
 	float mh = ((CPlayScene*)game->GetCurrentScene())->GetMap()->GetMapHeight(); 
@@ -125,6 +126,16 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		}
 	}
 
+	
+	if (x <= MARIO_BIG_BBOX_WIDTH) {
+		x = MARIO_BIG_BBOX_WIDTH;
+	}
+	if (x + MARIO_BIG_BBOX_WIDTH >= scene->map->GetMapWidth()) {
+		x = (float)(scene->map->GetMapWidth() - MARIO_BIG_BBOX_WIDTH);
+	}
+	if (y <= 0) {
+		y = 0;
+	}
 
 
 	CCollision::GetInstance()->Process(this, dt, coObjects);

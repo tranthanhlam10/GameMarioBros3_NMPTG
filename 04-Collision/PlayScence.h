@@ -21,12 +21,13 @@
 #include "ColorBlock.h"
 #include "Pipe.h"
 #include "Coin.h"
+#include "Plant.h"
 
 class CPlayScene : public CScene // màn hình giao diện của trò chơi, không phải intro scene hay là end scene
 {
 protected:
 	CMario* player;					// A play scene has to have player, right? 
-	Map* map;
+	
 	CGame* game = CGame::GetInstance();
 	
 	void _ParseSection_TEXTURES(string line);
@@ -38,6 +39,7 @@ protected:
 
 
 public:
+	Map* map;
 	CPlayScene(int id, LPCWSTR filePath);
 	
 	vector<LPGAMEOBJECT> objects; // con trỏ đến tất cả các đối tượng
