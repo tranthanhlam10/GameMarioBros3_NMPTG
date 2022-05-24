@@ -69,6 +69,7 @@ protected:
 	virtual int IsBlocking() { return 0; }
 	virtual void OnNoCollision(DWORD dt);;
 	void PlantShootFire();
+	int GetMarioSafeZone();
 public:
 	FirePlant(float x, float y, int model);
 	void GetMarioRangeCurrent();

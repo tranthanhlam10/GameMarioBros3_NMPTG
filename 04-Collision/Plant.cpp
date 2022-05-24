@@ -53,7 +53,7 @@ void Plant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		up_start = 0;
 	}
 
-	if (GetTickCount64() - down_start > PIRANHA_PLANT_DOWN_TIME_OUT && startDown ) {
+	if (GetTickCount64() - down_start > PIRANHA_PLANT_DOWN_TIME_OUT && startDown && !isSafeZone) {
 		startDown = false;
 		SetState(PIRANHA_STATE_UP);
 		down_start = 0;
@@ -62,18 +62,18 @@ void Plant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 
 	if (mario->GetX() < this->x) {
 		if (this->x - mario->GetX() <= DISTANCE_MARIO_SAFE_ZONE) {
-			isMarioSafeZone = true;
+			isSafeZone = true;
 		}
 		else {
-			isMarioSafeZone = false;
+			isSafeZone = false;
 		}
 	}
 	else {
 		if (mario->GetX() - this->x <= DISTANCE_MARIO_SAFE_ZONE) {
-			isMarioSafeZone = true;
+			isSafeZone = true;
 		}
 		else {
-			isMarioSafeZone = false;
+			isSafeZone = false;
 		}
 	}
 

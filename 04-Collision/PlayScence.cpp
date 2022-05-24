@@ -453,6 +453,10 @@ void CPlayScenceKeyHandler::KeyState(BYTE* states)
 			mario->SetState(MARIO_STATE_SIT_RELEASE);
 		}
 	}
+	else if (game->IsKeyDown(DIK_S)) {
+
+		mario->SetState(MARIO_STATE_JUMP);
+	}
 	else
 		mario->SetState(MARIO_STATE_IDLE);
 	

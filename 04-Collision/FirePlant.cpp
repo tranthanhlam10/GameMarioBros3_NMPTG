@@ -76,7 +76,7 @@ void FirePlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		up_start = 0;
 	}
 
-	if (GetTickCount64() - down_start > FPP_DOWN_TIME_OUT && startDown ) {
+	if (GetTickCount64() - down_start > FPP_DOWN_TIME_OUT && startDown && (GetMarioSafeZone() == 0)) {
 		startDown = false;
 		vy = -FPP_SPEED;
 		down_start = 0;
@@ -276,4 +276,25 @@ void FirePlant::PlantShootFire()
 		}
 	}
 	TotalFire.push_back(fireBall);
+}
+
+int FirePlant::GetMarioSafeZone()
+{
+	CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
+
+	if (mario->GetX() < this->x)
+	{
+		if (this->x - mario->GetX() <= DISTANCE_SAFE_ZONE)
+		{
+			return 1;
+		}
+	}
+	if (mario->GetX() > this->x)
+	{
+		if (mario->GetX() - this->x <= DISTANCE_SAFE_ZONE)
+		{
+			return 0;
+		}
+	}
+	return 0;
 }

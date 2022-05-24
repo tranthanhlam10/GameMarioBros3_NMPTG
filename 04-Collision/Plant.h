@@ -23,7 +23,7 @@ protected:
 	float startY;
 	ULONGLONG down_start = -1;
 	ULONGLONG up_start = -1;
-	BOOLEAN isMarioSafeZone = false;
+	BOOLEAN isSafeZone = false;
 
 
 	BOOLEAN startUp = false, startDown = false;
