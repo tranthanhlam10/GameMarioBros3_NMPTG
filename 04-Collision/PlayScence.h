@@ -22,6 +22,7 @@
 #include "Pipe.h"
 #include "Coin.h"
 #include "Plant.h"
+#include "FirePlant.h"
 
 class CPlayScene : public CScene // màn hình giao diện của trò chơi, không phải intro scene hay là end scene
 {

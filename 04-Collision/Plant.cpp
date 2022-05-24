@@ -3,7 +3,7 @@
 #include "PlayScence.h"
 
 
-Plant::Plant(float x, float y, float model) :CGameObject(x, y)
+Plant::Plant(float x, float y) :CGameObject(x, y)
 {
 	this->x = x;
 	this->y = y;
@@ -12,7 +12,6 @@ Plant::Plant(float x, float y, float model) :CGameObject(x, y)
 	this->startY = y;
 	this->minY = y - PIRANHA_PLANT_BBOX_HEIGHT;
 	eType = Type::PLANT;
-	this->model = model;
 	
 }
 
@@ -32,11 +31,6 @@ void Plant::OnNoCollision(DWORD dt)
 
 void Plant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
-
-	/*if (state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_TAIL_ATTACKED) {
-		isDeleted = true;
-	}*/
-
 	vy += ay * dt;
 	vx += ax * dt;
 
@@ -91,7 +85,7 @@ void Plant::Render()
 {
 	int ani = ID_ANI_PIRANHA_PLANT;
 	animation_set->at(ani)->Render(x, y);
-	RenderBoundingBox();
+	//RenderBoundingBox();
 }
 
 void Plant::SetState(int state)

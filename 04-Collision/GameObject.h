@@ -71,6 +71,9 @@ public:
 	int GetModel() { return model; }
 	int GetDirection() { return this->nx; }
 	float GetX() { return this->x; }
+	float GetY() { return this->y; }
+	void SetDirectionX(int nx) { this->nx = nx; }
+	void SetDirectionY(int ny) { this->ny = ny; }
 	int GetState() { return this->state; } // lấy trạng thái
 	virtual void Delete() { isDeleted = true;  }
 	bool IsDeleted() { return isDeleted; }

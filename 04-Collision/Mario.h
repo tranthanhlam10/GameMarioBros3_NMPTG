@@ -241,6 +241,7 @@ public:
 		untouchable = 0;
 		SetState(MARIO_STATE_IDLE);
 		isOnPlatform = false;
+		isRunningMax = false;
 		maxVx = 0.0f;
 		ax = MARIO_ACCELERATION;
 		ay = MARIO_GRAVITY; // mario phải chịu tác động của trọng lực hướng xuống

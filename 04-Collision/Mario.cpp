@@ -27,7 +27,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
      vy += ay * dt; 
 	 vx += ax * dt + nx * runningStack * ax;
 
-	 
+	
 	 // giới hạn chuyển động theo phuong x
 	 if (abs(vx) > MARIO_WALKING_SPEED) 
 	 {
@@ -56,7 +56,11 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		 ax = 0;
 	 }
 
+
 	 // gioi han di chuyen theo phuong y
+	 if (y <= 0) {
+		 y = 0;
+	 }
 	 if (vy <= -MARIO_JUMP_SPEED_MAX && !isRunningMax) {
 		 vy = -MARIO_JUMP_SPEED_MAX;
 		 ay = MARIO_GRAVITY;
@@ -86,7 +90,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		}
 	}
 
-	if (GetTickCount64() - running_stop > POWER_STACK_LOST_TIME && runningStack && !isRunning)
+	if (GetTickCount64() - running_stop > POWER_STACK_LOST_TIME && runningStack && (!isRunning || vx == 0))
 	{
 		running_stop = GetTickCount64();
 		isRunningMax = false;
@@ -96,6 +100,7 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			(runningStack = 0);
 
 		}
+		DebugOut(L"[INFO] powerStack! %d \n", runningStack);
 	}
 	if (isMoveOverBlockColor) {
 		y -= ADJUST_MARIO_COLLISION_WITH_COLOR_BLOCK;

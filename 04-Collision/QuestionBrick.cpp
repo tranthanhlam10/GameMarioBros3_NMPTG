@@ -109,7 +109,7 @@ void CQuestionBrick::Render()
 	}
 
 	animation_set->at(ani)->Render(x, y);
-	/*RenderBoundingBox();*/
+	//RenderBoundingBox();
 }
 
 void CQuestionBrick::SetState(int state)

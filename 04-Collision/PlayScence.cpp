@@ -28,12 +28,13 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 #define OBJECT_TYPE_BRICK	1
 #define OBJECT_TYPE_GOOMBA	2
 #define OBJECT_TYPE_KOOPAS	3
-#define OBJECT_TYPE_COIN 10
 #define OBJECT_TYPE_PIPE 6
 #define OBJECT_TYPE_PLATFORM 7
 #define OBJECT_TYPE_QUESTION_BRICK 8
 #define OBJECT_TYPE_COLOR_BLOCK 9
+#define OBJECT_TYPE_COIN 10
 #define OBJECT_TYPE_PLANT 11
+#define OBJECT_TYPE_FIRE_PLANT 12
 #define OBJECT_TYPE_PORTAL	52
 #define MAX_SCENE_LINE 1024
 
@@ -192,8 +193,11 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 			break;
 		}
 		case OBJECT_TYPE_PLANT: {
+			obj = new Plant(x, y); break; 
+		}
+		case OBJECT_TYPE_FIRE_PLANT: {
 			float model = (float)atof(tokens[4].c_str());
-			obj = new Plant(x, y, model); break; 
+			obj = new FirePlant(x, y, model); break;
 		}
 		break;
 		default:
