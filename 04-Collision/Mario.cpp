@@ -56,7 +56,6 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		 ax = 0;
 	 }
 
-
 	 // gioi han di chuyen theo phuong y
 	 if (y <= 0) {
 		 y = 0;
@@ -73,7 +72,18 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	 if (vy < 0) {
 		 isOnPlatform = false;
 	 }
-	// reset untouchable timer if untouchable time has passed
+
+	 if (level == MARIO_LEVEL_RACOON && vy > 0) {
+		 pendingFallSlow = true;
+	 }
+
+	 if (GetTickCount64() - flying_start > LIMIT_MARIO_RACCOON_FLY_TIME && isFlying)
+	 {
+		 isFlying = false;
+		 isFlapping = false;
+		 pendingFallSlow = true;
+	 }
+
 	if ( GetTickCount64() - untouchable_start > MARIO_UNTOUCHABLE_TIME) 
 	{
 		untouchable_start = 0;
@@ -162,6 +172,7 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 			isOnPlatform = true; // va chạm với platform
 			vy = 0;
 			isJumping = false; 
+			pendingFallSlow = false;
 		}
 	}
 	if (e->ny > 0) {
@@ -258,6 +269,7 @@ void CMario::Render()
 		{
 			if (!isOnPlatform)
 			{
+				
 				if (isRunningMax) 
 				{
 					if (nx >= 0)
@@ -398,29 +410,51 @@ void CMario::Render()
 		{
 			if (!isOnPlatform)
 			{
-				if (isRunningMax)
-				{
-					if (nx >= 0)
-						ani = MARIO_ANI_RACOON_JUMP_RUN_RIGHT;
-					else
-						ani = MARIO_ANI_RACOON_JUMP_RUN_LEFT;
-				}
-				else
-				{
-					if (vy < 0) {
-						if (nx > 0)
-							ani = MARIO_ANI_RACOON_JUMP_RIGHT;
-						else
-							ani = MARIO_ANI_RACOON_JUMP_LEFT;
-
-					}
-					else {
+					if (isFlying && isFlapping) {
 						if (nx >= 0)
-							ani = MARIO_ANI_RACOON_FALL_RIGHT;
+							ani = MARIO_ANI_RACOON_FLY_RIGHT;
 						else
-							ani = MARIO_ANI_RACOON_FALL_LEFT;
+							ani = MARIO_ANI_RACOON_FLY_LEFT;
 					}
-				}
+					if (isRunningMax)
+					{
+						if (nx >= 0)
+							ani = MARIO_ANI_RACOON_JUMP_RUN_RIGHT;
+						else
+							ani = MARIO_ANI_RACOON_JUMP_RUN_LEFT;
+					}
+					else // đang trên mặt đất
+					{
+						if (vy > 0) {
+							if (nx > 0)
+								ani = MARIO_ANI_RACOON_JUMP_RIGHT;
+							else
+								ani = MARIO_ANI_RACOON_JUMP_LEFT;
+
+						}
+						else {
+							if (!isFlying) {
+								if (nx >= 0)
+									ani = MARIO_ANI_RACOON_FALL_RIGHT;
+								else
+									ani = MARIO_ANI_RACOON_FALL_LEFT;
+							}
+							else {
+								if (nx >= 0)
+									ani = MARIO_ANI_RACOON_FALL_FLY_RIGHT;
+								else
+									ani = MARIO_ANI_RACOON_FALL_FLY_LEFT;
+							}
+
+							if (isFallSlow) {
+								if (nx >= 0)
+									ani = MARIO_ANI_RACOON_FALL_SLOW_RIGHT;
+								else
+									ani = MARIO_ANI_RACOON_FALL_SLOW_LEFT;
+							}
+					
+						}
+					}
 			}
 			else
 			{
@@ -662,6 +696,14 @@ void CMario::SetState(int state) // set trạng thái cho mario
 	case MARIO_STATE_SHOOTING:
 		isShootingFireBall = true;
 		shoot_start = GetTickCount64();
+		break;
+	case MARIO_RACOON_STATE_FLAPPING:
+		ay = -MARIO_RACCOON_FLAPPING_SPEED;
+		isFlapping = true;
+		break;
+	case MARIO_RACOON_STATE_FALL_SLOW:
+		isFallSlow = true;
+		vy = -MARIO_RACCOON_FALL_SLOW_SPEED;
 		break;
 
 	}

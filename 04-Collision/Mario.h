@@ -23,6 +23,8 @@
 #define MARIO_JUMP_SPEED_MIN 0.18f
 #define MARIO_JUMP_SPEED_MAX 0.28f
 
+#define MARIO_RACCOON_FLAPPING_SPEED 0.0025f
+#define MARIO_RACCOON_FALL_SLOW_SPEED 0.03f
 
 
 
@@ -38,6 +40,10 @@
 #define MARIO_STATE_SIT_RELEASE						    6000
 #define MARIO_STATE_RELEASE_RUN	                        7000
 #define MARIO_STATE_SHOOTING							10000
+
+
+#define MARIO_RACOON_STATE_FLAPPING 11000
+#define MARIO_RACOON_STATE_FALL_SLOW 12000
 
 
 
@@ -253,6 +259,7 @@ public:
 	}
 
 	BOOLEAN isFlying = false;
+	BOOLEAN isFlapping = false;
 	BOOLEAN isJumping = false;
 	BOOLEAN isOnPlatform = false;
 	BOOLEAN isRunning = false;
@@ -264,6 +271,7 @@ public:
 	BOOLEAN isTransform = false;
 	BOOLEAN isPendingShootFireBall = false;
 	BOOLEAN isShootingFireBall = false;
+	BOOLEAN pendingFallSlow = false;
 	
 	int runningStack = 0;
 

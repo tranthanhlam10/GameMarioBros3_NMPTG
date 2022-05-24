@@ -105,6 +105,9 @@
     <Filter Include="Object\FirePlant">
       <UniqueIdentifier>{3554bc69-9f2d-42d8-9afe-cc9022764b08}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\TailAttack">
+      <UniqueIdentifier>{102ba220-d7ff-4e76-8572-0a7392d618c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -209,6 +212,9 @@
     <ClInclude Include="FirePlant.h">
       <Filter>Object\FirePlant</Filter>
     </ClInclude>
+    <ClInclude Include="TailAttack.h">
+      <Filter>Object\TailAttack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -309,6 +315,9 @@
     </ClCompile>
     <ClCompile Include="FirePlant.cpp">
       <Filter>Object\FirePlant</Filter>
+    </ClCompile>
+    <ClCompile Include="TailAttack.cpp">
+      <Filter>Object\TailAttack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

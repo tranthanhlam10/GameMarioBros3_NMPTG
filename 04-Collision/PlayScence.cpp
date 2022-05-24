@@ -405,6 +405,15 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 		mario->Reset();
 		break;
 	case DIK_S: // hanh dong khi nhan phim nhay
+		if (mario->GetLevel() == MARIO_LEVEL_RACOON) {
+			if (mario->isFlying) {
+				mario->isFlapping = true;
+				mario->SetState(MARIO_RACOON_STATE_FLAPPING);
+			}
+			else if (mario->pendingFallSlow) {
+				mario->SetState(MARIO_RACOON_STATE_FALL_SLOW);
+			}
+		}
 		mario->SetState(MARIO_STATE_JUMP);
 		break;
 	case DIK_A:
