@@ -188,9 +188,6 @@
     <ClInclude Include="ColorBlock.h">
       <Filter>Object\Brick</Filter>
     </ClInclude>
-    <ClInclude Include="Pipe.h">
-      <Filter>Object\Pipe</Filter>
-    </ClInclude>
     <ClInclude Include="QuestionBrickCoin.h">
       <Filter>Items</Filter>
     </ClInclude>
@@ -214,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="TailAttack.h">
       <Filter>Object\TailAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="Pipe.h">
+      <Filter>Object\Mario</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

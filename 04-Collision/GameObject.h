@@ -30,6 +30,7 @@ enum Type {
 	FIREBALL = 10,
 	PLANT = 11,
 	FIREPLANT = 12,
+	GOOMBA = 13,
 };
 class CGameObject
 {

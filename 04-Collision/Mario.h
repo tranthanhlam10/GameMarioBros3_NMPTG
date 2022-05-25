@@ -236,10 +236,6 @@ class CMario : public CGameObject // khởi tạo object mario
 	
 	int coin; 
 
-
-	
-
-
 public:
 	CMario::CMario(float x = 0.0f , float y = 0.0f) : CGameObject()
 	{

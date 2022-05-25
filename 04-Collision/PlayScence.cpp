@@ -153,7 +153,11 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 
 			DebugOut(L"[INFO] Player object created!\n");
 			break;	
-		case OBJECT_TYPE_GOOMBA: obj = new CGoomba(x, y); break;
+		case OBJECT_TYPE_GOOMBA: 
+		{
+			int model = (int)atof(tokens[4].c_str());
+			obj = new CGoomba(x, y, model); break; 
+		}
 		case OBJECT_TYPE_BRICK: obj = new CBrick(x, y); break;
 		case OBJECT_TYPE_KOOPAS: obj = new CKoopas(); break;
 		case OBJECT_TYPE_PLATFORM: {
