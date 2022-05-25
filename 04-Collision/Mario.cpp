@@ -173,6 +173,7 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 			vy = 0;
 			isJumping = false; 
 			pendingFallSlow = false;
+			isFlying = false;
 		}
 	}
 	if (e->ny > 0) {
@@ -254,7 +255,7 @@ void CMario::OnCollisionWithFlower(LPCOLLISIONEVENT e)
 	level = MARIO_LEVEL_FIRE;
 	//obj = new CEffectScore(x, y, SCORE_EFFECT_1000);
 	//ListEffect.push_back(obj);
-	//e->obj->Delete();
+	e->obj->Delete();
 }
 
 
@@ -269,7 +270,6 @@ void CMario::Render()
 		{
 			if (!isOnPlatform)
 			{
-				
 				if (isRunningMax) 
 				{
 					if (nx >= 0)
@@ -389,7 +389,6 @@ void CMario::Render()
 					else
 						ani = MARIO_ANI_SMALL_WALKING_RIGHT;
 				}
-
 				else
 				{
 					if (nx > 0)
@@ -408,7 +407,7 @@ void CMario::Render()
 
 		else if (level == MARIO_LEVEL_RACOON)
 		{
-			if (!isOnPlatform)
+			if (!isOnPlatform) // không có trên mặt đất
 			{
 					if (isFlying && isFlapping) {
 						if (nx >= 0)
@@ -416,37 +415,42 @@ void CMario::Render()
 						else
 							ani = MARIO_ANI_RACOON_FLY_LEFT;
 					}
-					if (isRunningMax)
+					else if (isRunningMax)
 					{
 						if (nx >= 0)
 							ani = MARIO_ANI_RACOON_JUMP_RUN_RIGHT;
 						else
 							ani = MARIO_ANI_RACOON_JUMP_RUN_LEFT;
 					}
-					else // đang trên mặt đất
+					else
 					{
-						if (vy > 0) {
+						if (vy < 0) {
 							if (nx > 0)
 								ani = MARIO_ANI_RACOON_JUMP_RIGHT;
 							else
 								ani = MARIO_ANI_RACOON_JUMP_LEFT;
 
 						}
-						else {
-							if (!isFlying) {
+					
+						else 
+						{
+							if (!isFlying)
+							{
 								if (nx >= 0)
 									ani = MARIO_ANI_RACOON_FALL_RIGHT;
 								else
 									ani = MARIO_ANI_RACOON_FALL_LEFT;
 							}
-							else {
+							else 
+							{
 								if (nx >= 0)
 									ani = MARIO_ANI_RACOON_FALL_FLY_RIGHT;
 								else
 									ani = MARIO_ANI_RACOON_FALL_FLY_LEFT;
 							}
 
-							if (isFallSlow) {
+							if (isFallSlow) 
+							{
 								if (nx >= 0)
 									ani = MARIO_ANI_RACOON_FALL_SLOW_RIGHT;
 								else
@@ -456,7 +460,7 @@ void CMario::Render()
 						}
 					}
 			}
-			else
+			else // trên mặt đất
 			{
 				if (isSitting)
 				{
