@@ -268,7 +268,10 @@ public:
 	BOOLEAN isPendingShootFireBall = false;
 	BOOLEAN isShootingFireBall = false;
 	BOOLEAN pendingFallSlow = false;
-	
+	BOOLEAN isHoldingTurtle = false;
+	BOOLEAN isAdjustHeight = false;
+	BOOLEAN isAttack = false;
+	BOOLEAN isKickingTurtle = false;
 	int runningStack = 0;
 
 	//time
@@ -276,6 +279,9 @@ public:
 	ULONGLONG running_start = -1;
 	ULONGLONG running_stop = -1;
 	ULONGLONG shoot_start = -1;
+	ULONGLONG kick_start = -1;
+	ULONGLONG transform_start = -1;
+	ULONGLONG attack_start = -1;
 
 	vector<LPGAMEOBJECT> TotalFire;
 	
@@ -304,6 +310,9 @@ public:
 	void SetLevel(int l);
 	int GetLevel() {
 		return level;
+	}
+	int LevelDown(){
+		return level--;
 	}
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
 

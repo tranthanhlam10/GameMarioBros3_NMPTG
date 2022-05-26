@@ -156,10 +156,16 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 		case OBJECT_TYPE_GOOMBA: 
 		{
 			int model = (int)atof(tokens[4].c_str());
-			obj = new CGoomba(x, y, model); break; 
+			obj = new CGoomba(x, y, model); 
+			break; 
+		}
+		case OBJECT_TYPE_KOOPAS:
+		{
+			int model = (int)atof(tokens[4].c_str());
+			obj = new CKoopas(x,y, model);
+			break; 
 		}
 		case OBJECT_TYPE_BRICK: obj = new CBrick(x, y); break;
-		case OBJECT_TYPE_KOOPAS: obj = new CKoopas(); break;
 		case OBJECT_TYPE_PLATFORM: {
 			float w = (float)atof(tokens[3].c_str());
 			float h = (float)atof(tokens[4].c_str());

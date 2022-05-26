@@ -142,12 +142,6 @@ void CGoomba::Render()
 			ani = GOOMBA_ANI_DIE;
 		}
 	}
-	if (state == GOOMBA_STATE_DIE)
-	{
-		if (model == GOOMBA_NOMAL) {
-			ani = GOOMBA_ANI_DIE;
-		}
-	}
 	if (model == GOOMBA_RED_WING) 
 	{
 		if (state == GOOMBA_STATE_WALKING) 

@@ -213,7 +213,7 @@
       <Filter>Object\TailAttack</Filter>
     </ClInclude>
     <ClInclude Include="Pipe.h">
-      <Filter>Object\Mario</Filter>
+      <Filter>Object\Pipe</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

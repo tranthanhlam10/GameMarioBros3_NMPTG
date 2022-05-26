@@ -264,14 +264,13 @@ void CMario::OnCollisionWithColorBlock(LPCOLLISIONEVENT e) // sử lí khi va ch
 void CMario::OnCollisionWithFlower(LPCOLLISIONEVENT e)
 {
 	level = MARIO_LEVEL_FIRE;
-	//obj = new CEffectScore(x, y, SCORE_EFFECT_1000);
-	//ListEffect.push_back(obj);
 	e->obj->Delete();
 }
 
 
 void CMario::Render()
-{CAnimations* animations = CAnimations::GetInstance();
+{
+	CAnimations* animations = CAnimations::GetInstance();
 
 	int ani = -1;
 	if (state == MARIO_STATE_DIE)
@@ -281,7 +280,7 @@ void CMario::Render()
 		{
 			if (!isOnPlatform)
 			{
-				if (isRunningMax) 
+				if (isRunningMax)
 				{
 					if (nx >= 0)
 						ani = MARIO_ANI_BIG_JUMP_RUN_RIGHT;
@@ -290,25 +289,45 @@ void CMario::Render()
 				}
 				else
 				{
-
-
-					//mario jump
-					if (vy < 0) {
-						if (nx > 0)
-							ani = MARIO_ANI_BIG_JUMP_RIGHT;
-						else
-							ani = MARIO_ANI_BIG_JUMP_LEFT;
+					if (vy < 0)
+					{
+						if (isHoldingTurtle)
+						{
+							if (nx >= 0)
+								ani = MARIO_ANI_BIG_HOLD_JUMP_RIGHT;
+							else
+								ani = MARIO_ANI_BIG_HOLD_JUMP_LEFT;
+						}
+						else {
+							if (nx > 0)
+								ani = MARIO_ANI_BIG_JUMP_RIGHT;
+							else
+								ani = MARIO_ANI_BIG_JUMP_LEFT;
+						}
 					}
 
-					else {
-						if (nx >= 0)
-							ani = MARIO_ANI_BIG_FALL_RIGHT;
+					else
+					{
+						if (isHoldingTurtle)
+						{
+							if (nx >= 0)
+								ani = MARIO_ANI_BIG_HOLD_JUMP_RIGHT;
+							else
+								ani = MARIO_ANI_BIG_HOLD_JUMP_RIGHT;
+						}
 						else
-							ani = MARIO_ANI_BIG_FALL_LEFT;
+						{
+							if (nx >= 0)
+								ani = MARIO_ANI_BIG_FALL_RIGHT;
+							else
+								ani = MARIO_ANI_BIG_FALL_LEFT;
+						}
 					}
+
+
 				}
 			}
-			else 
+			else
 			{
 				if (isSitting)
 				{
@@ -317,40 +336,75 @@ void CMario::Render()
 					else
 						ani = MARIO_ANI_BIG_SIT_LEFT;
 				}
-				else if (vx == 0) 
+				else if (isKickingTurtle)
+				{
+					if (nx > 0)
+						ani = MARIO_ANI_BIG_KICK_RIGHT;
+					else
+						ani = MARIO_ANI_BIG_KICK_LEFT;
+				}
+				else if (isTransform)
+				{
+					if (nx > 0)
+						ani = MARIO_ANI_BIG_TRANSFORM__RIGHT;
+					else
+						ani = MARIO_ANI_BIG_TRANSFORM_LEFT;
+				}
+				else if (isHoldingTurtle) {
+					if (vx == 0)
+					{
+						if (nx > 0)
+							ani = MARIO_ANI_BIG_HOLD_IDLE_RIGHT;
+						else
+							ani = MARIO_ANI_BIG_HOLD_IDLE_LEFT;
+					}
+					else if (vx > 0)
+					{
+						ani = MARIO_ANI_BIG_HOLD_WALK_RIGHT;
+					}
+					else
+					{
+						ani = MARIO_ANI_BIG_HOLD_WALK_LEFT;
+					}
+				}
+				else
+				{
+					if (vx == 0)
 					{
 						//mario dung yen
 						if (nx > 0) ani = MARIO_ANI_BIG_IDLE_RIGHT;
 						else ani = MARIO_ANI_BIG_IDLE_LEFT;
 					}
-				else if (vx > 0)
-				{
-					if (nx < 0)
-						//mario di bo
-						ani = MARIO_ANI_BIG_TURN_RIGHT_BACK_LEFT;
-					else if (isRunningMax)
-						ani = MARIO_ANI_BIG_RUN_MAX_RIGHT;
-					else if (isRunning)
-						ani = MARIO_ANI_BIG_RUN_RIGHT;
-					else
-					    ani = MARIO_ANI_BIG_WALKING_RIGHT;
-				}
+					else if (vx > 0)
+					{
+						if (nx < 0)
+							// mario di bo
+							ani = MARIO_ANI_BIG_TURN_RIGHT_BACK_LEFT;
+						else if (isRunningMax)
+							ani = MARIO_ANI_BIG_RUN_MAX_RIGHT;
+						else if (isRunning)
+							ani = MARIO_ANI_BIG_RUN_RIGHT;
+						else
+							ani = MARIO_ANI_BIG_WALKING_RIGHT;
+					}
 
-				else 
-				{
-					if (nx > 0)
-						ani = MARIO_ANI_BIG_TURN_LEFT_BACK_RIGHT;
-					else if (isRunningMax)
-						ani = MARIO_ANI_BIG_RUN_MAX_LEFT;
-					else if (isRunning)
-						ani = MARIO_ANI_BIG_RUN_LEFT;
 					else
-					    ani = MARIO_ANI_BIG_WALKING_LEFT;
-				
+					{
+						if (nx > 0)
+							ani = MARIO_ANI_BIG_TURN_LEFT_BACK_RIGHT;
+						else if (isRunningMax)
+							ani = MARIO_ANI_BIG_RUN_MAX_LEFT;
+						else if (isRunning)
+							ani = MARIO_ANI_BIG_RUN_LEFT;
+						else
+							ani = MARIO_ANI_BIG_WALKING_LEFT;
+
+					}
 				}
 			}
 
-		} 
+		}
+
 	  
 		else if (level == MARIO_LEVEL_SMALL)
 		{
@@ -365,30 +419,77 @@ void CMario::Render()
 				}
 				else
 				{
-					if (vy < 0) {
-						if (nx > 0)
-							ani = MARIO_ANI_SMALL_JUMP_RIGHT;
+					if (vy < 0)
+					{
+						if (isHoldingTurtle)
+						{
+							if (nx >= 0)
+								ani = MARIO_ANI_SMALL_HOLD_JUMP_RIGHT;
+							else
+								ani = MARIO_ANI_SMALL_HOLD_JUMP_LEFT;
+						}
 						else
-							ani = MARIO_ANI_SMALL_JUMP_LEFT;
+						{
+							if (nx >= 0)
+								ani = MARIO_ANI_SMALL_JUMP_RIGHT;
+							else
+								ani = MARIO_ANI_SMALL_JUMP_LEFT;
 
+						}
 					}
-					else {
-						if (nx >= 0)
-							ani = MARIO_ANI_SMALL_FALL_RIGHT;
-						else
-							ani = MARIO_ANI_SMALL_FALL_LEFT;
+					else 
+					{
+						if (isHoldingTurtle) 
+						{
+							if (nx >= 0)
+								ani = MARIO_ANI_SMALL_HOLD_JUMP_RIGHT;
+							else
+								ani = MARIO_ANI_SMALL_HOLD_JUMP_LEFT;
+						}
+						else 
+						{
+							if (nx >= 0)
+								ani = MARIO_ANI_SMALL_FALL_RIGHT;
+							else
+								ani = MARIO_ANI_SMALL_FALL_LEFT;
+						}
 					}
 				}
 			}
 			else
 			{
-				if (vx == 0)
+				if (isKickingTurtle) 
 				{
-					//mario dung yen
-					if (nx > 0) ani = MARIO_ANI_SMALL_IDLE_RIGHT;
-					else ani = MARIO_ANI_SMALL_IDLE_LEFT;
+					if (nx > 0)
+						ani = MARIO_ANI_SMALL_KICK_RIGHT;
+					else
+						ani = MARIO_ANI_SMALL_KICK_LEFT;
 				}
-				else if (vx > 0)
+				else if (isHoldingTurtle) 
+				{
+					if (vx == 0)
+					{
+						if (nx > 0)
+							ani = MARIO_ANI_SMALL_HOLD_IDLE_RIGHT;
+						else 
+							ani = MARIO_ANI_SMALL_HOLD_IDLE_LEFT;
+					}
+					else if (vx > 0) 
+					{
+						ani = MARIO_ANI_SMALL_HOLD_WALK_RIGHT;
+					}
+					else {
+						ani = MARIO_ANI_SMALL_HOLD_WALK_LEFT;
+					}
+				}
+				else if (vx == 0)
+				{
+					if (nx > 0) 
+						ani = MARIO_ANI_SMALL_IDLE_RIGHT;
+					else 
+						ani = MARIO_ANI_SMALL_IDLE_LEFT;
+				}
+				else if (vx >0)
 				{
 					if (nx < 0)
 						//mario di bo
@@ -420,7 +521,8 @@ void CMario::Render()
 		{
 			if (!isOnPlatform) // không có trên mặt đất
 			{
-					if (isFlying && isFlapping) {
+					if (isFlying && isFlapping) 
+					{
 						if (nx >= 0)
 							ani = MARIO_ANI_RACOON_FLY_RIGHT;
 						else
@@ -433,19 +535,41 @@ void CMario::Render()
 						else
 							ani = MARIO_ANI_RACOON_JUMP_RUN_LEFT;
 					}
+					else if (isAttack) 
+					{
+						if (nx >= 0)
+							ani = MARIO_ANI_RACOON_TAIL_RIGHT;
+						else
+							ani = MARIO_ANI_RACOON_TAIL_LEFT;
+					}
 					else
 					{
-						if (vy < 0) {
-							if (nx > 0)
+						if (isHoldingTurtle) 
+						{
+							if (nx >= 0)
+								ani = MARIO_ANI_RACOON_HOLD_JUMP_RIGHT;
+							else
+								ani = MARIO_ANI_RACOON_HOLD_JUMP_LEFT;
+						}
+						else 
+						{
+							if (nx >= 0)
 								ani = MARIO_ANI_RACOON_JUMP_RIGHT;
 							else
 								ani = MARIO_ANI_RACOON_JUMP_LEFT;
-
 						}
-					
-						else 
+					}
+					if (vy > 0) 
+					{
+						if (isAttack) 
 						{
-							if (!isFlying)
+							if (nx >= 0)
+								ani = MARIO_ANI_RACOON_TAIL_RIGHT;
+							else
+								ani = MARIO_ANI_RACOON_TAIL_LEFT;
+						}
+						else {
+							if (!isFlying) 
 							{
 								if (nx >= 0)
 									ani = MARIO_ANI_RACOON_FALL_RIGHT;
@@ -459,17 +583,22 @@ void CMario::Render()
 								else
 									ani = MARIO_ANI_RACOON_FALL_FLY_LEFT;
 							}
-
-							if (isFallSlow) 
-							{
+							if (isFallSlow) {
 								if (nx >= 0)
 									ani = MARIO_ANI_RACOON_FALL_SLOW_RIGHT;
 								else
 									ani = MARIO_ANI_RACOON_FALL_SLOW_LEFT;
 							}
-					
+							if (isHoldingTurtle) {
+								if (nx >= 0)
+									ani = MARIO_ANI_RACOON_HOLD_JUMP_RIGHT;
+								else
+									ani = MARIO_ANI_RACOON_HOLD_JUMP_RIGHT;
+							}
 						}
+
 					}
+						
 			}
 			else // trên mặt đất
 			{
@@ -480,40 +609,75 @@ void CMario::Render()
 					else
 						ani = MARIO_ANI_RACOON_SIT_LEFT;
 				}
-				else if (vx == 0)
+				else if (isAttack)
 				{
-					//mario dung yen
-					if (nx > 0) ani = MARIO_ANI_RACOON_IDLE_RIGHT;
-					else ani = MARIO_ANI_RACOON_IDLE_LEFT;
-				}
-				else if (vx > 0)
-				{
-					if (nx < 0)
-						//mario di bo
-						ani = MARIO_ANI_RACOON_TURN_RIGHT_BACK_LEFT;
-					else if (isRunningMax)
-						ani = MARIO_ANI_RACOON_RUN_MAX_RIGHT;
-					else if (isRunning)
-						ani = MARIO_ANI_RACOON_RUN_RIGHT;
+					if (nx >= 0)
+						ani = MARIO_ANI_RACOON_TAIL_RIGHT;
 					else
-						ani = MARIO_ANI_RACOON_WALKING_RIGHT;
+						ani = MARIO_ANI_RACOON_TAIL_LEFT;
 				}
-
-				else
+				else if (isKickingTurtle)
 				{
 					if (nx > 0)
-						ani = MARIO_ANI_RACOON_TURN_LEFT_BACK_RIGHT;
-					else if (isRunningMax)
-						ani = MARIO_ANI_RACOON_RUN_MAX_LEFT;
-					else if (isRunning)
-						ani = MARIO_ANI_RACOON_RUN_LEFT;
+						ani = MARIO_ANI_RACOON_KICK_RIGHT;
 					else
-						ani = MARIO_ANI_RACOON_WALKING_LEFT;
-
+						ani = MARIO_ANI_RACOON_KICK_LEFT;
 				}
+				else if (isHoldingTurtle)
+				{
+					if (vx == 0)
+					{
+						if (nx > 0)
+							ani = MARIO_ANI_RACOON_HOLD_IDLE_RIGHT;
+						else
+							ani = MARIO_ANI_RACOON_HOLD_IDLE_LEFT;
+					}
+					else if (vx > 0)
+					{
+						ani = MARIO_ANI_RACOON_HOLD_WALK_RIGHT;
+					}
+					else
+					{
+						ani = MARIO_ANI_RACOON_HOLD_WALK_LEFT;
+					}
+				}
+				else
+				{
+					if (vx == 0)
+					{
+						//mario dung yen
+						if (nx > 0) ani = MARIO_ANI_RACOON_IDLE_RIGHT;
+						else ani = MARIO_ANI_RACOON_IDLE_LEFT;
+					}
+
+					else if (vx > 0)
+					{
+						if (nx < 0)
+							//mario di bo
+							ani = MARIO_ANI_RACOON_TURN_RIGHT_BACK_LEFT;
+						else if (isRunningMax)
+							ani = MARIO_ANI_RACOON_RUN_MAX_RIGHT;
+						else if (isRunning)
+							ani = MARIO_ANI_RACOON_RUN_RIGHT;
+						else
+							ani = MARIO_ANI_RACOON_WALKING_RIGHT;
+					}
+
+					else
+					{
+						if (nx > 0)
+							ani = MARIO_ANI_RACOON_TURN_LEFT_BACK_RIGHT;
+						else if (isRunningMax)
+							ani = MARIO_ANI_RACOON_RUN_MAX_LEFT;
+						else if (isRunning)
+							ani = MARIO_ANI_RACOON_RUN_LEFT;
+						else
+							ani = MARIO_ANI_RACOON_WALKING_LEFT;
+
+					}
+				}
+
 			}
-
-
 		}
 		else if (level == MARIO_LEVEL_FIRE)
 		{
@@ -528,29 +692,57 @@ void CMario::Render()
 				}
 				else
 				{
-					if (vy < 0) {
-						if (nx > 0)
-							ani = MARIO_ANI_FIRE_JUMP_RIGHT;
-						else
-							ani = MARIO_ANI_FIRE_JUMP_LEFT;
+					if (vy < 0)
+					{
+
+						if (isHoldingTurtle)
+						{
+							if (nx >= 0)
+								ani = MARIO_ANI_FIRE_HOLD_JUMP_RIGHT;
+							else
+								ani = MARIO_ANI_FIRE_HOLD_JUMP_LEFT;
+						}
+						else {
+							if (nx >= 0)
+								ani = MARIO_ANI_FIRE_JUMP_RIGHT;
+							else
+								ani = MARIO_ANI_FIRE_JUMP_LEFT;
+						}
 
 					}
-					else {
-						if (nx >= 0)
-							ani = MARIO_ANI_FIRE_FALL_RIGHT;
-						else
-							ani = MARIO_ANI_FIRE_FALL_LEFT;
+					else
+					{
+						if (isHoldingTurtle) 
+						{
+							if (nx >= 0)
+								ani = MARIO_ANI_FIRE_HOLD_JUMP_RIGHT;
+							else
+								ani = MARIO_ANI_FIRE_HOLD_JUMP_LEFT;
+						}
+
+						else 
+						{
+							if (nx >= 0)
+								ani = MARIO_ANI_FIRE_FALL_RIGHT;
+							else
+								ani = MARIO_ANI_FIRE_FALL_LEFT;
+						}
 					}
 				}
 			}
-			else
-			{
-				if (isSitting)
+				else if (isSitting)
 				{
 					if (nx > 0)
 						ani = MARIO_ANI_FIRE_SIT_RIGHT;
 					else
 						ani = MARIO_ANI_FIRE_SIT_LEFT;
+				}
+				else if (isKickingTurtle) 
+				{
+				if (nx > 0)
+					ani = MARIO_ANI_FIRE_KICK_RIGHT;
+				else
+					ani = MARIO_ANI_FIRE_KICK_LEFT;
 				}
 				else if (isPendingShootFireBall) 
 				{
@@ -561,7 +753,27 @@ void CMario::Render()
 					else
 						ani = MARIO_ANI_FIRE_SHOOT_LEFT;
 				}
-				else if (vx == 0)
+				else if (isHoldingTurtle) 
+				{
+				if (vx == 0)
+				{
+					if (nx > 0) 
+						ani = MARIO_ANI_FIRE_HOLD_IDLE_RIGHT;
+					else 
+						ani = MARIO_ANI_FIRE_HOLD_IDLE_LEFT;
+				}
+				else if (vx > 0) 
+				{
+					ani = MARIO_ANI_FIRE_HOLD_WALK_RIGHT;
+				}
+					else 
+					{
+						ani = MARIO_ANI_FIRE_HOLD_WALK_LEFT;
+					}
+				}
+			else 
+			{	
+				if (vx == 0)
 				{
 					//mario dung yen
 					if (nx > 0) ani = MARIO_ANI_FIRE_IDLE_RIGHT;
