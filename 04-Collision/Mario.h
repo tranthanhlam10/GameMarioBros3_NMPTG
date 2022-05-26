@@ -175,13 +175,13 @@
 #define MARIO_ANI_FIRE_HOLD_JUMP_RIGHT				112
 #define MARIO_ANI_FIRE_HOLD_JUMP_LEFT				113
 
-#define MARIO_ANI_DIE				999
+#define MARIO_ANI_DIE				114
 
 
 
 
-#define	MARIO_LEVEL_BIG		1
-#define	MARIO_LEVEL_SMALL	2
+#define	MARIO_LEVEL_SMALL		1
+#define	MARIO_LEVEL_BIG	2
 #define MARIO_LEVEL_RACOON 3
 #define MARIO_LEVEL_FIRE 4
 
@@ -307,6 +307,7 @@ public:
 	}
 	void StartUntouchable() { untouchable = 1; untouchable_start = GetTickCount64(); }
 
+	
 	void Decelerate();
 	void MarioShootFireBall();
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);

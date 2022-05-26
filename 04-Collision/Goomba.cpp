@@ -133,10 +133,18 @@ void CGoomba::Render()
 {
 
 	int ani = GOOMBA_ANI_WALKING;
+
+
 	if (model == GOOMBA_NOMAL) 
 	{
 		if (state == GOOMBA_STATE_DIE)
 		{
+			ani = GOOMBA_ANI_DIE;
+		}
+	}
+	if (state == GOOMBA_STATE_DIE)
+	{
+		if (model == GOOMBA_NOMAL) {
 			ani = GOOMBA_ANI_DIE;
 		}
 	}

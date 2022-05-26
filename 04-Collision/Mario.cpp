@@ -13,6 +13,7 @@
 #include "ColorBlock.h"
 #include "Flower.h"
 #include "FireBall.h"
+#include "Goomba.h"
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
@@ -205,8 +206,20 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e) // sử lí va chạm khi
 	{
 		if (goomba->GetState() != GOOMBA_STATE_DIE)
 		{
-			goomba->SetState(GOOMBA_STATE_DIE);
-			vy = -MARIO_JUMP_DEFLECT_SPEED;
+			if (goomba->GetModel() == GOOMBA_NOMAL) {
+				goomba->SetState(GOOMBA_STATE_DIE);
+				vy = -MARIO_JUMP_DEFLECT_SPEED;
+			}
+			else
+				if (goomba->GetState() == GOOMBA_STATE_WALKING) {
+					goomba->SetState(GOOMBA_STATE_DIE);
+					vy = -MARIO_JUMP_DEFLECT_SPEED;
+		
+				}
+				else {
+					goomba->SetState(GOOMBA_STATE_WALKING);
+					vy = -MARIO_JUMP_DEFLECT_SPEED;
+				}
 		}
 	}
 	else // hit by Goomba
@@ -217,7 +230,7 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e) // sử lí va chạm khi
 			{
 				if (level > MARIO_LEVEL_SMALL)
 				{
-					level = MARIO_LEVEL_SMALL;
+					level--;
 					StartUntouchable();
 				}
 				else
@@ -595,6 +608,7 @@ void CMario::Render()
 
  // RenderBoundingBox();
 }
+
 
 
 void CMario::Decelerate()
