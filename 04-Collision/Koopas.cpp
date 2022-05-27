@@ -38,7 +38,7 @@ void CKoopas::GetBoundingBox(float& left, float& top, float& right, float& botto
 
 	}
 	else {
-		left = x - KOOPAS_ADJUST_PX;
+		left = x ;
 		top = y - KOOPAS_ADJUST_PX;
 		right = left + KOOPAS_BBOX_WIDTH;
 		bottom = top + KOOPAS_BBOX_HEIGHT;
@@ -105,19 +105,19 @@ void CKoopas::OnCollisionWithColorBlock(LPCOLLISIONEVENT e)
 {
 	CColorBlock* block = dynamic_cast<CColorBlock*>(e->obj);
 
-	if (e->ny < 0) {
+	if (e->ny < 0) 
 		if (state == KOOPAS_STATE_WALKING && model == KOOPAS_RED) {
-			if (x <= block->GetX() - block->GetWidth() / 2)
+			if (x <= block->GetX() )
 			{
 				vy = 0;
 				vx = KOOPAS_WALKING_SPEED;
 			}
-			else if (x >= block->GetX() + block->GetWidth() / 2) {
+			else if (x >= block->GetX() + RED_KOOPAS_CB_PX) {
 				vy = 0;
 				vx = -KOOPAS_WALKING_SPEED;
 			}
 		}
-	}
+	
 }
 
 void CKoopas::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e)
@@ -158,13 +158,12 @@ void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		}
 	}
 
-	// start animation comeback
 
 	if (GetTickCount64() - defend_start > KOOPAS_COMBACK_START && (isDefend || isUpside) && !isKicked) {
 		isComeback = true;
 	}
 
-	// end defend and start walking
+	
 	if (GetTickCount64() - defend_start > KOOPAS_DEFEND_TIMEOUT && (isDefend || isUpside) && !isKicked) {
 
 
@@ -184,14 +183,6 @@ void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 				DebugOut(L">>> Mario DIE >>> \n");
 				SetState(MARIO_STATE_DIE);
 			}
-		}
-	}
-
-	for (size_t i = 0; i < effects.size(); i++)
-	{
-		effects[i]->Update(dt, coObjects);
-		if (effects[i]->isDeleted) {
-			effects.erase(effects.begin() + i);
 		}
 	}
 

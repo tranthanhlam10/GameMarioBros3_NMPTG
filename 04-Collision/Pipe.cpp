@@ -24,11 +24,11 @@ void CPipe::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 		   right = left + PIPE_BBOX_WIDTH + (PIPE_BBOX_WIDTH/8) + (PIPE_BBOX_WIDTH / 16);
 
 		   if (model == PIPE_LONG) {
-			   top = y - PIPE_LONG_BBOX_HEIGHT / 2 + (PIPE_BBOX_WIDTH/4);
+			   top = y - PIPE_LONG_BBOX_HEIGHT / 2 + (PIPE_LONG_BBOX_HEIGHT /4);
 			   bottom = top + PIPE_LONG_BBOX_HEIGHT;
 		   }	
 		   else if (model == PIPE_MEDIUM) {
-			   top = y - PIPE_MEDIUM_BBOX_HEIGHT / 2 + (PIPE_BBOX_WIDTH / 4);
+			   top = y - PIPE_MEDIUM_BBOX_HEIGHT / 2 + (PIPE_MEDIUM_BBOX_HEIGHT / 4);
 			   bottom = top + PIPE_MEDIUM_BBOX_HEIGHT;
 		   }
 
@@ -40,11 +40,11 @@ void CPipe::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 		   right = left + PIPE_BBOX_WIDTH;
 
 		   if (model == PIPE_LONG) {
-			   top = y - PIPE_LONG_BBOX_HEIGHT / 2 + (PIPE_BBOX_WIDTH / 4);
+			   top = y - PIPE_LONG_BBOX_HEIGHT / 2 + (PIPE_LONG_BBOX_HEIGHT / 6);
 			   bottom = top + PIPE_LONG_BBOX_HEIGHT;
 		   }
 		   else if (model == PIPE_MEDIUM) {
-			   top = y - PIPE_MEDIUM_BBOX_HEIGHT / 2 + (PIPE_BBOX_WIDTH / 4);
+			   top = y - PIPE_MEDIUM_BBOX_HEIGHT / 2 + (PIPE_MEDIUM_BBOX_HEIGHT / 4);
 			   bottom = top + PIPE_MEDIUM_BBOX_HEIGHT;
 		   }
 	   }

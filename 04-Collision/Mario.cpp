@@ -329,7 +329,6 @@ void CMario::OnCollisionWithFireball(LPCOLLISIONEVENT e) {
 			{
 				DebugOut(L">>> Mario DIE >>> \n");
 				SetState(MARIO_STATE_DIE);
-				//die_start = GetTickCount64();
 			}
 		
 	}
