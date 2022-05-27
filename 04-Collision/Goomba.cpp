@@ -7,7 +7,7 @@ CGoomba::CGoomba(float x, float y, int model):CGameObject(x, y)
 	this->ay = GOOMBA_GRAVITY;
 	die_start = -1;
 	nx = -1;
-	
+	SetType(Type::ENEMY);
 	this->model = model;
 	if (model == GOOMBA_NOMAL) {
 		SetState(GOOMBA_STATE_WALKING);
@@ -62,6 +62,16 @@ void CGoomba::OnCollisionWith(LPCOLLISIONEVENT e)
 	{
 		vx = -vx;
 		nx = -nx;
+	}
+}
+
+int CGoomba::IsCollidable()
+{
+	if (state == ENEMY_STATE_IS_KOOPAS_ATTACKED || state == ENEMY_STATE_IS_FIRE_ATTACKED ) {
+		return 0;
+	}
+	else {
+		return 1;
 	}
 }
 
@@ -138,6 +148,10 @@ void CGoomba::Render()
 
 	if (model == GOOMBA_NOMAL) 
 	{
+		if (state == ENEMY_STATE_IS_KOOPAS_ATTACKED || state == ENEMY_STATE_IS_FIRE_ATTACKED)
+		{
+			ani = GOOMBA_ANI_IS_ATTACKED;
+		}
 		if (state == GOOMBA_STATE_DIE)
 		{
 			ani = GOOMBA_ANI_DIE;
@@ -160,6 +174,9 @@ void CGoomba::Render()
 		else if (state == GOOMBA_RED_WING_STATE_JUMP_HIGH || state == GOOMBA_RED_WING_STATE_JUMP_LOW) 
 		{
 			ani = GOOMBA_ANI_RED_WING_JUMP;
+		}
+		else if (state == ENEMY_STATE_IS_KOOPAS_ATTACKED || state == ENEMY_STATE_IS_FIRE_ATTACKED) {
+			ani = GOOMBA_ANI_RED_WING_IS_ATTACKED;
 		}
 	}
 

@@ -11,6 +11,7 @@ Plant::Plant(float x, float y) :CGameObject(x, y)
 	this->ay = 0;
 	this->startY = y;
 	this->minY = y - PIRANHA_PLANT_BBOX_HEIGHT;
+	SetType(Type::ENEMY);
 	
 }
 
@@ -74,6 +75,9 @@ void Plant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		else {
 			isSafeZone = false;
 		}
+	}
+	if (state == ENEMY_STATE_IS_FIRE_ATTACKED ) {
+		isDeleted = true;
 	}
 
 	CGameObject::Update(dt, coObjects);

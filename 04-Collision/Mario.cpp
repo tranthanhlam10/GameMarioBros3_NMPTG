@@ -186,41 +186,46 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 	if (e->ny < 0 && e->obj->IsBlocking())
 	{
 
-		if (e->ny < 0) { 
-			isOnPlatform = true; 
+		if (e->ny < 0) {
+			isOnPlatform = true;
 			vy = 0;
 			pendingFallSlow = false;
 			isFlying = false;
 		}
 	}
-	if (e->ny > 0) {
-		vy = 0;
-		ay = MARIO_GRAVITY;
-	}
-	if (e->nx != 0 && e->obj->IsBlocking())
-	{
-		vx = 0;
-	}
+		if (e->ny > 0) {
+			vy = 0;
+			ay = MARIO_GRAVITY;
+		}
 
-	if (dynamic_cast<CGoomba*>(e->obj))
-		OnCollisionWithGoomba(e);
+		if (e->nx != 0 && e->obj->IsBlocking())
+		{
+			vx = 0;
+		}
 
-	else if (dynamic_cast<CCoin*>(e->obj))
-		OnCollisionWithCoin(e);
-	else if (dynamic_cast<CQuestionBrick*>(e->obj))
-		OnCollisionWithQuestionBrick(e);
-	else if (dynamic_cast<CColorBlock*>(e->obj))
-		OnCollisionWithColorBlock(e);
-	else if (dynamic_cast<Flower*>(e->obj))
-		OnCollisionWithFlower(e);
-	else if (dynamic_cast<Leaf*>(e->obj))
-		OnCollisionWithLeaf(e);
-	else if (dynamic_cast<MushRoom*>(e->obj))
-		OnCollisionWithMushRoom(e);
-	else if (dynamic_cast<FireBall*>(e->obj))
-		OnCollisionWithFireball(e);
-	else if (dynamic_cast<CKoopas*>(e->obj))
-		OnCollisionWithKoopas(e);
+		if (dynamic_cast<CGoomba*>(e->obj))
+			OnCollisionWithGoomba(e);
+		else if (dynamic_cast<CCoin*>(e->obj))
+			OnCollisionWithCoin(e);
+		else if (dynamic_cast<CQuestionBrick*>(e->obj))
+			OnCollisionWithQuestionBrick(e);
+		else if (dynamic_cast<CColorBlock*>(e->obj))
+			OnCollisionWithColorBlock(e);
+		else if (dynamic_cast<Flower*>(e->obj))
+			OnCollisionWithFlower(e);
+		else if (dynamic_cast<Leaf*>(e->obj))
+			OnCollisionWithLeaf(e);
+		else if (dynamic_cast<MushRoom*>(e->obj))
+			OnCollisionWithMushRoom(e);
+		else if (dynamic_cast<FireBall*>(e->obj))
+			OnCollisionWithFireball(e);
+		else if (dynamic_cast<CKoopas*>(e->obj))
+			OnCollisionWithKoopas(e);
+		else if (dynamic_cast<FirePlant*>(e->obj))
+			OnCollisionWithTwoPlant(e);
+		else if (dynamic_cast<Plant*>(e->obj))
+			OnCollisionWithTwoPlant(e);
+	
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e) // sử lí va chạm khi cham nấm
@@ -248,8 +253,7 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e) // sử lí va chạm khi
 	}
 	else // hit by Goomba
 	{
-		if (untouchable == 0)
-		{
+		
 			if (goomba->GetState() != GOOMBA_STATE_DIE)
 			{
 				if (level > MARIO_LEVEL_SMALL)
@@ -263,7 +267,6 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e) // sử lí va chạm khi
 					SetState(MARIO_STATE_DIE);
 				}
 			}
-		}
 	}
 }
 
@@ -316,9 +319,7 @@ void CMario::OnCollisionWithMushRoom(LPCOLLISIONEVENT e)
 void CMario::OnCollisionWithFireball(LPCOLLISIONEVENT e) {
 	FireBall* fireball = dynamic_cast<FireBall*>(e->obj);
 	if (fireball->isEnemyShoot) {
-		fireball->isDeleted = true;
-		if (untouchable == 0)
-		{
+		fireball->isDeleted = true;		
 			if (level > MARIO_LEVEL_SMALL)
 			{
 				level--;
@@ -330,7 +331,7 @@ void CMario::OnCollisionWithFireball(LPCOLLISIONEVENT e) {
 				SetState(MARIO_STATE_DIE);
 				//die_start = GetTickCount64();
 			}
-		}
+		
 	}
 }
 void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e)
@@ -377,8 +378,7 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e)
 			}
 		}
 		else {
-			if (untouchable == 0)
-			{
+			
 				if (level > MARIO_LEVEL_SMALL)
 				{
 					level--;
@@ -390,12 +390,11 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e)
 					SetState(MARIO_STATE_DIE);
 					
 				}
-			}
+			
 		}
 	}
 	else if (e->ny > 0) {
-		if (untouchable == 0)
-		{
+	
 			if (level > MARIO_LEVEL_SMALL)
 			{
 				level--;
@@ -407,7 +406,26 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e)
 				SetState(MARIO_STATE_DIE);
 				
 			}
-		}
+		
+	}
+}
+
+void CMario::OnCollisionWithTwoPlant(LPCOLLISIONEVENT e) {
+
+	if (e->nx != 0 || e->ny != 0) {
+		
+			if (level > MARIO_LEVEL_SMALL)
+			{
+				level--;
+				StartUntouchable();
+			}
+			else
+			{
+				DebugOut(L">>> Mario DIE >>> \n");
+				SetState(MARIO_STATE_DIE);
+
+			}
+		
 	}
 }
 

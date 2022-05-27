@@ -13,7 +13,7 @@ FirePlant::FirePlant(float x, float y, int model) : CGameObject(x, y)
 	this->ay = 0;
 	this->startY = y;
 	
-
+	SetType(Type::ENEMY);
 
 	if (model == FIRE_PLANT_BIG) {
 		this->minY = y - FP_BIG_BBOX_HEIGHT;
@@ -54,9 +54,9 @@ void FirePlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	vx += ax * dt;
 	CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 
-	//if (state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_TAIL_ATTACKED) {
-	//	isDeleted = true;
-	//}
+	if (state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_TAIL_ATTACKED) {
+		isDeleted = true;
+	}
 
 	if (y <= minY) {
 		y = minY;
@@ -82,10 +82,8 @@ void FirePlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		down_start = 0;
 	}
 
-	/*for (size_t i = 0; i < TotalFire.size(); i++)
-	{
-		TotalFire[i]->Update(dt, coObjects);
-	}*/
+	
+
 	GetMarioRangeCurrent();
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);

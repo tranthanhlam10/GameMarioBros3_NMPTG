@@ -206,6 +206,10 @@ void CKoopas::Render()
 	int ani = -1;
 	if (model == KOOPAS_RED)
 	{
+
+		if (state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_KOOPAS_ATTACKED ) {
+			ani = KOOPAS_ANI_RED_IS_UPSIDE;
+		}
 		if (vx > 0)
 		{
 			if (state == KOOPAS_STATE_WALKING)
@@ -270,7 +274,7 @@ void CKoopas::Render()
 	}
 
 	animation_set->at(ani)->Render(x, y);
-	RenderBoundingBox();
+	//RenderBoundingBox();
 }
 
 void CKoopas::SetState(int state)

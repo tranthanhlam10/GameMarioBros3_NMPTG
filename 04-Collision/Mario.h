@@ -312,6 +312,7 @@ public:
 	void OnCollisionWithMushRoom(LPCOLLISIONEVENT e);
 	void OnCollisionWithFireball(LPCOLLISIONEVENT e);
 	void OnCollisionWithKoopas(LPCOLLISIONEVENT e);
+	void OnCollisionWithTwoPlant(LPCOLLISIONEVENT e);
 
 	void SetLevel(int l);
 	int GetLevel() {
