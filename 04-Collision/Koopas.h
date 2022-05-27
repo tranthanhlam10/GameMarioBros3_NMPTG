@@ -13,7 +13,8 @@
 #define KOOPAS_WING_GRAVITY 0.0002f
 #define KOOPAS_WING_JUMP_SPEED 0.15f
 #define KOOPAS_BBOX_WIDTH 16
-#define KOOPAS_BBOX_HEIGHT 26
+#define KOOPAS_BBOX_HEIGHT 27
+#define KOOPAS_ADJUST_PX 6
 #define KOOPAS_BBOX_HEIGHT_DEFEND 16
 #define ADJUST_POSITION_KOOPAS_HELD 13
 #define KOOPAS_COMBACK_HEIGHT_ADJUST 0.15f
@@ -50,7 +51,7 @@
 #define KOOPAS_ANI_RED_IS_UPSIDE 14
 #define KOOPAS_ANI_RED_COMEBACK 15
 #define KOOPAS_ANI_RED_UPSIDE_ISKICKED 16 
-#define KOOPAS_ANI_RED_UPSIDE_COMEBACK 17 
+#define KOOPAS_ANI_RED_UPSIDE_COMEBACK 17
 
 #define ADJUST_X_TO_RED_CHANGE_DIRECTION 10
 
@@ -68,24 +69,32 @@ protected:
 	float ay;
 
 
+	
+
 	ULONGLONG defend_start;
 
 	vector<LPGAMEOBJECT> effects;
 
 	int mario_nx;
 	BOOLEAN isTailAttacked = false;
-	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
-	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
-	virtual void Render();
-
+	
+	virtual int IsCollidable();
 	virtual int IsBlocking() { return 0; }
 	virtual void OnNoCollision(DWORD dt);
+	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
+	void OnCollisionWithColorBlock(LPCOLLISIONEVENT e);
+	void OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e);
+
+
 
 
 
 public:
 	CKoopas(float x, float y, int model);
 	virtual void SetState(int state);
+	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
+	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
+	virtual void Render();
 
 	BOOLEAN isHeld;
 	BOOLEAN isDefend;

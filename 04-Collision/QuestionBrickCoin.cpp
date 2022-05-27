@@ -10,7 +10,7 @@ QuestionBrickCoin::QuestionBrickCoin(float x, float y) : CGameObject(x, y)
 	this->x = x;
 	this->y = y;
 	SetAnimationSet(CAnimationSets::GetInstance()->Get(LOAD_QB_COIN));
-	eType = Type::QUESTIONBRICKCOIN;
+	
 	minY = y - QB_COIN_MAX_HEIGHT;
 	heightFinish = y - HEIGHT_FINISH;
 }

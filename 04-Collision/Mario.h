@@ -40,8 +40,7 @@
 #define MARIO_STATE_SIT_RELEASE						    6000
 #define MARIO_STATE_RELEASE_RUN	                        7000
 #define MARIO_STATE_SHOOTING							10000
-
-
+#define MARIO_STATE_KICK							13000
 #define MARIO_RACOON_STATE_FLAPPING 11000
 #define MARIO_RACOON_STATE_FALL_SLOW 12000
 
@@ -217,6 +216,7 @@
 #define MARIO_FIRE_TIME_SHOOT 500
 #define MARIO_TRANSFORM_TIME_OUT 1000
 #define MARIO_RACCOON_TRANSFORM_TIME_OUT 500
+#define MARIO_KICK_TIMEOUT 300
 
 
 
@@ -299,7 +299,7 @@ public:
 
 	int IsBlocking() { return (state != MARIO_STATE_DIE && untouchable==0); }
 
-
+	CGameObject* obj = NULL;
 
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
@@ -311,6 +311,7 @@ public:
 	void OnCollisionWithLeaf(LPCOLLISIONEVENT e);
 	void OnCollisionWithMushRoom(LPCOLLISIONEVENT e);
 	void OnCollisionWithFireball(LPCOLLISIONEVENT e);
+	void OnCollisionWithKoopas(LPCOLLISIONEVENT e);
 
 	void SetLevel(int l);
 	int GetLevel() {

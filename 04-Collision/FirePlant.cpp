@@ -12,7 +12,7 @@ FirePlant::FirePlant(float x, float y, int model) : CGameObject(x, y)
 	this->ax = 0;
 	this->ay = 0;
 	this->startY = y;
-	eType = Type::FIREPLANT;
+	
 
 
 	if (model == FIRE_PLANT_BIG) {
@@ -82,10 +82,10 @@ void FirePlant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 		down_start = 0;
 	}
 
-	for (size_t i = 0; i < TotalFire.size(); i++)
+	/*for (size_t i = 0; i < TotalFire.size(); i++)
 	{
 		TotalFire[i]->Update(dt, coObjects);
-	}
+	}*/
 	GetMarioRangeCurrent();
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);
@@ -275,7 +275,8 @@ void FirePlant::PlantShootFire()
 			fireBall->SetState(FIRE_BALL_STATE_FPP_SHOOT_NEAR);
 		}
 	}
-	TotalFire.push_back(fireBall);
+	CPlayScene* scene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
+	scene->objects.push_back(fireBall);
 }
 
 int FirePlant::GetMarioSafeZone()

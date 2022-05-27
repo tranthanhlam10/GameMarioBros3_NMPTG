@@ -1,12 +1,13 @@
 #include "Goomba.h"
-
+#include "Mario.h"
+#include "PlayScence.h"
 CGoomba::CGoomba(float x, float y, int model):CGameObject(x, y)
 {
 	this->ax = 0;
 	this->ay = GOOMBA_GRAVITY;
 	die_start = -1;
 	nx = -1;
-	eType = Type::GOOMBA;
+	
 	this->model = model;
 	if (model == GOOMBA_NOMAL) {
 		SetState(GOOMBA_STATE_WALKING);
@@ -169,6 +170,7 @@ void CGoomba::Render()
 
 void CGoomba::SetState(int state)
 {
+	CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 	CGameObject::SetState(state);
 	switch (state)
 	{
@@ -196,6 +198,10 @@ void CGoomba::SetState(int state)
 		break;
 	case GOOMBA_STATE_WALKING:
 		vx = -GOOMBA_WALKING_SPEED;
+		break;
+	case ENEMY_STATE_IS_KOOPAS_ATTACKED:
+	case ENEMY_STATE_IS_FIRE_ATTACKED:
+		vy = -GOOMBA_IS_ATTACK_SPEED_Y;
 		break;
 	}
 }

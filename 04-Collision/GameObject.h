@@ -15,23 +15,24 @@ using namespace std;
 
 #define ID_TEX_BBOX -100		// special texture to draw object bounding box
 #define BBOX_ALPHA 0.25f
+#define TMARIO 0
+#define TOBJECT 1
+#define TENEMY 2
+#define TCOIN 3
+#define TGOLDBRICK 4
+#define TCOLOR_BLOCK 5
 
+#define ENEMY_STATE_IS_KOOPAS_ATTACKED 900 
+#define ENEMY_STATE_IS_FIRE_ATTACKED 901
+#define ENEMY_STATE_IS_TAIL_ATTACKED 902
 
 enum Type {
-	MARIO = 0,
-	PLATFORM = 1,
-	QUESTIONBRICK = 2,
-	PIPE = 3,
-	QUESTIONBRICKCOIN = 4,
-	MUSHROOM = 5,
-	FLOWER = 6,
-	LEAF = 7,
-	COIN = 8,
-	FIREBALL = 10,
-	PLANT = 11,
-	FIREPLANT = 12,
-	GOOMBA = 13,
-	KOOPAS = 14,
+	MARIO = TMARIO,
+	OBJECT = TOBJECT,
+	ENEMY = TENEMY,
+	COIN = TCOIN,
+	GOLDBRICK = TGOLDBRICK,
+	COLORBLOCK = TCOLOR_BLOCK,
 
 };
 class CGameObject
@@ -60,7 +61,7 @@ public:
 
 	LPANIMATION_SET animation_set;
 
-
+	int type;
 	DWORD dt;
 
 public: 
@@ -70,6 +71,8 @@ public:
 	void GetPosition(float &x, float &y) { x = this->x; y = this->y; } // lấy vị trí object
 	void GetSpeed(float &vx, float &vy) { vx = this->vx; vy = this->vy; } // lấy vận tốc object
 
+	void SetType(int type) { this->type = type; }
+	int GetType() { return type; }
 	void SetModel(int model) { this->model = model; }
 	int GetModel() { return model; }
 	int GetDirection() { return this->nx; }

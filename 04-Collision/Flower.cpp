@@ -7,7 +7,7 @@ Flower::Flower(float x, float y) :CGameObject(x, y)
 	this->ax = 0;
 	this->x = x;
 	this->y = y;
-	eType = Type::FLOWER;
+	
 	SetAnimationSet(CAnimationSets::GetInstance()->Get(LOAD_FLOWER_FROM_TXT));
 	minY = y - FLOWER_BBOX_HEIGHT;
 }

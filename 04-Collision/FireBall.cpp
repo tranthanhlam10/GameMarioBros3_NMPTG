@@ -6,7 +6,7 @@ FireBall::FireBall(float x, float y) :CGameObject(x, y)
 {
 	this->ax = 0;
 	this->ay = FIRE_BALL_GRAVITY;
-	eType = Type::FIREBALL;
+	
 	this->SetAnimationSet(CAnimationSets::GetInstance()->Get(LOAD_FIREBALL_FROM_TXT));
 	this->x = x;
 	this->y = y;
@@ -16,7 +16,7 @@ FireBall::FireBall(float x, float y) :CGameObject(x, y)
 void FireBall::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	left = x;
-	top = y ;
+	top = y  ;
 	right = left + FIRE_BALL_BBOX_WIDTH;
 	bottom = top + FIRE_BALL_BBOX_HEIGHT;
 }
@@ -71,9 +71,9 @@ void FireBall::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 void FireBall::Render()
 {
 	int ani = ID_ANI_FIRE_BALL;
-	/*if (isDisappear) {
+	if (isDisappear) {
 		ani = ID_ANI_FIRE_BALL_DISAPPEAR;
-	}*/
+	}
 	animation_set->at(ani)->Render(x, y);
 	//RenderBoundingBox();
 }

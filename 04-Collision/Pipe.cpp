@@ -10,7 +10,7 @@ CPipe::CPipe(float x, float y, int model) : CGameObject(x, y) {
 	this->x = x;
 	this->y = y;
 	this->model = model;
-	eType = Type::PIPE;
+	SetType(Type::OBJECT);
 }
 
 void CPipe::GetBoundingBox(float& left, float& top, float& right, float& bottom)

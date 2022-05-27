@@ -11,7 +11,7 @@
 CQuestionBrick::CQuestionBrick(float x, float y, int model) :CGameObject(x, y)
 {
 	this->model = model;
-	eType = Type::QUESTIONBRICK;
+	SetType(Type::OBJECT);
 	this->ay = 0;
 	this->ax = 0;
 	this->minY = y - QUESTION_BRICK_BBOX_HEIGHT;

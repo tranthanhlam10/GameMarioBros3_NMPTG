@@ -124,10 +124,10 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		transform_start = -1;
 	}
 
-	if (level == MARIO_LEVEL_RACOON && GetTickCount64() - transform_start > MARIO_RACCOON_TRANSFORM_TIME_OUT && isTransform)
-	{
-		isTransform = false;
-		transform_start = -1;
+
+	if (GetTickCount64() - kick_start > MARIO_KICK_TIMEOUT && isKickingTurtle) {
+		isKickingTurtle = false;
+		kick_start = -1;
 	}
 
 	if (isMoveOverBlockColor) {
@@ -185,11 +185,10 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 {
 	if (e->ny < 0 && e->obj->IsBlocking())
 	{
-		vy = 0;
+
 		if (e->ny < 0) { 
-			isOnPlatform = true; // va chạm với platform
+			isOnPlatform = true; 
 			vy = 0;
-			isJumping = false; 
 			pendingFallSlow = false;
 			isFlying = false;
 		}
@@ -205,6 +204,7 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 
 	if (dynamic_cast<CGoomba*>(e->obj))
 		OnCollisionWithGoomba(e);
+
 	else if (dynamic_cast<CCoin*>(e->obj))
 		OnCollisionWithCoin(e);
 	else if (dynamic_cast<CQuestionBrick*>(e->obj))
@@ -219,7 +219,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 		OnCollisionWithMushRoom(e);
 	else if (dynamic_cast<FireBall*>(e->obj))
 		OnCollisionWithFireball(e);
-
+	else if (dynamic_cast<CKoopas*>(e->obj))
+		OnCollisionWithKoopas(e);
 }
 
 void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e) // sử lí va chạm khi cham nấm
@@ -316,18 +317,100 @@ void CMario::OnCollisionWithFireball(LPCOLLISIONEVENT e) {
 	FireBall* fireball = dynamic_cast<FireBall*>(e->obj);
 	if (fireball->isEnemyShoot) {
 		fireball->isDeleted = true;
-		if (level > MARIO_LEVEL_SMALL)
+		if (untouchable == 0)
 		{
-			level--;
-			StartUntouchable();
-		}
-		else
-		{
-			DebugOut(L">>> Mario DIE >>> \n");
-			SetState(MARIO_STATE_DIE);
+			if (level > MARIO_LEVEL_SMALL)
+			{
+				level--;
+				StartUntouchable();
+			}
+			else
+			{
+				DebugOut(L">>> Mario DIE >>> \n");
+				SetState(MARIO_STATE_DIE);
+				//die_start = GetTickCount64();
+			}
 		}
 	}
 }
+void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e)
+{
+	CKoopas* koopas = dynamic_cast<CKoopas*>(e->obj);
+
+	if (e->ny < 0)
+	{
+		if (koopas->GetState() == KOOPAS_STATE_IS_KICKED) {
+			if (koopas->isDefend) {
+				koopas->SetState(KOOPAS_STATE_DEFEND);
+			}
+			else {
+				koopas->SetState(KOOPAS_STATE_UPSIDE);
+			}
+			vy = -MARIO_JUMP_DEFLECT_SPEED;
+		}
+		else if (koopas->GetState() == KOOPAS_STATE_WALKING)
+		{
+			koopas->SetState(KOOPAS_STATE_DEFEND);
+			vy = -MARIO_JUMP_DEFLECT_SPEED;
+		}
+		else if (koopas->GetState() == KOOPAS_STATE_JUMP) {
+			koopas->SetState(KOOPAS_STATE_WALKING);
+			vy = -MARIO_JUMP_DEFLECT_SPEED;
+		}
+		else if (koopas->GetState() == KOOPAS_STATE_DEFEND || koopas->GetState() == KOOPAS_STATE_UPSIDE)
+		{
+			koopas->SetState(KOOPAS_STATE_IS_KICKED);
+		}
+	}
+	else if (e->nx != 0)
+	{
+		if (koopas->GetState() == KOOPAS_STATE_DEFEND || koopas->GetState() == KOOPAS_STATE_UPSIDE) {
+			if (isRunning && !isHoldingTurtle) {
+				isHoldingTurtle = true;
+				isKickingTurtle = false;
+				runningStack = 0;
+				koopas->isHeld = true;
+			}
+			else {
+				SetState(MARIO_STATE_KICK);
+				koopas->SetState(KOOPAS_STATE_IS_KICKED);
+			}
+		}
+		else {
+			if (untouchable == 0)
+			{
+				if (level > MARIO_LEVEL_SMALL)
+				{
+					level--;
+					StartUntouchable();
+				}
+				else
+				{
+					DebugOut(L">>> Mario DIE >>> \n");
+					SetState(MARIO_STATE_DIE);
+					
+				}
+			}
+		}
+	}
+	else if (e->ny > 0) {
+		if (untouchable == 0)
+		{
+			if (level > MARIO_LEVEL_SMALL)
+			{
+				level--;
+				StartUntouchable();
+			}
+			else
+			{
+				DebugOut(L">>> Mario DIE >>> \n");
+				SetState(MARIO_STATE_DIE);
+				
+			}
+		}
+	}
+}
+
 
 void CMario::Render()
 {
@@ -994,6 +1077,10 @@ void CMario::SetState(int state) // set trạng thái cho mario
 	case MARIO_RACOON_STATE_FALL_SLOW:
 		isFallSlow = true;
 		vy = -MARIO_RACCOON_FALL_SLOW_SPEED;
+		break;
+	case MARIO_STATE_KICK:
+		isKickingTurtle = true;
+		kick_start = GetTickCount64();
 		break;
 
 	}

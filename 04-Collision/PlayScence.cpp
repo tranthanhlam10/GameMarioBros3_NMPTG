@@ -27,7 +27,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 #define OBJECT_TYPE_MARIO	0
 #define OBJECT_TYPE_BRICK	1
 #define OBJECT_TYPE_GOOMBA	2
-#define OBJECT_TYPE_KOOPAS	4
+#define OBJECT_TYPE_KOOPAS	13
 #define OBJECT_TYPE_PIPE 6
 #define OBJECT_TYPE_PLATFORM 7
 #define OBJECT_TYPE_QUESTION_BRICK 8
@@ -163,9 +163,13 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 		{
 			int model = (int)atof(tokens[4].c_str());
 			obj = new CKoopas(x,y, model);
+			DebugOut(L"[INFO] KOOPAS object created!\n");
 			break; 
 		}
-		case OBJECT_TYPE_BRICK: obj = new CBrick(x, y); break;
+		case OBJECT_TYPE_BRICK: {
+			obj = new CBrick(x, y); 
+			break;
+		}
 		case OBJECT_TYPE_PLATFORM: {
 			float w = (float)atof(tokens[3].c_str());
 			float h = (float)atof(tokens[4].c_str());
@@ -375,6 +379,10 @@ void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 		break;
 	case DIK_A:
 		mario->SetState(MARIO_STATE_RELEASE_RUN);
+		if (mario->isHoldingTurtle) {
+			mario->isHoldingTurtle = false;
+			mario->SetState(MARIO_STATE_KICK);
+		}
 		break;
 	}
 

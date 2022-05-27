@@ -7,7 +7,7 @@ Leaf::Leaf(float x, float y) :CGameObject(x, y)
 	this->ax = 0;
 	this->x = x;
 	this->y = y;
-	eType = Type::LEAF;
+	
 	SetAnimationSet(CAnimationSets::GetInstance()->Get(LOAD_LEAF_FROM_TXT));
 	minY = y - LEAF_MAX_HEIGHT;
 	limitLeft = x;

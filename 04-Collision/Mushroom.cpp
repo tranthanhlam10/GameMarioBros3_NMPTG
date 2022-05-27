@@ -9,7 +9,7 @@ MushRoom::MushRoom(float x, float y, int model) : CGameObject(x, y)
 	this->ax = 0;
 	this->x = x;
 	this->y = y;
-	eType = Type::MUSHROOM;
+	
 	this->SetAnimationSet(CAnimationSets::GetInstance()->Get(LOAD_MUSHROOM_FROM_TXT));
 	minY = y - MUSHROOM_BBOX_HEIGHT;
 	this->model = model;
