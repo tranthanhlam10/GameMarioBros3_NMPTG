@@ -41,12 +41,13 @@ protected:
 	virtual void Render();
 
 	virtual int IsCollidable();
-	virtual int IsBlocking() { return 0; }
+	virtual int IsBlocking() { return 1; }
 	virtual void OnNoCollision(DWORD dt);
 
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 
 public:
+	BOOLEAN isEnemyShoot;
 	FireBall(float x, float y);
 	virtual void SetState(int state);
 };

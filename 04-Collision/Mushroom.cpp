@@ -17,8 +17,8 @@ MushRoom::MushRoom(float x, float y, int model) : CGameObject(x, y)
 
 void MushRoom::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	left = x - MUSHROOM_BBOX_WIDTH / 2;
-	top = y - MUSHROOM_BBOX_HEIGHT / 2;
+	left = x /*- MUSHROOM_BBOX_WIDTH / 2*/;
+	top = y /*- MUSHROOM_BBOX_HEIGHT / 2*/;
 	right = left + MUSHROOM_BBOX_WIDTH;
 	bottom = top + MUSHROOM_BBOX_HEIGHT;
 }
@@ -31,8 +31,6 @@ void MushRoom::OnNoCollision(DWORD dt)
 
 void MushRoom::OnCollisionWith(LPCOLLISIONEVENT e)
 {
-	if (!e->obj->IsBlocking()) return;
-	if (dynamic_cast<MushRoom*>(e->obj)) return;
 
 	if (e->ny != 0)
 	{
@@ -71,6 +69,7 @@ void MushRoom::Render()
 	}
 
 	animation_set->at(ani)->Render(x, y);
+	//RenderBoundingBox();
 	
 }
 

@@ -27,7 +27,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 #define OBJECT_TYPE_MARIO	0
 #define OBJECT_TYPE_BRICK	1
 #define OBJECT_TYPE_GOOMBA	2
-#define OBJECT_TYPE_KOOPAS	3
+#define OBJECT_TYPE_KOOPAS	4
 #define OBJECT_TYPE_PIPE 6
 #define OBJECT_TYPE_PLATFORM 7
 #define OBJECT_TYPE_QUESTION_BRICK 8
@@ -129,8 +129,8 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 {
 		vector<string> tokens = split(line);
 		DebugOut(L"--> %s\n", ToWSTR(line).c_str());
-	//		if (line[0] == '#') continue;
-	if (tokens.size() < 3) return; // skip invalid lines - an object set must have at least id, x, y
+		//if (line[0] == '#') continue;
+	if (tokens.size() < 2) return; // skip invalid lines - an object set must have at least id, x, y
 
 		int object_type = atoi(tokens[0].c_str());
 		float x = (float)atof(tokens[1].c_str());

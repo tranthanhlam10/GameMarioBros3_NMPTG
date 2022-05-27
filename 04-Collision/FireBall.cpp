@@ -16,7 +16,7 @@ FireBall::FireBall(float x, float y) :CGameObject(x, y)
 void FireBall::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	left = x;
-	top = y;
+	top = y ;
 	right = left + FIRE_BALL_BBOX_WIDTH;
 	bottom = top + FIRE_BALL_BBOX_HEIGHT;
 }
@@ -91,11 +91,13 @@ void FireBall::SetState(int state)
 	case FIRE_BALL_STATE_FPP_SHOOT_NEAR:
 		vx = nx * FIRE_BALL_FPP_SHOOT_SPEED_X_NEAR;
 		vy = ny * FIRE_BALL_FPP_SHOOT_SPEED_Y;
+		isEnemyShoot = true;
 		ay = 0;
 		break;
 	case FIRE_BALL_STATE_FPP_SHOOT_FAR:
 		vx = nx * FIRE_BALL_FPP_SHOOT_SPEED_X_FAR;
 		vy = ny * FIRE_BALL_FPP_SHOOT_SPEED_Y;
+		isEnemyShoot = true;
 		ay = 0;
 		break;
 	case FIRE_BALL_DISAPPEAR:

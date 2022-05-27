@@ -5,7 +5,6 @@
 #include "Goomba.h"
 #include "QuestionBrick.h"
 #include "ColorBlock.h"
-#include "debug.h"
 
 
 CKoopas::CKoopas(float x, float y, int model) :CGameObject(x, y)
@@ -13,7 +12,7 @@ CKoopas::CKoopas(float x, float y, int model) :CGameObject(x, y)
 	this->ax = 0;
 	this->ay = KOOPAS_GRAVITY;
 	this->model = model;
-	//eType = Type::KOOPAS;
+	eType = Type::KOOPAS;
 	defend_start = -1;
 	isHeld = false;
 	if (model == KOOPAS_GREEN_WING) {
@@ -261,10 +260,6 @@ void CKoopas::Render()
 		}
 	}
 
-	/*for (int i = 0; i < effects.size(); i++)
-	{
-		effects[i]->Render();
-	}*/
 
 	animation_set->at(ani)->Render(x, y);
 	RenderBoundingBox();

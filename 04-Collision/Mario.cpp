@@ -14,6 +14,8 @@
 #include "Flower.h"
 #include "FireBall.h"
 #include "Goomba.h"
+#include "Leaf.h"
+#include "Mushroom.h"
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
@@ -35,8 +37,10 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		 if (!isRunning) {
 			 vx = nx * MARIO_WALKING_SPEED;
 		 }
-		 else if (abs(vx) >= MARIO_RUNNING_SPEED){
-			 if (runningStack < MARIO_POWER_FULL) {
+		 else if (abs(vx) >= MARIO_RUNNING_SPEED)
+		 {
+			 if (runningStack < MARIO_POWER_FULL)
+			 {
 				 vx = nx * MARIO_RUNNING_SPEED;
 			 }
 			 else
@@ -113,6 +117,19 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		}
 		DebugOut(L"[INFO] powerStack! %d \n", runningStack);
 	}
+
+	if (level == MARIO_LEVEL_BIG && GetTickCount64() - transform_start > MARIO_TRANSFORM_TIME_OUT && isTransform)
+	{
+		isTransform = false;
+		transform_start = -1;
+	}
+
+	if (level == MARIO_LEVEL_RACOON && GetTickCount64() - transform_start > MARIO_RACCOON_TRANSFORM_TIME_OUT && isTransform)
+	{
+		isTransform = false;
+		transform_start = -1;
+	}
+
 	if (isMoveOverBlockColor) {
 		y -= ADJUST_MARIO_COLLISION_WITH_COLOR_BLOCK;
 		vy = -MARIO_JUMP_SPEED_MAX;
@@ -196,6 +213,12 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 		OnCollisionWithColorBlock(e);
 	else if (dynamic_cast<Flower*>(e->obj))
 		OnCollisionWithFlower(e);
+	else if (dynamic_cast<Leaf*>(e->obj))
+		OnCollisionWithLeaf(e);
+	else if (dynamic_cast<MushRoom*>(e->obj))
+		OnCollisionWithMushRoom(e);
+	else if (dynamic_cast<FireBall*>(e->obj))
+		OnCollisionWithFireball(e);
 
 }
 
@@ -267,6 +290,44 @@ void CMario::OnCollisionWithFlower(LPCOLLISIONEVENT e)
 	e->obj->Delete();
 }
 
+void CMario::OnCollisionWithLeaf(LPCOLLISIONEVENT e)
+{
+	transform_start = GetTickCount64();
+	isTransform = true;
+	level = MARIO_LEVEL_RACOON;
+	e->obj->Delete();
+}
+
+void CMario::OnCollisionWithMushRoom(LPCOLLISIONEVENT e)
+{
+	if (e->obj->GetModel() == RED_MUSHROOM) {
+		transform_start = GetTickCount64();
+		isTransform = true;
+		isAdjustHeight = true;
+		level = MARIO_LEVEL_BIG;
+		e->obj->Delete();
+	}
+	else if (e->obj->GetModel() == GREEN_MUSHROOM) {
+		e->obj->Delete();
+	}
+}
+
+void CMario::OnCollisionWithFireball(LPCOLLISIONEVENT e) {
+	FireBall* fireball = dynamic_cast<FireBall*>(e->obj);
+	if (fireball->isEnemyShoot) {
+		fireball->isDeleted = true;
+		if (level > MARIO_LEVEL_SMALL)
+		{
+			level--;
+			StartUntouchable();
+		}
+		else
+		{
+			DebugOut(L">>> Mario DIE >>> \n");
+			SetState(MARIO_STATE_DIE);
+		}
+	}
+}
 
 void CMario::Render()
 {
@@ -819,6 +880,7 @@ void CMario::Render()
 	animation_set->at(ani)->Render(x, y);
 
  // RenderBoundingBox();
+	DebugOutTitle(L"Total coin: %d", coin);
 }
 
 

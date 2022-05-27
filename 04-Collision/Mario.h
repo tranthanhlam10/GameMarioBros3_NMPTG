@@ -215,6 +215,8 @@
 #define POWER_STACK_TIME 250
 #define POWER_STACK_LOST_TIME 250
 #define MARIO_FIRE_TIME_SHOOT 500
+#define MARIO_TRANSFORM_TIME_OUT 1000
+#define MARIO_RACCOON_TRANSFORM_TIME_OUT 500
 
 
 
@@ -306,6 +308,9 @@ public:
 	void OnCollisionWithColorBlock(LPCOLLISIONEVENT e);
 	void OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e);
 	void OnCollisionWithFlower(LPCOLLISIONEVENT e);
+	void OnCollisionWithLeaf(LPCOLLISIONEVENT e);
+	void OnCollisionWithMushRoom(LPCOLLISIONEVENT e);
+	void OnCollisionWithFireball(LPCOLLISIONEVENT e);
 
 	void SetLevel(int l);
 	int GetLevel() {
