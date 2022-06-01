@@ -192,11 +192,12 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 			pendingFallSlow = false;
 			isFlying = false;
 		}
-	}
-		if (e->ny > 0) {
+		else {
 			vy = 0;
 			ay = MARIO_GRAVITY;
 		}
+
+	}
 
 		if (e->nx != 0 && e->obj->IsBlocking())
 		{

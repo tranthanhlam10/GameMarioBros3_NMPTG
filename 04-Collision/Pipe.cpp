@@ -19,7 +19,7 @@ void CPipe::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 	
 	   if (mario->GetLevel() == MARIO_LEVEL_RACOON) {
 
-		   left = x - PIPE_BBOX_WIDTH / 2 + (PIPE_BBOX_WIDTH / 8);
+		   left = x - PIPE_BBOX_WIDTH / 2 + (PIPE_BBOX_WIDTH / 8); 
 
 		   right = left + PIPE_BBOX_WIDTH + (PIPE_BBOX_WIDTH/8) + (PIPE_BBOX_WIDTH / 16);
 
