@@ -15,7 +15,7 @@
 #define MARIO_JUMP_DEFLECT_SPEED 0.2f
 #define MARIO_GRAVITY			0.002f
 #define MARIO_DECELERATE_SPEED 0.00012f
-#define MARIO_DIE_DEFLECT_SPEED	 0.5f
+#define MARIO_DIE_DEFLECT_SPEED	 0.4f
 
 #define MARIO_JUMP_RUN_SPEED_Y	0.5f
 #define MARIO_ACCEL_JUMP_Y 0.0005f
@@ -235,8 +235,6 @@ class CMario : public CGameObject // khởi tạo object mario
 	int level; 
 	int untouchable; 
 	ULONGLONG untouchable_start;
-	
-
 
 public:
 	CMario::CMario(float x = 0.0f , float y = 0.0f) : CGameObject()

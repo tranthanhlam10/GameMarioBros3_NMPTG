@@ -34,7 +34,7 @@ void CKoopas::GetBoundingBox(float& left, float& top, float& right, float& botto
 		left = x ;
 		top = y;
 		right = left + KOOPAS_BBOX_WIDTH;
-		bottom = top + KOOPAS_BBOX_HEIGHT_DEFEND;
+		bottom = top + KOOPAS_BBOX_HEIGHT_DEFEND  ;
 
 	}
 	else {
@@ -131,6 +131,7 @@ void CKoopas::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e)
 	}
 
 }
+
 
 void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
@@ -340,7 +341,7 @@ void CKoopas::Render()
 	}
 
 	animation_set->at(ani)->Render(x, y);
-	//RenderBoundingBox();
+	RenderBoundingBox();
 }
 
 void CKoopas::SetState(int state)

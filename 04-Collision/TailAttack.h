@@ -10,7 +10,7 @@ public:
 	float width = 0.0f;
 	float height = 0.0f;
 
-	vector<LPGAMEOBJECT> effects;
+	
 
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 

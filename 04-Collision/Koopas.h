@@ -75,8 +75,6 @@ protected:
 
 	ULONGLONG defend_start;
 
-	vector<LPGAMEOBJECT> effects;
-
 	int mario_nx;
 	BOOLEAN isTailAttacked = false;
 	
@@ -87,13 +85,10 @@ protected:
 	void OnCollisionWithColorBlock(LPCOLLISIONEVENT e);
 	void OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e);
 
-
-
-
-
 public:
 	CKoopas(float x, float y, int model);
 	virtual void SetState(int state);
+	virtual int GetState() { return state; };
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 	virtual void Render();

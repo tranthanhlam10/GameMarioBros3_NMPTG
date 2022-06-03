@@ -39,20 +39,9 @@ void TailAttack::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 				OnCollisionWithQuestionBrick(coObjects->at(i));
 		}
 	}
-
-	for (size_t i = 0; i < effects.size(); i++)
-	{
-		effects[i]->Update(dt, coObjects);
-		if (effects[i]->isDeleted) {
-			effects.erase(effects.begin() + i);
-		}
-	}
 }
 
 void TailAttack::Render() {
-	for (int i = 0; i < effects.size(); i++)
-	{
-		effects[i]->Render();
-	}
+
 	//RenderBoundingBox();
 }
