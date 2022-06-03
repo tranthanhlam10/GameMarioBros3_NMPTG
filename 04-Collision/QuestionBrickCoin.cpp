@@ -27,7 +27,7 @@ void QuestionBrickCoin::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	vx += ax * dt;
 
 	CPlayScene* scene = (CPlayScene*)CGame::GetInstance()->GetCurrentScene();
-	
+	CMario* mario = (CMario*)((LPPLAYSCENE)CGame::GetInstance()->GetCurrentScene())->GetPlayer();
 	if (y <= minY)
 	{
 		y = minY;
@@ -36,7 +36,9 @@ void QuestionBrickCoin::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 	}
 	if (y >= heightFinish && isFall)
 	{
+		mario->coin++;
 		isDeleted = true;
+
 	}
 
 	CGameObject::Update(dt, coObjects);

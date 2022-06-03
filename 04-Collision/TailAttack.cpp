@@ -54,4 +54,5 @@ void TailAttack::Render() {
 	{
 		effects[i]->Render();
 	}
+	//RenderBoundingBox();
 }

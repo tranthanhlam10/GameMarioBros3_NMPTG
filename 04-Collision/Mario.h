@@ -236,7 +236,7 @@ class CMario : public CGameObject // khởi tạo object mario
 	int untouchable; 
 	ULONGLONG untouchable_start;
 	
-	int coin; 
+
 
 public:
 	CMario::CMario(float x = 0.0f , float y = 0.0f) : CGameObject()
@@ -255,6 +255,7 @@ public:
 		this->y = y;
 		tailattack = new TailAttack(x, y);
 	}
+	int coin;
 
 	BOOLEAN isFlying = false;
 	BOOLEAN isFlapping = false;

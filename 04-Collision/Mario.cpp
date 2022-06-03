@@ -294,6 +294,7 @@ void CMario::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e) {
 	CQuestionBrick* questionBrick = dynamic_cast<CQuestionBrick*>(e->obj);
 	if (e->ny > 0 && !questionBrick->isEmpty) {
 		questionBrick->SetState(QUESTION_BRICK_STATE_UP);
+		
 	}
 }
 void CMario::OnCollisionWithColorBlock(LPCOLLISIONEVENT e) // sử lí khi va chạm với tiền

@@ -381,7 +381,7 @@ void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 		mario->SetState(MARIO_STATE_RELEASE_RUN);
 		if (mario->isHoldingTurtle) {
 			mario->isHoldingTurtle = false;
-			mario->SetState(MARIO_STATE_KICK);
+			//mario->SetState(MARIO_STATE_KICK);
 		}
 		break;
 	case DIK_S:
@@ -461,7 +461,7 @@ void CPlayScenceKeyHandler::KeyState(BYTE* states)
 	if (mario->GetState() == MARIO_STATE_DIE) return;
 	if (game->IsKeyDown(DIK_RIGHT))
 	{
-		if(!mario->isRunning && game->IsKeyDown(DIK_A))
+		if(!mario->isRunning && game->IsKeyDown(DIK_A) &&!mario->isHoldingTurtle)
 		{
 			mario->SetState(MARIO_STATE_RUNNING_RIGHT);
 		}
@@ -475,7 +475,7 @@ void CPlayScenceKeyHandler::KeyState(BYTE* states)
 	}
 	else if (game->IsKeyDown(DIK_LEFT))
 	{
-		if (!mario->isRunning && game->IsKeyDown(DIK_A) )
+		if (!mario->isRunning && game->IsKeyDown(DIK_A) && !mario->isHoldingTurtle)
 		{
 			mario->SetState(MARIO_STATE_RUNNING_LEFT);
 		}
