@@ -76,7 +76,7 @@ void Plant::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			isSafeZone = false;
 		}
 	}
-	if (state == ENEMY_STATE_IS_FIRE_ATTACKED ) {
+	if (state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_TAIL_ATTACKED) {
 		isDeleted = true;
 	}
 

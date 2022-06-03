@@ -62,6 +62,8 @@ public:
 		float& nx,
 		float& ny);
 
+	bool CheckAABB(LPGAMEOBJECT objA, LPGAMEOBJECT objB);
+
 	LPCOLLISIONEVENT SweptAABB(
 		LPGAMEOBJECT objSrc, 
 		DWORD dt,

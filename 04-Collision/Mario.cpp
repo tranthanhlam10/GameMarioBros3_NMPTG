@@ -89,6 +89,16 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		 pendingFallSlow = true;
 	 }
 
+	 if (isAttack && GetTickCount64() - attack_start > MARIO_RACOON_ATTACK_TIME_OUT) {
+		 isAttack = false;
+		 attack_start = -1;
+		 tailattack = NULL;
+	 }
+
+	 if (isAttack) {
+		 SetTail();
+	 }
+
 	if ( GetTickCount64() - untouchable_start > MARIO_UNTOUCHABLE_TIME) 
 	{
 		untouchable_start = 0;
@@ -157,6 +167,10 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		if (TotalFire[i]->isDeleted) {
 			TotalFire.erase(TotalFire.begin() + i);
 		}
+	}
+
+	if (tailattack) {
+		tailattack->Update(dt, coObjects);
 	}
 
 	
@@ -970,6 +984,10 @@ void CMario::Render()
 
 		}
 
+		if (tailattack) {
+			tailattack->Render();
+		}
+
 		for (int i = 0; i < TotalFire.size(); i++)
 		{
 			TotalFire[i]->Render();
@@ -1100,6 +1118,10 @@ void CMario::SetState(int state) // set trạng thái cho mario
 		isKickingTurtle = true;
 		kick_start = GetTickCount64();
 		break;
+	case MARIO_RACOON_STATE_ATTACK:
+		attack_start = GetTickCount64();
+		isAttack = true;
+		break;
 
 	}
 }
@@ -1143,6 +1165,48 @@ void CMario::SetLevel(int level) // set cấp độ cho mario
 
 	}
 	this->level = level ;	
+
+}
+void CMario::SetTail() {
+
+	if (!tailattack) {
+		tailattack = new TailAttack(x, y);
+	}
+
+	int timeAttack = (int)(GetTickCount64() - attack_start);
+
+	if ((timeAttack > 0 && timeAttack < MARIO_RACOON_ATTACK_TIME_OUT / NUM_OF_EFFECT_MARIO_RACCOON_ATTACK) || (timeAttack >= (MARIO_RACOON_ATTACK_TIME_OUT * 4 / NUM_OF_EFFECT_MARIO_RACCOON_ATTACK) && timeAttack < MARIO_RACOON_ATTACK_TIME_OUT)) {
+		if (nx > 0)
+		{
+			tailattack->SetPosition(x - TAIL_BBOX_WIDTH / 2, y + POSITION_Y_OF_TAIL_MARIO / 2 - TAIL_BBOX_HEIGHT / 2);
+		}
+		else {
+			tailattack->SetPosition(x + MARIO_BIG_BBOX_WIDTH - TAIL_BBOX_WIDTH / 2, y + POSITION_Y_OF_TAIL_MARIO / 2 - TAIL_BBOX_HEIGHT / 2);
+		}
+		tailattack->SetWidth(TAIL_BBOX_WIDTH);
+		tailattack->SetHeight(TAIL_BBOX_HEIGHT);
+	}
+
+	if (timeAttack >= (MARIO_RACOON_ATTACK_TIME_OUT * 1 / NUM_OF_EFFECT_MARIO_RACCOON_ATTACK) && timeAttack < (MARIO_RACOON_ATTACK_TIME_OUT * 2 / NUM_OF_EFFECT_MARIO_RACCOON_ATTACK)) {
+		tailattack->SetWidth(0);
+		tailattack->SetHeight(0);
+	}
+
+	if (timeAttack >= (MARIO_RACOON_ATTACK_TIME_OUT * 2 / NUM_OF_EFFECT_MARIO_RACCOON_ATTACK) && timeAttack < (MARIO_RACOON_ATTACK_TIME_OUT * 3 / NUM_OF_EFFECT_MARIO_RACCOON_ATTACK)) {
+		if (nx > 0) {
+			tailattack->SetPosition(x + MARIO_BIG_BBOX_WIDTH - TAIL_BBOX_WIDTH / 2, y + POSITION_Y_OF_TAIL_MARIO / 2 - TAIL_BBOX_HEIGHT / 2);
+		}
+		else {
+			tailattack->SetPosition(x - TAIL_BBOX_WIDTH / 2, y + POSITION_Y_OF_TAIL_MARIO / 2 - TAIL_BBOX_HEIGHT / 2);
+		}
+		tailattack->SetWidth(TAIL_BBOX_WIDTH);
+		tailattack->SetHeight(TAIL_BBOX_HEIGHT);
+	}
+
+	if (timeAttack >= (MARIO_RACOON_ATTACK_TIME_OUT * 3 / NUM_OF_EFFECT_MARIO_RACCOON_ATTACK) && timeAttack < (MARIO_RACOON_ATTACK_TIME_OUT * 4 / NUM_OF_EFFECT_MARIO_RACCOON_ATTACK)) {
+		tailattack->SetWidth(0);
+		tailattack->SetHeight(0);
+	}
 
 }
 void CMario::Reset()

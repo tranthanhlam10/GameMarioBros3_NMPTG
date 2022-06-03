@@ -1,9 +1,8 @@
 ﻿#pragma once
 #include "GameObject.h"
-
 #include "Animation.h"
 #include "Animations.h"
-
+#include "TailAttack.h"
 #include "debug.h"
 
 
@@ -43,7 +42,7 @@
 #define MARIO_STATE_KICK							13000
 #define MARIO_RACOON_STATE_FLAPPING 11000
 #define MARIO_RACOON_STATE_FALL_SLOW 12000
-
+#define MARIO_RACOON_STATE_ATTACK 14000
 
 
 
@@ -217,9 +216,10 @@
 #define MARIO_TRANSFORM_TIME_OUT 1000
 #define MARIO_RACCOON_TRANSFORM_TIME_OUT 500
 #define MARIO_KICK_TIMEOUT 300
+#define MARIO_RACOON_ATTACK_TIME_OUT 500
 
-
-
+#define NUM_OF_EFFECT_MARIO_RACCOON_ATTACK 5 //num of tail attack
+#define POSITION_Y_OF_TAIL_MARIO 18 // long for mario head to tail
 
 
 #define MARIO_POWER_FULL 7
@@ -253,7 +253,7 @@ public:
 		start_y = y;
 		this->x = x;
 		this->y = y;
-		//eType = Type::MARIO;
+		tailattack = new TailAttack(x, y);
 	}
 
 	BOOLEAN isFlying = false;
@@ -300,6 +300,7 @@ public:
 	int IsBlocking() { return (state != MARIO_STATE_DIE && untouchable==0); }
 
 	CGameObject* obj = NULL;
+	TailAttack* tailattack;
 
 	void OnNoCollision(DWORD dt);
 	void OnCollisionWith(LPCOLLISIONEVENT e);
@@ -326,5 +327,6 @@ public:
 	
 	void Decelerate();
 	void MarioShootFireBall();
+	void SetTail();
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 };

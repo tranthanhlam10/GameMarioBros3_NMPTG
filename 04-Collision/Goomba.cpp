@@ -67,7 +67,7 @@ void CGoomba::OnCollisionWith(LPCOLLISIONEVENT e)
 
 int CGoomba::IsCollidable()
 {
-	if (state == ENEMY_STATE_IS_KOOPAS_ATTACKED || state == ENEMY_STATE_IS_FIRE_ATTACKED ) {
+	if (state == ENEMY_STATE_IS_KOOPAS_ATTACKED || state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_TAIL_ATTACKED) {
 		return 0;
 	}
 	else {
@@ -148,7 +148,7 @@ void CGoomba::Render()
 
 	if (model == GOOMBA_NOMAL) 
 	{
-		if (state == ENEMY_STATE_IS_KOOPAS_ATTACKED || state == ENEMY_STATE_IS_FIRE_ATTACKED)
+		if (state == ENEMY_STATE_IS_KOOPAS_ATTACKED || state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_TAIL_ATTACKED)
 		{
 			ani = GOOMBA_ANI_IS_ATTACKED;
 		}
@@ -175,7 +175,7 @@ void CGoomba::Render()
 		{
 			ani = GOOMBA_ANI_RED_WING_JUMP;
 		}
-		else if (state == ENEMY_STATE_IS_KOOPAS_ATTACKED || state == ENEMY_STATE_IS_FIRE_ATTACKED) {
+		else if (state == ENEMY_STATE_IS_KOOPAS_ATTACKED || state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_TAIL_ATTACKED) {
 			ani = GOOMBA_ANI_RED_WING_IS_ATTACKED;
 		}
 	}
@@ -215,6 +215,10 @@ void CGoomba::SetState(int state)
 		break;
 	case GOOMBA_STATE_WALKING:
 		vx = -GOOMBA_WALKING_SPEED;
+		break;
+	case ENEMY_STATE_IS_TAIL_ATTACKED:
+		vy = -GOOMBA_IS_ATTACK_SPEED_Y;
+		vx = mario->GetDirection() * GOOMBA_IS_ATTACK_SPEED_X;
 		break;
 	case ENEMY_STATE_IS_KOOPAS_ATTACKED:
 	case ENEMY_STATE_IS_FIRE_ATTACKED:

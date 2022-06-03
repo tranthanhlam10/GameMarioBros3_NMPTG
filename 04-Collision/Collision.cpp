@@ -13,6 +13,17 @@ CCollision* CCollision::GetInstance()
 	return __instance;
 }
 
+
+
+bool CCollision::CheckAABB(LPGAMEOBJECT objA, LPGAMEOBJECT objB)
+{
+	float aL, aT, aR, aB;
+	float bL, bT, bR, bB;
+	objA->GetBoundingBox(aL, aT, aR, aB);
+	objB->GetBoundingBox(bL, bT, bR, bB);
+
+	return (!(aL > bR || aT > bB || aR < bL || aB < bT));
+}
 /*
 	SweptAABB 
 */

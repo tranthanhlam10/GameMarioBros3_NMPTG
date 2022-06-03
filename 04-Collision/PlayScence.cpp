@@ -435,13 +435,17 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 		mario->SetState(MARIO_STATE_JUMP);
 		break;
 	case DIK_A:
+		if (!mario->isAttack) {
+			if (mario->GetLevel() == MARIO_LEVEL_RACOON) {
+				mario->SetState(MARIO_RACOON_STATE_ATTACK);
+			}
+		}
 		if (mario->GetLevel() == MARIO_LEVEL_FIRE) {
 			if (!mario->isShootingFireBall) {
 				mario->SetState(MARIO_STATE_SHOOTING);
 			}
 		}
 	}
-	
 }
 	
 

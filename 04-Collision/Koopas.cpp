@@ -53,7 +53,7 @@ void CKoopas::OnNoCollision(DWORD dt)
 
 int CKoopas::IsCollidable()
 {
-	if (state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_KOOPAS_ATTACKED) {
+	if (state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_KOOPAS_ATTACKED || state == ENEMY_STATE_IS_TAIL_ATTACKED) {
 		return 0;
 	}
 	else {
@@ -198,7 +198,7 @@ void CKoopas::Render()
 	if (model == KOOPAS_RED)
 	{
 
-		if (state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_KOOPAS_ATTACKED ) {
+		if (state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_KOOPAS_ATTACKED || state == ENEMY_STATE_IS_TAIL_ATTACKED) {
 			ani = KOOPAS_ANI_RED_IS_UPSIDE;
 		}
 		if (vx > 0)
@@ -312,6 +312,12 @@ void CKoopas::SetState(int state)
 		isDefend = false;
 		isUpside = false;
 		isKicked = false;
+		break;
+	case ENEMY_STATE_IS_TAIL_ATTACKED:
+		ay = KOOPAS_GRAVITY;
+		vy = -KOOPAS_SPEED_Y_IS_TAIL_ATTACKED;
+		vx = mario->GetDirection() * KOOPAS_SPEED_X_IS_TAIL_ATTACKED;
+		isTailAttacked = true;
 		break;
 	case ENEMY_STATE_IS_FIRE_ATTACKED:
 		ay = KOOPAS_GRAVITY;
