@@ -195,6 +195,14 @@ void CKoopas::Render()
 {
 	
 	int ani = -1;
+	if (model == KOOPAS_GREEN_WING) {
+		if (vx > 0) {
+			ani = KOOPAS_ANI_GREEN_WING_RIGHT;
+		}
+		else {
+			ani = KOOPAS_ANI_GREEN_WING_LEFT;
+		}
+	}
 	if (model == KOOPAS_RED)
 	{
 
@@ -259,6 +267,73 @@ void CKoopas::Render()
 				else
 				{
 					ani = KOOPAS_ANI_RED_IS_UPSIDE;
+				}
+			}
+		}
+	}
+	else if (model == KOOPAS_GREEN || model == KOOPAS_GREEN_WING) 
+	{
+		if (state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_KOOPAS_ATTACKED || state == ENEMY_STATE_IS_TAIL_ATTACKED) {
+			ani = KOOPAS_ANI_IS_UPSIDE;
+		}
+		if (vx > 0)
+		{
+			if (state == KOOPAS_STATE_WALKING)
+			{
+				ani = KOOPAS_ANI_WALKING_RIGHT;
+			}
+			else if (isKicked)
+			{
+				if (isDefend)
+				{
+					ani = KOOPAS_ANI_IS_KICKED;
+				}
+				else if (isUpside)
+				{
+					ani = KOOPAS_ANI_UPSIDE_ISKICKED;
+				}
+			}
+		}
+		else
+		{
+			if (state == KOOPAS_STATE_WALKING)
+			{
+				ani = KOOPAS_ANI_WALKING_LEFT;
+			}
+			else if (isKicked)
+			{
+				if (isDefend)
+				{
+					ani = KOOPAS_ANI_IS_KICKED;
+				}
+				else if (isUpside)
+				{
+					ani = KOOPAS_ANI_UPSIDE_ISKICKED;
+				}
+			}
+		}
+		if (!isKicked)
+		{
+			if (isDefend)
+			{
+				if (isComeback)
+				{
+					ani = KOOPAS_ANI_COMEBACK;
+				}
+				else
+				{
+					ani = KOOPAS_ANI_DEFEND;
+				}
+			}
+			else if (isUpside)
+			{
+				if (isComeback)
+				{
+					ani = KOOPAS_ANI_UPSIDE_COMEBACK;
+				}
+				else
+				{
+					ani = KOOPAS_ANI_IS_UPSIDE;
 				}
 			}
 		}

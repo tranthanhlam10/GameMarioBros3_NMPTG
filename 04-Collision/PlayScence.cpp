@@ -384,6 +384,9 @@ void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 			mario->SetState(MARIO_STATE_KICK);
 		}
 		break;
+	case DIK_S:
+		mario->isFallSlow = false;
+		break;
 	}
 
 }
