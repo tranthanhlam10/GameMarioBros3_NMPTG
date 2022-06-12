@@ -381,7 +381,6 @@ void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 		mario->SetState(MARIO_STATE_RELEASE_RUN);
 		if (mario->isHoldingTurtle) {
 			mario->isHoldingTurtle = false;
-			//mario->SetState(MARIO_STATE_KICK);
 		}
 		break;
 	case DIK_S:
@@ -426,6 +425,9 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 
 	case DIK_5:
 		mario->SetPosition(1900,327);
+		break;
+	case DIK_6:
+		mario->SetPosition(1600, 128);
 		break;
 	case DIK_R:
 		mario->Reset();

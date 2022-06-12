@@ -11,7 +11,7 @@ public:
 	void Render() {};
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects) {};
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
-
+	//virtual int IsBlocking() { return 0; }
 	float GetWidth() { return width; }
 };
 

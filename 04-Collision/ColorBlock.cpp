@@ -15,6 +15,6 @@ void CColorBlock::GetBoundingBox(float& left, float& top, float& right, float& b
 	left = x;
 	top = y;
 	right = x + width;
-	bottom = y ;	
+	bottom = y +1;	
 }
 

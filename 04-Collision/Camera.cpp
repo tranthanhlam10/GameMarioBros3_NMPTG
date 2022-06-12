@@ -24,10 +24,10 @@ void Camera::Update(DWORD dt) {
 			__cx = px - DISTANCE_TO_MARIO_X;
 		}
 
-		/*if (mario->isFlying)
+		if (mario->isFlying)
 			isTurnOn = true;
 		if (__cy > mh - sh && !mario->isFlying)
-			isTurnOn = false;*/
+			isTurnOn = false;
 
 		if (isTurnOn && py > CAMERA_ON_CLOUD) {
 			if (__cy >= CAMERA_COORDINATE_Y - CAMERA_ON_CLOUD_FIX)
