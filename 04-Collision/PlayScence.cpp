@@ -35,6 +35,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 #define OBJECT_TYPE_COIN 10
 #define OBJECT_TYPE_PLANT 11
 #define OBJECT_TYPE_FIRE_PLANT 12
+#define OBJECT_TYPE_COIN_BRICK 14
 #define OBJECT_TYPE_PORTAL	52
 #define MAX_SCENE_LINE 1024
 
@@ -213,6 +214,12 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 			float model = (float)atof(tokens[4].c_str());
 			obj = new FirePlant(x, y, model); break;
 		}
+		case OBJECT_TYPE_COIN_BRICK: 
+		{
+			float model = (float)atof(tokens[4].c_str());
+			obj = new CoinBrick(x, y, model); break; 
+		}
+
 		break;
 		default:
 			DebugOut(L"[ERR] Invalid object type: %d\n", object_type);

@@ -135,7 +135,9 @@
     <ClInclude Include="AnimationSets.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CBrickBreak.h" />
     <ClInclude Include="Coin.h" />
+    <ClInclude Include="CoinBrick.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="ColorBlock.h" />
     <ClInclude Include="debug.h" />
@@ -171,7 +173,9 @@
     <ClCompile Include="AnimationSets.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CBrickBreak.cpp" />
     <ClCompile Include="Coin.cpp" />
+    <ClCompile Include="CoinBrick.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="ColorBlock.cpp" />
     <ClCompile Include="debug.cpp" />

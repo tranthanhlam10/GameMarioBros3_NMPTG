@@ -19,7 +19,7 @@ using namespace std;
 #define TOBJECT 1
 #define TENEMY 2
 #define TCOIN 3
-#define TGOLDBRICK 4
+#define TCOINBRICK 4
 #define TCOLOR_BLOCK 5
 
 #define ENEMY_STATE_IS_KOOPAS_ATTACKED 900 
@@ -31,7 +31,7 @@ enum Type {
 	OBJECT = TOBJECT,
 	ENEMY = TENEMY,
 	COIN = TCOIN,
-	GOLDBRICK = TGOLDBRICK,
+	COINBRICK = TCOINBRICK,
 	COLORBLOCK = TCOLOR_BLOCK,
 
 };

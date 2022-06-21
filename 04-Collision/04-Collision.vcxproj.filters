@@ -215,6 +215,12 @@
     <ClInclude Include="Pipe.h">
       <Filter>Object\Pipe</Filter>
     </ClInclude>
+    <ClInclude Include="CoinBrick.h">
+      <Filter>Object\Brick</Filter>
+    </ClInclude>
+    <ClInclude Include="CBrickBreak.h">
+      <Filter>Object\Brick</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -318,6 +324,12 @@
     </ClCompile>
     <ClCompile Include="TailAttack.cpp">
       <Filter>Object\TailAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="CoinBrick.cpp">
+      <Filter>Object\Brick</Filter>
+    </ClCompile>
+    <ClCompile Include="CBrickBreak.cpp">
+      <Filter>Object\Brick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
