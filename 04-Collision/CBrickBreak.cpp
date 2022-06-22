@@ -35,7 +35,7 @@ void CBrickBreak::Render()
 	int ani = ID_ANI_BREAK;
 
 	animation_set->at(ani)->Render(x, y);
-	RenderBoundingBox();
+	//RenderBoundingBox();
 }
 
 void CBrickBreak::SetState(int state)

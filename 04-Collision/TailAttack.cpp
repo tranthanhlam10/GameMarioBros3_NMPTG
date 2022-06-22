@@ -26,6 +26,14 @@ void TailAttack::OnCollisionWithEnemy(LPGAMEOBJECT& e)
 	e->SetState(ENEMY_STATE_IS_TAIL_ATTACKED);
 }
 
+void TailAttack::OnCollisionWithCoinBrick(LPGAMEOBJECT& e)
+{
+	CoinBrick* coinBrick = dynamic_cast<CoinBrick*>(e);
+	if (!coinBrick->isEmpty) {
+		coinBrick->SetBreak(true);
+	}
+}
+
 void TailAttack::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 {
 	for (int i = 0; i < coObjects->size(); i++)
@@ -37,6 +45,8 @@ void TailAttack::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			}
 			else if (dynamic_cast<CQuestionBrick*>(coObjects->at(i)))
 				OnCollisionWithQuestionBrick(coObjects->at(i));
+			else if (dynamic_cast<CoinBrick*>(coObjects->at(i)))
+				OnCollisionWithCoinBrick(coObjects->at(i));
 		}
 	}
 }

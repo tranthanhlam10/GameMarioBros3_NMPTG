@@ -52,6 +52,7 @@ public:
 	CoinBrick(float x, float y, int model);
 	virtual void SetState(int state);
 	void SetBreak(int isBreak) { this->isBreak = isBreak; }
+	bool SetIsTransform() { return this->isTransform = isTransform; }
 	BOOLEAN isUnbox = false;
 	BOOLEAN isEmpty = false;
 };

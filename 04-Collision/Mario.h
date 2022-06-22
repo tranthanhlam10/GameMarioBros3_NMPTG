@@ -315,6 +315,8 @@ public:
 	void OnCollisionWithFireball(LPCOLLISIONEVENT e);
 	void OnCollisionWithKoopas(LPCOLLISIONEVENT e);
 	void OnCollisionWithTwoPlant(LPCOLLISIONEVENT e);
+	void OnCollisionWithCoinBrick(LPCOLLISIONEVENT e);
+	void OnCollisionWithPButton(LPCOLLISIONEVENT e);
 
 	void SetLevel(int l);
 	int GetLevel() {

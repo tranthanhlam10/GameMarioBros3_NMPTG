@@ -108,6 +108,9 @@
     <Filter Include="Object\TailAttack">
       <UniqueIdentifier>{102ba220-d7ff-4e76-8572-0a7392d618c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\PButton">
+      <UniqueIdentifier>{4d3e9c30-815b-4094-ab25-d3aa3d026585}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -221,6 +224,9 @@
     <ClInclude Include="CBrickBreak.h">
       <Filter>Object\Brick</Filter>
     </ClInclude>
+    <ClInclude Include="PButton.h">
+      <Filter>Object\PButton</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -330,6 +336,9 @@
     </ClCompile>
     <ClCompile Include="CBrickBreak.cpp">
       <Filter>Object\Brick</Filter>
+    </ClCompile>
+    <ClCompile Include="PButton.cpp">
+      <Filter>Object\PButton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

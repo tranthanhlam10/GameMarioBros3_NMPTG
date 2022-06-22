@@ -16,6 +16,7 @@
 #include "Goomba.h"
 #include "Leaf.h"
 #include "Mushroom.h"
+#include "PButton.h"
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
@@ -212,11 +213,11 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 		}
 
 	}
-
-		/*if (e->nx != 0 && e->obj->IsBlocking())
-		{
-			vx = 0;
-		}*/
+	else if (e->nx != 0 && e->obj->IsBlocking()) {
+		if (e->obj->GetType() == OBJECT || e->obj->GetType() == COINBRICK) {
+			SetState(MARIO_STATE_RELEASE_RUN);
+		}
+	}
 
 		if (dynamic_cast<CGoomba*>(e->obj))
 			OnCollisionWithGoomba(e);
@@ -240,6 +241,10 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 			OnCollisionWithTwoPlant(e);
 		else if (dynamic_cast<Plant*>(e->obj))
 			OnCollisionWithTwoPlant(e);
+		else if (dynamic_cast<CoinBrick*>(e->obj))
+			OnCollisionWithCoinBrick(e);
+		else if (dynamic_cast<PButton*>(e->obj))
+			OnCollisionWithPButton(e);
 	
 }
 
@@ -443,6 +448,28 @@ void CMario::OnCollisionWithTwoPlant(LPCOLLISIONEVENT e) {
 
 			}
 		
+	}
+}
+void CMario::OnCollisionWithCoinBrick(LPCOLLISIONEVENT e) {
+	CoinBrick* coinBrick = dynamic_cast<CoinBrick*>(e->obj);
+	if (e->ny > 0 && !coinBrick->isEmpty) {
+		coinBrick->SetState(COIN_BRICK_STATE_UP);
+	}
+	if (coinBrick->GetModel() == COIN_BRICK_COIN && coinBrick->SetIsTransform() == true) {
+
+		if (e->obj->GetType() == COIN) {
+			coin++;
+			e->obj->Delete();
+		}
+	}
+}
+
+void CMario::OnCollisionWithPButton(LPCOLLISIONEVENT e)
+{
+	PButton* button = dynamic_cast<PButton*>(e->obj);
+	if (e->ny < 0) {
+		button->SetIsPressed(true);
+		button->SetCoinBrickTransform(true);
 	}
 }
 

@@ -17,6 +17,7 @@ public:
 
 	void OnCollisionWithQuestionBrick(LPGAMEOBJECT& e);
 	void OnCollisionWithEnemy(LPGAMEOBJECT& e);
+	void OnCollisionWithCoinBrick(LPGAMEOBJECT& e);
 
 	void SetWidth(float width) { this->width = width; }
 	void SetHeight(float height) { this->height = height; }

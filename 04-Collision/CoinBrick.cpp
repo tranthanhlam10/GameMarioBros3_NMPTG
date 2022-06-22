@@ -1,7 +1,7 @@
 #include "CoinBrick.h"
 #include "PlayScence.h"
 #include "MushRoom.h"
-
+#include "PButton.h"
 #include "CBrickBreak.h"
 
 CoinBrick::CoinBrick(float x, float y, int model) :CGameObject(x, y)
@@ -66,6 +66,10 @@ void CoinBrick::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			mushroom->SetState(MUSHROOM_STATE_UP);
 			scene->objects.insert(scene->objects.begin() + 1, mushroom);
 		}
+		if (model == COIN_BRICK_P_BUTTON) {
+			PButton* button = new PButton(x, y - P_BUTTON_BBOX_HEIGHT);
+			scene->objects.insert(scene->objects.begin() + 1, button);
+		}
 		isUnbox = false;
 	}
 
@@ -124,7 +128,7 @@ void CoinBrick::Render()
 	}
 
 	animation_set->at(ani)->Render(x, y);
-	RenderBoundingBox();
+	//RenderBoundingBox();
 }
 
 void CoinBrick::SetState(int state)
