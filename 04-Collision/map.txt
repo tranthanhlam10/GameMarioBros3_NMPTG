@@ -5,10 +5,11 @@
 15	textures\misc1.png	166	185	255
 20	textures\misc.png	176	224	248
 25	textures\effect.png	176	224	248
-35	textures\font.png	255	0	255
-45	textures\board.png	255	0	255
+#35	textures\font.png	255	0	255
+45	textures\HUD.png	255	0	255
 50	textures\enemies4.png	255	255	255
 55	textures\Font1.png	255	0	255
+56	textures\Font2.png	255	0	255
 70	textures\enemies5.png	255	255	255
 90	textures\misc2.png	0	117	255
 35	textures\font.png	255	0	255

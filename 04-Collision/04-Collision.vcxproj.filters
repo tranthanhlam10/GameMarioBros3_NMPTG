@@ -111,6 +111,9 @@
     <Filter Include="Object\PButton">
       <UniqueIdentifier>{4d3e9c30-815b-4094-ab25-d3aa3d026585}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\GameHUD">
+      <UniqueIdentifier>{e07e733b-2f15-4d6f-a842-c036defedaeb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -227,6 +230,15 @@
     <ClInclude Include="PButton.h">
       <Filter>Object\PButton</Filter>
     </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Framework\GameHUD</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Framework\GameHUD</Filter>
+    </ClInclude>
+    <ClInclude Include="FontCharacter.h">
+      <Filter>Framework\GameHUD</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -339,6 +351,15 @@
     </ClCompile>
     <ClCompile Include="PButton.cpp">
       <Filter>Object\PButton</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Framework\GameHUD</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Framework\GameHUD</Filter>
+    </ClCompile>
+    <ClCompile Include="FontCharacter.cpp">
+      <Filter>Framework\GameHUD</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -40,6 +40,11 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 #define MAX_SCENE_LINE 1024
 
 
+#define SCREEN_HEIGHT 300
+#define DISTANCE_FROM_BOTTOM_CAM_TO_TOP_BOARD	90.f
+
+#define GAME_TIME_LIMIT 500
+
 void CPlayScene::_ParseSection_TEXTURES(string line) // load texture từ file txt
 {
 	vector<string> tokens = split(line); // tách chuỗi
@@ -211,12 +216,12 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 			obj = new Plant(x, y); break; 
 		}
 		case OBJECT_TYPE_FIRE_PLANT: {
-			float model = (float)atof(tokens[4].c_str());
+			int model = (int)atof(tokens[4].c_str());
 			obj = new FirePlant(x, y, model); break;
 		}
 		case OBJECT_TYPE_COIN_BRICK: 
 		{
-			float model = (float)atof(tokens[4].c_str());
+			int model = (int)atof(tokens[4].c_str());
 			obj = new CoinBrick(x, y, model); break; 
 		}
 
@@ -338,19 +343,23 @@ void CPlayScene::Update(DWORD dt)
 	player->GetPosition(cx, cy);
 	Camera* camera = new Camera(player, game, map);
 	camera->Update(dt);
+
+	gameTime->Update(dt);
+	gameTimeRemain = GAME_TIME_LIMIT - gameTime->GetTime();
 	PurgeDeletedObjects();
 }
 
 void CPlayScene::Render()
 {
 	map->DrawMap();
-	//player->Render();
+	HUD* hud = new HUD(CGame::GetInstance()->GetCamX(), CGame::GetInstance()->GetCamY() + SCREEN_HEIGHT - DISTANCE_FROM_BOTTOM_CAM_TO_TOP_BOARD);
 	for (size_t i = 0; i < objects.size(); i++)
 	{
 
 		if (objects[i]->CheckObjectInCamera())
 			objects[i]->Render();
 	}
+	hud->Render(player, gameTimeRemain);
 }
 
 /*

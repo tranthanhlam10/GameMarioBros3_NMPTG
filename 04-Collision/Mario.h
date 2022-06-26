@@ -237,6 +237,7 @@ class CMario : public CGameObject // khởi tạo object mario
 	int level; 
 	int untouchable; 
 	ULONGLONG untouchable_start;
+	
 
 public:
 	CMario::CMario(float x = 0.0f , float y = 0.0f) : CGameObject()
@@ -253,8 +254,10 @@ public:
 		start_y = y;
 		this->x = x;
 		this->y = y;
+		coin = 0;
 		tailattack = new TailAttack(x, y);
 	}
+	
 	int coin;
 
 	BOOLEAN isFlying = false;
@@ -322,6 +325,10 @@ public:
 	int GetLevel() {
 		return level;
 	}
+
+	int GetCoin() { return coin; }
+	void SetCoin(int _coin) { coin = _coin; }
+
 	int LevelDown(){
 		return level--;
 	}

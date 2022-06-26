@@ -143,6 +143,8 @@
     <ClInclude Include="debug.h" />
     <ClInclude Include="FireBall.h" />
     <ClInclude Include="FirePlant.h" />
+    <ClInclude Include="FontCharacter.h" />
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="PButton.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="Flower.h" />
@@ -166,6 +168,7 @@
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="TailAttack.h" />
     <ClInclude Include="Textures.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +185,8 @@
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="FireBall.cpp" />
     <ClCompile Include="FirePlant.cpp" />
+    <ClCompile Include="FontCharacter.cpp" />
+    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="PButton.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Flower.cpp" />
@@ -205,6 +210,7 @@
     <ClCompile Include="Sprites.cpp" />
     <ClCompile Include="TailAttack.cpp" />
     <ClCompile Include="Textures.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>

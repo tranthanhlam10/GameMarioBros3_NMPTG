@@ -291,9 +291,10 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e) // sử lí va chạm khi
 }
 
 void CMario::OnCollisionWithCoin(LPCOLLISIONEVENT e) // sử lí khi va chạm với tiền
-{
-	e->obj->Delete();
-	coin++;
+{	
+		coin++;
+		e->obj->Delete();
+	
 }
 void CMario::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e) {
 	CQuestionBrick* questionBrick = dynamic_cast<CQuestionBrick*>(e->obj);
@@ -304,11 +305,10 @@ void CMario::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e) {
 }
 void CMario::OnCollisionWithColorBlock(LPCOLLISIONEVENT e)
 {
-	CColorBlock* block = dynamic_cast<CColorBlock*>(e->obj);
+	CColorBlock* colorBlock = dynamic_cast<CColorBlock*>(e->obj);
 	if (e->ny > 0) {
-		isMoveOverBlockColor = true;		
+		isMoveOverBlockColor = true;
 	}
-	
 }
 
 void CMario::OnCollisionWithFlower(LPCOLLISIONEVENT e)
@@ -451,6 +451,7 @@ void CMario::OnCollisionWithTwoPlant(LPCOLLISIONEVENT e) {
 	}
 }
 void CMario::OnCollisionWithCoinBrick(LPCOLLISIONEVENT e) {
+
 	CoinBrick* coinBrick = dynamic_cast<CoinBrick*>(e->obj);
 	if (e->ny > 0 && !coinBrick->isEmpty) {
 		coinBrick->SetState(COIN_BRICK_STATE_UP);

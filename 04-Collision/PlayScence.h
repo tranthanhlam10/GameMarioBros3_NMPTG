@@ -24,12 +24,15 @@
 #include "Plant.h"
 #include "FirePlant.h"
 #include "CoinBrick.h"
+#include "HUD.h"
+#include "Time.h"
 
 class CPlayScene : public CScene // màn hình giao diện của trò chơi, không phải intro scene hay là end scene
 {
 protected:
 	CMario* player;					// A play scene has to have player, right? 
-	
+	Time* gameTime = new Time();
+	int gameTimeRemain = 0;
 	CGame* game = CGame::GetInstance();
 	
 	void _ParseSection_TEXTURES(string line);

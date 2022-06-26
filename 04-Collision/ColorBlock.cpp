@@ -10,6 +10,8 @@ CColorBlock::CColorBlock(float x, float y, float width, float height) : CGameObj
 	this->height = height;
 }
 
+
+
 void CColorBlock::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	left = x;
