@@ -26,6 +26,7 @@
 #include "CoinBrick.h"
 #include "HUD.h"
 #include "Time.h"
+#include "BackUpPlayer.h"
 
 class CPlayScene : public CScene // màn hình giao diện của trò chơi, không phải intro scene hay là end scene
 {
@@ -57,6 +58,23 @@ public:
 	CMario* GetPlayer() { return player; }
 	Map* GetMap() { return map; }
 	void PurgeDeletedObjects();
+	void LoadBackup();
+	void SetBackUpPlayer();
+
+
+	void PutPlayerIntoScene(CMario* m)
+	{
+		if (dynamic_cast<CMario*>(objects[0]))
+			objects[0] = m;
+	}
+	void SetPlayer(CMario* mario) { player = mario; }
+
+	Time* GetGameTime() {
+		return gameTime;
+	}
+	void SetGameTime(Time* _gameTime) {
+		gameTime = _gameTime;
+	}
 
 	static bool IsGameObjectDeleted(const LPGAMEOBJECT& o);
 };

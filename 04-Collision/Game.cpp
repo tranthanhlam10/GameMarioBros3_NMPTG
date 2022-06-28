@@ -8,6 +8,11 @@
 
 
 CGame * CGame::__instance = NULL;
+CGame* CGame::GetInstance()
+{
+	if (__instance == NULL) __instance = new CGame();
+	return __instance;
+}
 
 /*
 	Initialize DirectX, create a Direct3D device for rendering within the window, initial Sprite library for
@@ -444,11 +449,11 @@ CGame::~CGame()
 	pD3DDevice->Release();
 }
 
-CGame* CGame::GetInstance()
-{
-	if (__instance == NULL) __instance = new CGame();
-	return __instance;
-}
+//CGame* CGame::GetInstance()
+//{
+//	if (__instance == NULL) __instance = new CGame();
+//	return __instance;
+//}
 
 #define MAX_GAME_LINE 1024
 
@@ -523,7 +528,10 @@ void CGame::SwitchScene(int scene_id)
 {
 	DebugOut(L"[INFO] Switching to scene %d\n", scene_id);
 
-	scenes[current_scene]->Unload();;
+	if (dynamic_cast<CPlayScene*>(scenes[current_scene]))
+		((CPlayScene*)scenes[current_scene])->SetBackUpPlayer();
+	
+	scenes[current_scene]->Unload();
 
 	CTextures::GetInstance()->Clear();
 	CSprites::GetInstance()->Clear();
@@ -533,4 +541,8 @@ void CGame::SwitchScene(int scene_id)
 	LPSCENE s = scenes[scene_id];
 	CGame::GetInstance()->SetKeyHandler(s->GetKeyEventHandler());
 	s->Load();
+	if (dynamic_cast<CPlayScene*>(scenes[current_scene]))
+		((CPlayScene*)scenes[current_scene])-> LoadBackup();
+	
 }
+

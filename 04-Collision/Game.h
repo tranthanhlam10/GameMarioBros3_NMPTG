@@ -52,6 +52,8 @@ class CGame
 
 	unordered_map<int, LPSCENE> scenes;
 	int current_scene;
+	int next_scene = -1;
+	int prev_scene = -1;
 
 	void _ParseSection_SETTINGS(string line);
 	void _ParseSection_SCENES(string line);
@@ -99,7 +101,10 @@ public:
 	void Load(LPCWSTR gameFile);
 	LPSCENE GetCurrentScene() { return scenes[current_scene]; }
 	void SwitchScene(int scene_id);
-
+	int GetScene() { return current_scene; }
+	void SwitchToMainScene(int scene_id, float start_x = 0, float start_y = 0);
+	void SwitchToExtraScene(int scene_id, float start_x = 0, float start_y = 0);
+	void InitiateSwitchScene(int scene_id);
 	int GetScreenWidth() { return screen_width; }
 	int GetScreenHeight() { return screen_height; }
 
@@ -110,9 +115,8 @@ public:
 	static CGame* GetInstance();
 
 	void SetPointSamplerState();
-	int GetScene() { return current_scene; }
+	
 	void SetCamPos(float x, float y) { cam_x = x; cam_y = y; } // set vị trí của camera
-
 	float GetCamX() { return cam_x; }
 	float GetCamY() { return cam_y; }
 	void GetCamPos(float& x, float& y) { x = cam_x; y = cam_y; } // lấy vị trí của camera

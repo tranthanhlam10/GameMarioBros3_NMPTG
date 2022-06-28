@@ -320,6 +320,7 @@ public:
 	void OnCollisionWithTwoPlant(LPCOLLISIONEVENT e);
 	void OnCollisionWithCoinBrick(LPCOLLISIONEVENT e);
 	void OnCollisionWithPButton(LPCOLLISIONEVENT e);
+	void OnCollisionWithPortal(LPCOLLISIONEVENT e);
 
 	void SetLevel(int l);
 	int GetLevel() {

@@ -51,9 +51,6 @@
     <Filter Include="Framework\Sprite\Sprites">
       <UniqueIdentifier>{2d36d1e6-6503-4538-bb8c-eaa8b8bd26c1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\Portal">
-      <UniqueIdentifier>{a1117d00-8768-41aa-906a-b728ef35b428}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\Utils">
       <UniqueIdentifier>{2499d3d5-ad43-4b96-b15a-567c880ee483}</UniqueIdentifier>
     </Filter>
@@ -114,6 +111,12 @@
     <Filter Include="Framework\GameHUD">
       <UniqueIdentifier>{e07e733b-2f15-4d6f-a842-c036defedaeb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Portal">
+      <UniqueIdentifier>{a1117d00-8768-41aa-906a-b728ef35b428}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\BackUpPlayer">
+      <UniqueIdentifier>{04b2e01d-a987-4515-b3c8-11f552743ab6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -150,7 +153,7 @@
       <Filter>Object\Platform</Filter>
     </ClInclude>
     <ClInclude Include="Portal.h">
-      <Filter>Framework\Portal</Filter>
+      <Filter>Object\Portal</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">
       <Filter>Framework\Utils</Filter>
@@ -239,6 +242,9 @@
     <ClInclude Include="FontCharacter.h">
       <Filter>Framework\GameHUD</Filter>
     </ClInclude>
+    <ClInclude Include="BackUpPlayer.h">
+      <Filter>Framework\BackUpPlayer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -278,7 +284,7 @@
       <Filter>Object\Platform</Filter>
     </ClCompile>
     <ClCompile Include="Portal.cpp">
-      <Filter>Framework\Portal</Filter>
+      <Filter>Object\Portal</Filter>
     </ClCompile>
     <ClCompile Include="Utils.cpp">
       <Filter>Framework\Utils</Filter>
@@ -360,6 +366,9 @@
     </ClCompile>
     <ClCompile Include="FontCharacter.cpp">
       <Filter>Framework\GameHUD</Filter>
+    </ClCompile>
+    <ClCompile Include="BackUpPlayer.cpp">
+      <Filter>Framework\BackUpPlayer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

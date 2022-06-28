@@ -1140,7 +1140,9 @@
 14	2096	400	15	3
 14	2112	400	15	3
 # --- SCENE PORTAL ----
-# type	l	t	ani_set_id	r	b	scene_id
-50	300	98	0	316	150	2
+#	x	y	aniset	r	b	startX	startY	types	scene_id
+#50	2264	132	0	2296	250	138	38	1	2
+52	2256	105	9	2287	110	2
+52	2808	400	9	2808	415	0
 [TILEMAP]
 map1_1_map.txt

@@ -133,6 +133,7 @@
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="Animations.h" />
     <ClInclude Include="AnimationSets.h" />
+    <ClInclude Include="BackUpPlayer.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CBrickBreak.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Animations.cpp" />
     <ClCompile Include="AnimationSets.cpp" />
+    <ClCompile Include="BackUpPlayer.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CBrickBreak.cpp" />

@@ -245,6 +245,8 @@ void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm v
 			OnCollisionWithCoinBrick(e);
 		else if (dynamic_cast<PButton*>(e->obj))
 			OnCollisionWithPButton(e);
+		else if (dynamic_cast<CPortal*>(e->obj))
+			OnCollisionWithPortal(e);
 	
 }
 
@@ -471,6 +473,15 @@ void CMario::OnCollisionWithPButton(LPCOLLISIONEVENT e)
 	if (e->ny < 0) {
 		button->SetIsPressed(true);
 		button->SetCoinBrickTransform(true);
+	}
+}
+
+void CMario::OnCollisionWithPortal(LPCOLLISIONEVENT e)
+{
+	CPortal* portal = dynamic_cast<CPortal*>(e->obj);
+
+	if (e->ny != 0) {
+		CGame::GetInstance()->SwitchScene(portal->GetSceneId());
 	}
 }
 

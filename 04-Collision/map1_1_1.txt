@@ -895,8 +895,8 @@
 10	225	120	9
 10	241	120	9
 # --- SCENE PORTAL ----
-# type	l	t	ani_set_id	r	b	scene_id
-50	300	98	0	316	150	2
+#	x	y	aniset	r	b	scene_id
+52	354	0	3	400	32	1
 [TILEMAP]
 map1_1_1_map.txt
 #map1-1-1test.txt
