@@ -46,6 +46,26 @@ void Camera::Update(DWORD dt) {
 		game->SetCamPos(ceil(__cx), (float)__cy);
 		map->SetCamPos(__cx, (float)__cy);
 	}
+	else if (game->GetScene() == MAP1_1_1)
+	{
+
+		if (mario == NULL) return;
+
+		mario->GetPosition(px, py);
+
+		if (__cx <= px - DISTANCE_TO_MARIO_X)
+			__cx = px - DISTANCE_TO_MARIO_X;
+		__cy = (int)py - CAMERA_MAP1_1_1_Y;
+
+		if (__cy <= 0)
+			__cy = 0;//khong cho len cao qua chieu cao game			
+		if (__cx > mw - sw)
+			__cx = mw - sw;//khong cho qua ben phai cuoi map
+
+		game->SetCamPos(ceil(__cx), (float)__cy);
+		map->SetCamPos(__cx, (float)__cy);
+	
+	}
 	
 	
 

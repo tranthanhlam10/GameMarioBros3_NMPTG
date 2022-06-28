@@ -70,9 +70,6 @@ protected:
 	float ax;
 	float ay;
 
-
-	
-
 	ULONGLONG defend_start;
 
 	int mario_nx;

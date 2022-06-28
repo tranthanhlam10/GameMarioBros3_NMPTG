@@ -11,6 +11,7 @@
 
 
 #define MAP1_1							1
+#define MAP1_1_1							2
 #define CAMERA_ON_CLOUD			190
 #define CAMERA_ON_CLOUD_FIX		170
 #define CAMERA_ON_CLOUD_SPEED	20
