@@ -28,11 +28,8 @@ void Map::DrawMap() {
 	float FirstColumn = floor(CamX / TILE_WIDTH);
 	float LastColumn = ceil((CamX + CGame::GetInstance()->GetScreenWidth()) / TILE_WIDTH);
 
-	
 	if (LastColumn >= ColumnMap)
 		LastColumn = (float)(ColumnMap - 1.f);
-
-
 
 	for (int CurrentRow = 0; CurrentRow < RowMap; CurrentRow++) {
 		for (int CurrentColumn = 0; CurrentColumn <= LastColumn; CurrentColumn++) {	//2 vong lap ve map

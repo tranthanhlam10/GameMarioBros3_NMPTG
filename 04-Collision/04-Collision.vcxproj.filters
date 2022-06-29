@@ -117,6 +117,9 @@
     <Filter Include="Framework\BackUpPlayer">
       <UniqueIdentifier>{04b2e01d-a987-4515-b3c8-11f552743ab6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\WorldMap">
+      <UniqueIdentifier>{f67b647a-72e3-4e7f-a6fb-6281b4f40ede}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -245,6 +248,30 @@
     <ClInclude Include="BackUpPlayer.h">
       <Filter>Framework\BackUpPlayer</Filter>
     </ClInclude>
+    <ClInclude Include="WorldScene.h">
+      <Filter>Framework\WorldMap</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldPlayer.h">
+      <Filter>Framework\WorldMap</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMapKey.h">
+      <Filter>Framework\WorldMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Grass.h">
+      <Filter>Framework\WorldMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Help.h">
+      <Filter>Framework\WorldMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Hammer.h">
+      <Filter>Framework\WorldMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Framework\WorldMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Framework\WorldMap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -369,6 +396,30 @@
     </ClCompile>
     <ClCompile Include="BackUpPlayer.cpp">
       <Filter>Framework\BackUpPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldScene.cpp">
+      <Filter>Framework\WorldMap</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldPlayer.cpp">
+      <Filter>Framework\WorldMap</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMapKey.cpp">
+      <Filter>Framework\WorldMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Grass.cpp">
+      <Filter>Framework\WorldMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Help.cpp">
+      <Filter>Framework\WorldMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Hammer.cpp">
+      <Filter>Framework\WorldMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>Framework\WorldMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>Framework\WorldMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

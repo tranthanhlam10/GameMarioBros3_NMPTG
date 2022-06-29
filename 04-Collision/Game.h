@@ -15,6 +15,9 @@ using namespace std;
 
 #define KEYBOARD_BUFFER_SIZE 1024
 #define KEYBOARD_STATE_SIZE 256
+#define MAINSCENE 3
+#define WORLDMAPSCENE 2
+#define INTROSCENE 1
 
 /*
 	Our simple game framework
@@ -102,9 +105,6 @@ public:
 	LPSCENE GetCurrentScene() { return scenes[current_scene]; }
 	void SwitchScene(int scene_id);
 	int GetScene() { return current_scene; }
-	void SwitchToMainScene(int scene_id, float start_x = 0, float start_y = 0);
-	void SwitchToExtraScene(int scene_id, float start_x = 0, float start_y = 0);
-	void InitiateSwitchScene(int scene_id);
 	int GetScreenWidth() { return screen_width; }
 	int GetScreenHeight() { return screen_height; }
 

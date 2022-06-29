@@ -40,7 +40,7 @@ public:
 		CamX = x;
 		CamY = y;
 	}
-	float GetMapWidth(); // còn vuong 2 thằng này nữa thì xong load map
+	float GetMapWidth(); 
 	float GetMapHeight();
 	int GetColumnMap() { return ColumnMap; }
 };

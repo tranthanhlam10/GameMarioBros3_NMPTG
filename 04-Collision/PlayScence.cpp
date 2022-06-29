@@ -136,7 +136,7 @@ void CPlayScene::_ParseSection_OBJECTS(string line) // hàm dùng để khởi t
 		vector<string> tokens = split(line);
 		DebugOut(L"--> %s\n", ToWSTR(line).c_str());
 		//if (line[0] == '#') continue;
-	if (tokens.size() < 2) return; // skip invalid lines - an object set must have at least id, x, y
+		if (tokens.size() < 2) return; // skip invalid lines - an object set must have at least id, x, y
 
 		int object_type = atoi(tokens[0].c_str());
 		float x = (float)atof(tokens[1].c_str());
