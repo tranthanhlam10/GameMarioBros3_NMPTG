@@ -11,6 +11,7 @@
 #include "Mario.h"
 
 #define ADJUST_PADDING 10
+#define ADJUST_PADDING_X 20
 
 
 #define SCENE_SECTION_UNKNOWN			-1

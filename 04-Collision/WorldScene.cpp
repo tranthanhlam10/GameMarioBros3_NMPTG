@@ -295,13 +295,11 @@ void WorldScene::Update(DWORD dt)
 	gameTimeRemain = GAME_TIME_LIMIT - gameTime->GetTime();
 
 	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
+	Camera* camera = new Camera(mario, game, map);
+	camera->Update(dt);
 	if (player == NULL) return;
 
-	
-	gameTime->Update(dt);
-	gameTimeRemain = GAME_TIME_LIMIT - gameTime->GetTime();
-
-	//CGame::GetInstance()->SetCamPos(-ADJUST_PADDING, -HUD_HEIGHT - ADJUST_PADDING);
+	CGame::GetInstance()->SetCamPos(-ADJUST_PADDING_X, -HUD_HEIGHT - ADJUST_PADDING);
 	PurgeDeletedObjects();
 }
 
@@ -309,7 +307,7 @@ void WorldScene::Update(DWORD dt)
 void WorldScene::Render()
 {
 	CGame* game = CGame::GetInstance();
-
+	
 	map->DrawMap();
 
 	for (int i = 0; i < objects.size(); i++)

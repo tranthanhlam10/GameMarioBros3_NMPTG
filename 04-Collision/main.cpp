@@ -48,9 +48,6 @@
 #define MAX_FRAME_RATE 120
 
 
-
-
-
 list<LPGAMEOBJECT> objects;
 CKeyEventHandler* keyHandler;
 

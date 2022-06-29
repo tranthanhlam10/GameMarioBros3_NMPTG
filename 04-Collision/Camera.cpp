@@ -53,7 +53,7 @@ void Camera::Update(DWORD dt) {
 
 		mario->GetPosition(px, py);
 
-		if (__cx <= px - DISTANCE_TO_MARIO_X)
+		if (__cx <= px - 150)
 			__cx = px - DISTANCE_TO_MARIO_X;
 		__cy = (int)py - CAMERA_MAP1_1_1_Y;
 
@@ -72,7 +72,7 @@ void Camera::Update(DWORD dt) {
 
 		mario->GetPosition(px, py);
 
-		__cx = -WORLD_MAP_CAM_POS_X;
+		__cx = WORLD_MAP_CAM_POS_X;
 		__cy = -WORLD_MAP_CAM_POS_Y;
 
 		game->SetCamPos(ceil(__cx), (float)__cy);

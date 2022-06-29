@@ -4,6 +4,11 @@
 #include "Mario.h"
 #include "FontCharacter.h"
 
+#define MAP1_1							1
+#define MAP1_1_1							2
+#define  WORLDMAP						3
+
+#define ADJUST_Y_HUD	20
 
 #define ID_HUD_TEX	45
 #define ID_TEXT_FONT_POWER 35

@@ -541,7 +541,8 @@ void CGame::SwitchScene(int scene_id)
 
 	if (dynamic_cast<CPlayScene*>(scenes[current_scene]))
 		((CPlayScene*)scenes[current_scene])->SetBackUpPlayer();
-	if (dynamic_cast<WorldScene*>(scenes[current_scene]))
+	scenes[current_scene]->Unload();
+
 
 	CTextures::GetInstance()->Clear();
 	CSprites::GetInstance()->Clear();
