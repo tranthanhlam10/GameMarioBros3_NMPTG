@@ -22,16 +22,17 @@ void WorldPlayer::OnNoCollision(DWORD dt)
 
 void WorldPlayer::OnCollisionWith(LPCOLLISIONEVENT e)
 {
-	/*if (dynamic_cast<CBlockObj*>(e->obj))
+	if (dynamic_cast<Door*>(e->obj))
+		OnCollisionWithDoor(e);
+	if (dynamic_cast<Block*>(e->obj))
 		OnCollisionWithBlockObj(e);
-	if (dynamic_cast<CDoor*>(e->obj))
-		OnCollisionWithDoor(e);*/
 }
 
 void WorldPlayer::OnCollisionWithDoor(LPCOLLISIONEVENT e)
 {
-	//CDoor* door = dynamic_cast<CDoor*>(e->obj);
-	//sceneSwitch = door->GetScene();
+	Door* door = dynamic_cast<Door*>(e->obj);
+	sceneSwitch = door->GetScene();
+	//CGame::GetInstance()->SwitchScene((int)this->GetSceneId());
 }
 
 void WorldPlayer::OnCollisionWithBlockObj(LPCOLLISIONEVENT e)
@@ -61,7 +62,31 @@ void WorldPlayer::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 }
 
 void WorldPlayer::Render() {
+	int ani = ID_ANI_MARIO_SMALL_IN_WORLD_MAP;
 
+	switch (level) 
+	{
+	case MARIO_LEVEL_SMALL: {
+		ani = ID_ANI_MARIO_SMALL_IN_WORLD_MAP;
+		break;
+	}
+	case MARIO_LEVEL_BIG:
+	{
+		ani = ID_ANI_MARIO_IN_WORLD_MAP;
+		break;
+	}
+	case MARIO_LEVEL_RACOON:
+	{
+		ani = ID_ANI_MARIO_RACCOON_IN_WORLD_MAP;
+		break;
+	}
+	case MARIO_LEVEL_FIRE:
+	{
+		ani = ID_ANI_MARIO_FIRE_IN_WORLD_MAP;
+		break;}
+	}
+	animation_set->at(ani)->Render(x, y);
+	RenderBoundingBox();
 }
 
 

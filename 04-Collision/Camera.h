@@ -8,10 +8,12 @@
 #define DISTANCE_MARIO_FLY_THROUGH_SKY_Y	265
 #define CAMERA_COORDINATE_Y					220
 #define CAMERA_ROOT_Y						0
-
+#define WORLD_MAP_CAM_POS_X	20
+#define WORLD_MAP_CAM_POS_Y	20
 
 #define MAP1_1							1
 #define MAP1_1_1							2
+#define  WORLDMAP						3
 #define CAMERA_ON_CLOUD			190
 #define CAMERA_ON_CLOUD_FIX		170
 #define CAMERA_ON_CLOUD_SPEED	20

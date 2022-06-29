@@ -66,6 +66,19 @@ void Camera::Update(DWORD dt) {
 		map->SetCamPos(__cx, (float)__cy);
 	
 	}
+	else if (game->GetScene() == WORLDMAP) {
+
+		if (mario == NULL) return;
+
+		mario->GetPosition(px, py);
+
+		__cx = -WORLD_MAP_CAM_POS_X;
+		__cy = -WORLD_MAP_CAM_POS_Y;
+
+		game->SetCamPos(ceil(__cx), (float)__cy);
+		map->SetCamPos(__cx, (float)__cy);
+		
+	}
 	
 	
 

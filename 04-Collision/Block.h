@@ -15,6 +15,7 @@ public:
 		this->allowBottom = allowBottom;
 		this->allowTop = allowTop;
 	}
+	void Render();
 	//virtual void Render() { }
 	void Update(DWORD dt) {};
 	virtual int IsBlocking() { return 0; }

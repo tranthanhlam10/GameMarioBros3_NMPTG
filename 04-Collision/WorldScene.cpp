@@ -165,11 +165,11 @@ void WorldScene::_ParseSection_OBJECTS(string line)
 		}
 		case OBJECT_TYPE_DOOR:
 		{
-			int scene = atoi(tokens[3].c_str());
+			int scene = atoi(tokens[4].c_str());
 			obj = new Door(x, y, scene);
 			break;
 		}
-		/*case OBJECT_BLOCK_WORLD_MAP:
+		case OBJECT_BLOCK_WORLD_MAP:
 		{
 			int allowLeft = atoi(tokens[4].c_str());
 			int allowRight = atoi(tokens[5].c_str());
@@ -177,7 +177,7 @@ void WorldScene::_ParseSection_OBJECTS(string line)
 			int allowTop = atoi(tokens[7].c_str());
 			obj = new Block(x, y, allowLeft, allowRight, allowBottom, allowTop);
 			break;
-		}*/
+		}
 		case OBJECT_HAMMER_WORLD_MAP:
 		{
 			obj = new Hammer(x, y);
@@ -280,9 +280,6 @@ void WorldScene::Load()
 
 void WorldScene::Update(DWORD dt)
 {
-	// We know that Mario is the first object in the list hence we won't add him into the colliable object list
-	// TO-DO: This is a "dirty" way, need a more organized way 
-
 	vector<LPGAMEOBJECT> coObjects;
 	for (size_t i = 1; i < objects.size(); i++)
 	{
@@ -300,9 +297,11 @@ void WorldScene::Update(DWORD dt)
 	// skip the rest if scene was already unloaded (Mario::Update might trigger PlayScene::Unload)
 	if (player == NULL) return;
 
-
+	
 	gameTime->Update(dt);
 	gameTimeRemain = GAME_TIME_LIMIT - gameTime->GetTime();
+
+	//CGame::GetInstance()->SetCamPos(-ADJUST_PADDING, -HUD_HEIGHT - ADJUST_PADDING);
 	PurgeDeletedObjects();
 }
 

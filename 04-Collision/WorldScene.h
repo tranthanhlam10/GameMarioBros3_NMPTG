@@ -9,6 +9,7 @@
 #include "Time.h"
 #include "WorldPlayer.h"
 #include "Mario.h"
+
 #define ADJUST_PADDING 10
 
 
@@ -29,6 +30,7 @@ class WorldScene : public CScene
 	WorldPlayer* player = NULL;
 	CMario* mario = NULL;
 	Time* gameTime = new Time();
+	CGame* game = CGame::GetInstance();
 	int gameTimeRemain = 0;
 	bool isTurnOnCamY = false;
 

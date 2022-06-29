@@ -530,14 +530,18 @@ void CGame::Load(LPCWSTR gameFile) // load game campaign lên
 	SwitchScene(current_scene);
 }
 
+void CGame::InitSwitchScene(int scene_id)
+{
+	next_scene = scene_id;
+}
+
 void CGame::SwitchScene(int scene_id)
 {
 	DebugOut(L"[INFO] Switching to scene %d\n", scene_id);
 
 	if (dynamic_cast<CPlayScene*>(scenes[current_scene]))
 		((CPlayScene*)scenes[current_scene])->SetBackUpPlayer();
-	
-	scenes[current_scene]->Unload();
+	if (dynamic_cast<WorldScene*>(scenes[current_scene]))
 
 	CTextures::GetInstance()->Clear();
 	CSprites::GetInstance()->Clear();
@@ -549,6 +553,7 @@ void CGame::SwitchScene(int scene_id)
 	s->Load();
 	if (dynamic_cast<CPlayScene*>(scenes[current_scene]))
 		((CPlayScene*)scenes[current_scene])-> LoadBackup();
+	
 	
 }
 

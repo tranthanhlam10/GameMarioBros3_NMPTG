@@ -9,8 +9,8 @@ Door::Door(float x, float y, int scene) : CGameObject(x, y)
 
 void Door::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	left = x/* - DOOR_BBOX_WIDTH / 2*/;
-	top = y /*- DOOR_BBOX_HEIGHT / 2*/;
+	left = x;
+	top = y;
 	right = left + DOOR_BBOX_WIDTH;
 	bottom = top + DOOR_BBOX_HEIGHT;
 }
