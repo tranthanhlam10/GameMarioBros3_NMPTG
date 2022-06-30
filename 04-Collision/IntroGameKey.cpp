@@ -1,7 +1,6 @@
 #include "IntroGameKey.h"
 #include "WorldPlayer.h"
 #include "IntroGame.h"
-
 #include "Pointer.h"
 
 void IntroGameKey::OnKeyDown(int KeyCode)
@@ -21,7 +20,7 @@ void IntroGameKey::OnKeyDown(int KeyCode)
 		}
 	case DIK_S:
 		if (pointer->GetY() == ARROW_POSITION_TOP) {
-			//CGame::GetInstance()->InitiateSwitchScene(WORLD_MAP_ID);
+			CGame::GetInstance()->SwitchScene(WORLDMAP);
 		}
 		break;
 	}

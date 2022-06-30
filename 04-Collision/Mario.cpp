@@ -18,6 +18,7 @@
 #include "Mushroom.h"
 #include "PButton.h"
 
+
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
 	CGame* game = CGame::GetInstance();
@@ -169,12 +170,11 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			TotalFire.erase(TotalFire.begin() + i);
 		}
 	}
-
+	
 	if (tailattack) {
 		tailattack->Update(dt, coObjects);
 	}
 
-	
 	if (x <= MARIO_BIG_BBOX_WIDTH) {
 		x = MARIO_BIG_BBOX_WIDTH;
 	}
@@ -185,8 +185,12 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		y = 0;
 	}
 
-
 	CCollision::GetInstance()->Process(this, dt, coObjects);
+
+	if (GetTickCount64() - die_start > MARIO_DIE_TIME_OUT_WM &&state == MARIO_STATE_DIE)
+	{
+		CGame::GetInstance()->SwitchScene(3);
+	}
 }
 
 void CMario::OnNoCollision(DWORD dt) // Không có va chạm
@@ -479,9 +483,8 @@ void CMario::OnCollisionWithPButton(LPCOLLISIONEVENT e)
 void CMario::OnCollisionWithPortal(LPCOLLISIONEVENT e)
 {
 	CPortal* portal = dynamic_cast<CPortal*>(e->obj);
-
 	if (e->ny != 0) {
-		CGame::GetInstance()->SwitchScene(portal->GetSceneId());
+			CGame::GetInstance()->SwitchScene(portal->GetSceneId());
 	}
 }
 

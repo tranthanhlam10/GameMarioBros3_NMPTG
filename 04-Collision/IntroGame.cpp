@@ -82,6 +82,8 @@ void IntroGame::_ParseSection_ANIMATIONS(string line)
 	}
 
 	CAnimations::GetInstance()->Add(ani_id, ani);
+	if (ani_id == 503)
+		background = ani;
 }
 
 
@@ -106,6 +108,8 @@ void IntroGame::_ParseSection_ANIMATION_SETS(string line)
 	}
 
 	CAnimationSets::GetInstance()->Add(ani_set_id, s);
+	//back->Add(2, 503);
+	//background->Add(2, 503);
 }
 
 void IntroGame::_ParseSection_OBJECTS(string line)
@@ -248,6 +252,7 @@ void IntroGame::Update(DWORD dt)
 void IntroGame::Render()
 {
 	CGame* game = CGame::GetInstance();
+	background->Render(142, 120);
 	for (int i = 0; i < objects.size(); i++)
 		objects[i]->Render();
 	

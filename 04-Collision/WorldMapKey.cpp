@@ -14,6 +14,7 @@ void WorldMapKey::OnKeyDown(int KeyCode)
 		if (player->sceneSwitch != -1 && player->sceneSwitch != 0) {
 			CGame::GetInstance()->SwitchScene(player->sceneSwitch);
 			player->sceneSwitch = -1;
+			
 		}
 		break;
 	}

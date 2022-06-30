@@ -23,7 +23,8 @@
 class IntroGame : public CScene
 {
 	Pointer* pointer = NULL;
-
+	LPANIMATION background;
+	LPANIMATION_SET back;
 
 	void _ParseSection_TEXTURES(string line);
 	void _ParseSection_SPRITES(string line);

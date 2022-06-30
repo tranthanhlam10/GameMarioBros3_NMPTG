@@ -402,6 +402,10 @@ void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 		break;
 	case DIK_S:
 		mario->isFallSlow = false;
+		if (!mario->isOnPlatform) {
+			mario->isFlapping = false;
+			//mario->isFlying = false;
+		}
 		break;
 	}
 
@@ -445,6 +449,9 @@ void CPlayScenceKeyHandler::OnKeyDown(int KeyCode)
 		break;
 	case DIK_6:
 		mario->SetPosition(1600, 128);
+		break;
+	case DIK_7:
+		mario->SetPosition(2256, 80);
 		break;
 	case DIK_R:
 		mario->Reset();

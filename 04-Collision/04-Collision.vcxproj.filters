@@ -275,13 +275,7 @@
     <ClInclude Include="WorldMapKey.h">
       <Filter>Framework\KeyEventHandler</Filter>
     </ClInclude>
-    <ClInclude Include="IntroGame.h">
-      <Filter>Framework\IntroGame</Filter>
-    </ClInclude>
     <ClInclude Include="Pointer.h">
-      <Filter>Framework\IntroGame</Filter>
-    </ClInclude>
-    <ClInclude Include="IntroGameKey.h">
       <Filter>Framework\IntroGame</Filter>
     </ClInclude>
     <ClInclude Include="Ground.h">
@@ -289,6 +283,12 @@
     </ClInclude>
     <ClInclude Include="Three.h">
       <Filter>Framework\IntroGame</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroGameKey.h">
+      <Filter>Framework\KeyEventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroGame.h">
+      <Filter>Framework\PlayScence</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -439,13 +439,7 @@
     <ClCompile Include="WorldMapKey.cpp">
       <Filter>Framework\KeyEventHandler</Filter>
     </ClCompile>
-    <ClCompile Include="IntroGame.cpp">
-      <Filter>Framework\IntroGame</Filter>
-    </ClCompile>
     <ClCompile Include="Pointer.cpp">
-      <Filter>Framework\IntroGame</Filter>
-    </ClCompile>
-    <ClCompile Include="IntroGameKey.cpp">
       <Filter>Framework\IntroGame</Filter>
     </ClCompile>
     <ClCompile Include="Ground.cpp">
@@ -453,6 +447,12 @@
     </ClCompile>
     <ClCompile Include="Three.cpp">
       <Filter>Framework\IntroGame</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroGameKey.cpp">
+      <Filter>Framework\KeyEventHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroGame.cpp">
+      <Filter>Framework\PlayScence</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

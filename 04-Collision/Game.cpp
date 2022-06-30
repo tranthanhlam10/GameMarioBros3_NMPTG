@@ -450,11 +450,6 @@ CGame::~CGame()
 	pD3DDevice->Release();
 }
 
-//CGame* CGame::GetInstance()
-//{
-//	if (__instance == NULL) __instance = new CGame();
-//	return __instance;
-//}
 
 #define MAX_GAME_LINE 1024
 
@@ -535,10 +530,6 @@ void CGame::Load(LPCWSTR gameFile) // load game campaign lên
 	SwitchScene(current_scene);
 }
 
-void CGame::InitSwitchScene(int scene_id)
-{
-	next_scene = scene_id;
-}
 
 void CGame::SwitchScene(int scene_id)
 {
@@ -553,13 +544,14 @@ void CGame::SwitchScene(int scene_id)
 	CSprites::GetInstance()->Clear();
 	CAnimations::GetInstance()->Clear();
 
+	
 	current_scene = scene_id;
 	LPSCENE s = scenes[scene_id];
 	CGame::GetInstance()->SetKeyHandler(s->GetKeyEventHandler());
 	s->Load();
 	if (dynamic_cast<CPlayScene*>(scenes[current_scene]))
 		((CPlayScene*)scenes[current_scene])-> LoadBackup();
-	
-	
 }
+
+
 

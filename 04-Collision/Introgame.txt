@@ -1,7 +1,7 @@
 # id	file_path	transparent_color_r	g	b
 [TEXTURES]
 30	textures\mario.png	255	255	255
-100	textures\title.png	255	255	255
+100	textures\title.png	0	0	255
 105	textures\logo.png	255	255	255
 # id	left	top	right	bottom	texture_id
 [SPRITES]
@@ -242,7 +242,7 @@
 #Background section 2
 14002	258	0	514	184	100
 #Background section 3
-14003	258	0	514	184	100
+14003	516	226	772	410	100
 # -------------------Tree -------------------
 15000	50	5	92	45	105
 15001	96	5	138	45	105
