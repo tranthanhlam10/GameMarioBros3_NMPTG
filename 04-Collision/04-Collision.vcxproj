@@ -148,9 +148,12 @@
     <ClInclude Include="FirePlant.h" />
     <ClInclude Include="FontCharacter.h" />
     <ClInclude Include="Grass.h" />
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="Hammer.h" />
     <ClInclude Include="Help.h" />
     <ClInclude Include="HUD.h" />
+    <ClInclude Include="IntroGame.h" />
+    <ClInclude Include="IntroGameKey.h" />
     <ClInclude Include="PButton.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="Flower.h" />
@@ -166,6 +169,7 @@
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlayScence.h" />
+    <ClInclude Include="Pointer.h" />
     <ClInclude Include="Portal.h" />
     <ClInclude Include="QuestionBrick.h" />
     <ClInclude Include="QuestionBrickCoin.h" />
@@ -174,6 +178,7 @@
     <ClInclude Include="Sprites.h" />
     <ClInclude Include="TailAttack.h" />
     <ClInclude Include="Textures.h" />
+    <ClInclude Include="Three.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="WorldMapKey.h" />
@@ -199,9 +204,12 @@
     <ClCompile Include="FirePlant.cpp" />
     <ClCompile Include="FontCharacter.cpp" />
     <ClCompile Include="Grass.cpp" />
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="Hammer.cpp" />
     <ClCompile Include="Help.cpp" />
     <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="IntroGame.cpp" />
+    <ClCompile Include="IntroGameKey.cpp" />
     <ClCompile Include="PButton.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="Flower.cpp" />
@@ -217,6 +225,7 @@
     <ClCompile Include="Pipe.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlayScence.cpp" />
+    <ClCompile Include="Pointer.cpp" />
     <ClCompile Include="Portal.cpp" />
     <ClCompile Include="QuestionBrick.cpp" />
     <ClCompile Include="QuestionBrickCoin.cpp" />
@@ -225,6 +234,7 @@
     <ClCompile Include="Sprites.cpp" />
     <ClCompile Include="TailAttack.cpp" />
     <ClCompile Include="Textures.cpp" />
+    <ClCompile Include="Three.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="WorldMapKey.cpp" />

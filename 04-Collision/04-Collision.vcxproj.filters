@@ -120,6 +120,9 @@
     <Filter Include="Framework\WorldMap">
       <UniqueIdentifier>{f67b647a-72e3-4e7f-a6fb-6281b4f40ede}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\IntroGame">
+      <UniqueIdentifier>{62dc13e3-beb7-446e-a224-cc5068af05f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -248,13 +251,7 @@
     <ClInclude Include="BackUpPlayer.h">
       <Filter>Framework\BackUpPlayer</Filter>
     </ClInclude>
-    <ClInclude Include="WorldScene.h">
-      <Filter>Framework\WorldMap</Filter>
-    </ClInclude>
     <ClInclude Include="WorldPlayer.h">
-      <Filter>Framework\WorldMap</Filter>
-    </ClInclude>
-    <ClInclude Include="WorldMapKey.h">
       <Filter>Framework\WorldMap</Filter>
     </ClInclude>
     <ClInclude Include="Grass.h">
@@ -271,6 +268,27 @@
     </ClInclude>
     <ClInclude Include="Block.h">
       <Filter>Framework\WorldMap</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldScene.h">
+      <Filter>Framework\PlayScence</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMapKey.h">
+      <Filter>Framework\KeyEventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroGame.h">
+      <Filter>Framework\IntroGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Pointer.h">
+      <Filter>Framework\IntroGame</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroGameKey.h">
+      <Filter>Framework\IntroGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>Framework\IntroGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Three.h">
+      <Filter>Framework\IntroGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -397,13 +415,7 @@
     <ClCompile Include="BackUpPlayer.cpp">
       <Filter>Framework\BackUpPlayer</Filter>
     </ClCompile>
-    <ClCompile Include="WorldScene.cpp">
-      <Filter>Framework\WorldMap</Filter>
-    </ClCompile>
     <ClCompile Include="WorldPlayer.cpp">
-      <Filter>Framework\WorldMap</Filter>
-    </ClCompile>
-    <ClCompile Include="WorldMapKey.cpp">
       <Filter>Framework\WorldMap</Filter>
     </ClCompile>
     <ClCompile Include="Grass.cpp">
@@ -420,6 +432,27 @@
     </ClCompile>
     <ClCompile Include="Block.cpp">
       <Filter>Framework\WorldMap</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldScene.cpp">
+      <Filter>Framework\PlayScence</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMapKey.cpp">
+      <Filter>Framework\KeyEventHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroGame.cpp">
+      <Filter>Framework\IntroGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Pointer.cpp">
+      <Filter>Framework\IntroGame</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroGameKey.cpp">
+      <Filter>Framework\IntroGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>Framework\IntroGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Three.cpp">
+      <Filter>Framework\IntroGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
