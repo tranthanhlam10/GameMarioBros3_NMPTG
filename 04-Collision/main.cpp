@@ -41,7 +41,9 @@
 #define MAIN_WINDOW_TITLE L"04 - Collision"
 #define WINDOW_ICON_PATH L"mario.ico"
 
-#define BACKGROUND_COLOR D3DXCOLOR(200.0f/255, 200.0f/255, 255.0f/255, 0.0f)
+
+
+#define BACKGROUND_COLOR D3DXCOLOR(0.0f/255, 0.0f/255, 0.0f/255, 0.0f)
 
 #define SCREEN_WIDTH 300
 #define SCREEN_HEIGHT 300
@@ -221,6 +223,7 @@ int WINAPI WinMain(
 	_In_ LPSTR lpCmdLine,
 	_In_ int nCmdShow
 ) {
+
 	HWND hWnd = CreateGameWindow(hInstance, nCmdShow, SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	SetDebugWindow(hWnd);
@@ -230,8 +233,8 @@ int WINAPI WinMain(
 	game->InitKeyboard(keyHandler);
 	game->Load(L"mario-sample.txt");
 
-	SetWindowPos(hWnd, 0, 0, 0, SCREEN_WIDTH*2, SCREEN_HEIGHT*2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
-
+	SetWindowPos(hWnd, 0, 0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
+	
 	Run();
 
 	return 0;

@@ -5,6 +5,7 @@
 #include "Goomba.h"
 #include "QuestionBrick.h"
 #include "ColorBlock.h"
+#include "CBrickBreak.h"
 
 
 CKoopas::CKoopas(float x, float y, int model) :CGameObject(x, y)
@@ -29,13 +30,19 @@ CKoopas::CKoopas(float x, float y, int model) :CGameObject(x, y)
 
 void CKoopas::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	if (isDefend || isUpside) {
+	if (isDefend) {
 
 		left = x ;
 		top = y;
 		right = left + KOOPAS_BBOX_WIDTH;
 		bottom = top + KOOPAS_BBOX_HEIGHT_DEFEND  ;
 
+	}
+	else if (isUpside) {
+		left = x;
+		top = y ;
+		right = left + KOOPAS_BBOX_WIDTH;
+		bottom = top + KOOPAS_BBOX_HEIGHT_DEFEND;
 	}
 	else {
 		left = x ;
@@ -53,7 +60,7 @@ void CKoopas::OnNoCollision(DWORD dt)
 
 int CKoopas::IsCollidable()
 {
-	if (state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_KOOPAS_ATTACKED || state == ENEMY_STATE_IS_TAIL_ATTACKED) {
+	if (state == ENEMY_STATE_IS_FIRE_ATTACKED || state == ENEMY_STATE_IS_KOOPAS_ATTACKED ) {
 		return 0;
 	}
 	else {
@@ -80,7 +87,7 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e)
 	}
 	else if (e->nx != 0)
 	{
-		if (e->obj->GetType() == OBJECT ) {
+		if (e->obj->GetType() == OBJECT || e->obj->GetType() == COINBRICK) {
 			vx = -vx;	
 		}
 	}
@@ -95,9 +102,11 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e)
 
 	if (dynamic_cast<CColorBlock*>(e->obj))
 		OnCollisionWithColorBlock(e);
+	else if (dynamic_cast<CoinBrick*>(e->obj))
+		OnCollisionWithCoinBrick(e);
 	else if (dynamic_cast<CQuestionBrick*>(e->obj))
 		OnCollisionWithQuestionBrick(e);
-	
+
 }
 
 
@@ -120,6 +129,36 @@ void CKoopas::OnCollisionWithColorBlock(LPCOLLISIONEVENT e)
 	
 }
 
+void CKoopas::OnCollisionWithCoinBrick(LPCOLLISIONEVENT e)
+{
+	CoinBrick* coinBrick = dynamic_cast<CoinBrick*>(e->obj);
+
+	if (e->nx != 0 && coinBrick->GetModel() == COIN_BRICK_COIN) {
+		if (coinBrick->GetState() != COIN_BRICK_STATE_TRANSFORM_COIN) {
+			if (state == KOOPAS_STATE_IS_KICKED) {
+				coinBrick->SetBreak(true);
+			}
+		}
+	}
+
+
+	if (model == KOOPAS_RED) {
+		if (e->ny < 0) {
+			if (state == KOOPAS_STATE_WALKING && model == KOOPAS_RED) {
+				if (x <= coinBrick->GetX() - ADJUST_X_TO_RED_CHANGE_DIRECTION)
+				{
+					vy = 0;
+					vx = KOOPAS_WALKING_SPEED;
+				}
+				else if (x >= coinBrick->GetX() + ADJUST_X_TO_RED_CHANGE_DIRECTION) {
+					vy = 0;
+					vx = -KOOPAS_WALKING_SPEED;
+				}
+			}
+		}
+	}
+}
+
 void CKoopas::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e)
 {
 	CQuestionBrick* questionBrick = dynamic_cast<CQuestionBrick*>(e->obj);
@@ -129,7 +168,6 @@ void CKoopas::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e)
 			questionBrick->SetState(QUESTION_BRICK_STATE_UP);
 		}
 	}
-
 }
 
 

@@ -40,7 +40,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 #define MAX_SCENE_LINE 1024
 
 
-#define SCREEN_HEIGHT 300
+//#define SCREEN_HEIGHT 300
 #define DISTANCE_FROM_BOTTOM_CAM_TO_TOP_BOARD	90.f
 
 #define GAME_TIME_LIMIT 300
@@ -353,7 +353,7 @@ void CPlayScene::Update(DWORD dt)
 void CPlayScene::Render()
 {
 	map->DrawMap();
-	HUD* hud = new HUD(CGame::GetInstance()->GetCamX(), CGame::GetInstance()->GetCamY() + SCREEN_HEIGHT - DISTANCE_FROM_BOTTOM_CAM_TO_TOP_BOARD);
+	HUD* hud = new HUD(CGame::GetInstance()->GetCamX(), CGame::GetInstance()->GetCamY() + 300 - DISTANCE_FROM_BOTTOM_CAM_TO_TOP_BOARD);
 	for (size_t i = 0; i < objects.size(); i++)
 	{
 
@@ -402,10 +402,6 @@ void CPlayScenceKeyHandler::OnKeyUp(int KeyCode)
 		break;
 	case DIK_S:
 		mario->isFallSlow = false;
-		if (!mario->isOnPlatform) {
-			mario->isFlapping = false;
-			//mario->isFlying = false;
-		}
 		break;
 	}
 

@@ -20,7 +20,7 @@
 #define RED_KOOPAS_CB_PX 85
 #define ADJUST_POSITION_KOOPAS_HELD 13
 #define KOOPAS_COMBACK_HEIGHT_ADJUST 0.15f
-#define KOOPAS_BOUNCE_SPEED 0.3f
+#define KOOPAS_BOUNCE_SPEED 0.1f
 
 
 #define KOOPAS_DEFEND_TIMEOUT 6000 
@@ -55,7 +55,7 @@
 #define KOOPAS_ANI_RED_UPSIDE_ISKICKED 16 
 #define KOOPAS_ANI_RED_UPSIDE_COMEBACK 17
 
-#define ADJUST_X_TO_RED_CHANGE_DIRECTION 10
+#define ADJUST_X_TO_RED_CHANGE_DIRECTION 5
 
 //model
 #define KOOPAS_GREEN 1
@@ -81,6 +81,7 @@ protected:
 	virtual void OnCollisionWith(LPCOLLISIONEVENT e);
 	void OnCollisionWithColorBlock(LPCOLLISIONEVENT e);
 	void OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e);
+	void OnCollisionWithCoinBrick(LPCOLLISIONEVENT e);
 
 public:
 	CKoopas(float x, float y, int model);

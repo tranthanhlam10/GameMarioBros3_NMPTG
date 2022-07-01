@@ -31,7 +31,7 @@ void CGoomba::GetBoundingBox(float &left, float &top, float &right, float &botto
 	{ 
 		if (model == GOOMBA_RED_WING && state != GOOMBA_STATE_WALKING) {
 			left = x  ;
-			top = y - GOOMBA_RED_WING_BBOX_HEIGHT / 2;
+			top = y - ADJUST_BB_GB;
 			right = left + GOOMBA_RED_WING_BBOX_WIDTH;
 			bottom = top + GOOMBA_RED_WING_BBOX_HEIGHT;
 		}
