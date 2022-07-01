@@ -17,6 +17,7 @@
 #include "Leaf.h"
 #include "Mushroom.h"
 #include "PButton.h"
+#include "Effect.h"
 
 
 void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
@@ -170,6 +171,13 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 			TotalFire.erase(TotalFire.begin() + i);
 		}
 	}
+	for (size_t i = 0; i < ListEffect.size(); i++)
+	{
+		ListEffect[i]->Update(dt, coObjects);
+		if (ListEffect[i]->isDeleted) {
+			ListEffect.erase(ListEffect.begin() + i);
+		}
+	}
 	
 	if (tailattack) {
 		tailattack->Update(dt, coObjects);
@@ -264,16 +272,22 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e) // sử lí va chạm khi
 			if (goomba->GetModel() == GOOMBA_NOMAL) {
 				goomba->SetState(GOOMBA_STATE_DIE);
 				vy = -MARIO_JUMP_DEFLECT_SPEED;
+				obj = new Effect(goomba->GetX(), goomba->GetY(), EFFECT_100);
+				ListEffect.push_back(obj);
 			}
 			else
 				if (goomba->GetState() == GOOMBA_STATE_WALKING) {
 					goomba->SetState(GOOMBA_STATE_DIE);
 					vy = -MARIO_JUMP_DEFLECT_SPEED;
+					obj = new Effect(goomba->GetX(), goomba->GetY(), EFFECT_100);
+					ListEffect.push_back(obj);
 		
 				}
 				else {
 					goomba->SetState(GOOMBA_STATE_WALKING);
 					vy = -MARIO_JUMP_DEFLECT_SPEED;
+					obj = new Effect(goomba->GetX(), goomba->GetY(), EFFECT_100);
+					ListEffect.push_back(obj);
 				}
 		}
 	}
@@ -291,6 +305,7 @@ void CMario::OnCollisionWithGoomba(LPCOLLISIONEVENT e) // sử lí va chạm khi
 				{
 					DebugOut(L">>> Mario DIE >>> \n");
 					SetState(MARIO_STATE_DIE);
+					die_start = GetTickCount64();
 				}
 			}
 	}
@@ -320,6 +335,8 @@ void CMario::OnCollisionWithColorBlock(LPCOLLISIONEVENT e)
 void CMario::OnCollisionWithFlower(LPCOLLISIONEVENT e)
 {
 	level = MARIO_LEVEL_FIRE;
+	obj = new Effect(x, y, EFFECT_1000);
+	ListEffect.push_back(obj);
 	e->obj->Delete();
 }
 
@@ -328,6 +345,8 @@ void CMario::OnCollisionWithLeaf(LPCOLLISIONEVENT e)
 	transform_start = GetTickCount64();
 	isTransform = true;
 	level = MARIO_LEVEL_RACOON;
+	obj = new Effect(x, y, EFFECT_1000);
+	ListEffect.push_back(obj);
 	e->obj->Delete();
 }
 
@@ -338,9 +357,13 @@ void CMario::OnCollisionWithMushRoom(LPCOLLISIONEVENT e)
 		isTransform = true;
 		isAdjustHeight = true;
 		level = MARIO_LEVEL_BIG;
+		obj = new Effect(x, y, EFFECT_1000);
+		ListEffect.push_back(obj);
 		e->obj->Delete();
 	}
 	else if (e->obj->GetModel() == GREEN_MUSHROOM) {
+		obj = new Effect(x, y, EFFECT_1_UP);
+		ListEffect.push_back(obj);
 		e->obj->Delete();
 	}
 }
@@ -358,6 +381,7 @@ void CMario::OnCollisionWithFireball(LPCOLLISIONEVENT e) {
 			{
 				DebugOut(L">>> Mario DIE >>> \n");
 				SetState(MARIO_STATE_DIE);
+				die_start = GetTickCount64();
 			}
 		
 	}
@@ -376,19 +400,27 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e)
 				koopas->SetState(KOOPAS_STATE_UPSIDE);
 			}
 			vy = -MARIO_JUMP_DEFLECT_SPEED;
+			obj = new Effect(koopas->GetX(), koopas->GetY(),EFFECT_100);
+			ListEffect.push_back(obj);
 		}
 		else if (koopas->GetState() == KOOPAS_STATE_WALKING)
 		{
 			koopas->SetState(KOOPAS_STATE_DEFEND);
 			vy = -MARIO_JUMP_DEFLECT_SPEED;
+			obj = new Effect(koopas->GetX(), koopas->GetY(), EFFECT_100);
+			ListEffect.push_back(obj);
 		}
 		else if (koopas->GetState() == KOOPAS_STATE_JUMP) {
 			koopas->SetState(KOOPAS_STATE_WALKING);
 			vy = -MARIO_JUMP_DEFLECT_SPEED;
+			obj = new Effect(koopas->GetX(), koopas->GetY(), EFFECT_100);
+			ListEffect.push_back(obj);
 		}
 		else if (koopas->GetState() == KOOPAS_STATE_DEFEND || koopas->GetState() == KOOPAS_STATE_UPSIDE)
 		{
 			koopas->SetState(KOOPAS_STATE_IS_KICKED);
+			obj = new Effect(koopas->GetX(), koopas->GetY(), EFFECT_100);
+			ListEffect.push_back(obj);
 		}
 	}
 	else if (e->nx != 0)
@@ -416,6 +448,7 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e)
 				{
 					DebugOut(L">>> Mario DIE >>> \n");
 					SetState(MARIO_STATE_DIE);
+					die_start = GetTickCount64();
 					
 				}
 			
@@ -432,6 +465,7 @@ void CMario::OnCollisionWithKoopas(LPCOLLISIONEVENT e)
 			{
 				DebugOut(L">>> Mario DIE >>> \n");
 				SetState(MARIO_STATE_DIE);
+				die_start = GetTickCount64();
 				
 			}
 		
@@ -451,6 +485,7 @@ void CMario::OnCollisionWithTwoPlant(LPCOLLISIONEVENT e) {
 			{
 				DebugOut(L">>> Mario DIE >>> \n");
 				SetState(MARIO_STATE_DIE);
+				die_start = GetTickCount64();
 
 			}
 		
@@ -483,7 +518,8 @@ void CMario::OnCollisionWithPButton(LPCOLLISIONEVENT e)
 void CMario::OnCollisionWithPortal(LPCOLLISIONEVENT e)
 {
 	CPortal* portal = dynamic_cast<CPortal*>(e->obj);
-	if (e->ny != 0) {
+
+	if (e->ny != 0) {	
 			CGame::GetInstance()->SwitchScene(portal->GetSceneId());
 	}
 }
@@ -1036,6 +1072,10 @@ void CMario::Render()
 		for (int i = 0; i < TotalFire.size(); i++)
 		{
 			TotalFire[i]->Render();
+		}
+		for (int i = 0; i < ListEffect.size(); i++)
+		{
+			ListEffect[i]->Render();
 		}
 
 	int alpha = 255;

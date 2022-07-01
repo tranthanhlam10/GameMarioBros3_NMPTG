@@ -256,10 +256,14 @@ public:
 		this->x = x;
 		this->y = y;
 		coin = 0;
+		score = 0;
+		health = 0;
 		tailattack = new TailAttack(x, y);
 	}
 	
 	int coin;
+	int score;
+	int health;
 
 	BOOLEAN isFlying = false;
 	BOOLEAN isFlapping = false;
@@ -292,6 +296,7 @@ public:
 	ULONGLONG attack_start = -1;
 
 	vector<LPGAMEOBJECT> TotalFire;
+	vector<LPGAMEOBJECT> ListEffect;
 	
 	void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 	void Render();
@@ -331,7 +336,10 @@ public:
 
 	int GetCoin() { return coin; }
 	void SetCoin(int _coin) { coin = _coin; }
-
+	void SetScore(int _score) { score = _score; }
+	void SetHealth(int _health) { health = _health; }
+	int GetScore() { return score; }
+	int GetHealth() { return health; }
 	int LevelDown(){
 		return level--;
 	}

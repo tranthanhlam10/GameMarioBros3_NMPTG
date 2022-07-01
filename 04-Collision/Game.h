@@ -107,8 +107,7 @@ public:
 	int GetScene() { return current_scene; }
 	int GetScreenWidth() { return screen_width; }
 	int GetScreenHeight() { return screen_height; }
-
-
+	void SwitchToMainScene(int scene_id, float start_x = 0, float start_y = 0);
 	int GetBackBufferWidth() { return backBufferWidth; }
 	int GetBackBufferHeight() { return backBufferHeight; }
 

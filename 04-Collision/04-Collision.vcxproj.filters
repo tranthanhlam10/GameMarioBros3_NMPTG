@@ -123,6 +123,9 @@
     <Filter Include="Framework\IntroGame">
       <UniqueIdentifier>{62dc13e3-beb7-446e-a224-cc5068af05f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Effect">
+      <UniqueIdentifier>{1836d749-183f-446e-b916-be475b7a1267}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -290,6 +293,9 @@
     <ClInclude Include="IntroGame.h">
       <Filter>Framework\PlayScence</Filter>
     </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Object\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -453,6 +459,9 @@
     </ClCompile>
     <ClCompile Include="IntroGame.cpp">
       <Filter>Framework\PlayScence</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Object\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

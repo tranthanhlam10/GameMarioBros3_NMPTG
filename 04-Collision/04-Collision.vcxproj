@@ -144,6 +144,7 @@
     <ClInclude Include="ColorBlock.h" />
     <ClInclude Include="debug.h" />
     <ClInclude Include="Door.h" />
+    <ClInclude Include="Effect.h" />
     <ClInclude Include="FireBall.h" />
     <ClInclude Include="FirePlant.h" />
     <ClInclude Include="FontCharacter.h" />
@@ -200,6 +201,7 @@
     <ClCompile Include="ColorBlock.cpp" />
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="Door.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="FireBall.cpp" />
     <ClCompile Include="FirePlant.cpp" />
     <ClCompile Include="FontCharacter.cpp" />

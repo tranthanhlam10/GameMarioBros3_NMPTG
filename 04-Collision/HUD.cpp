@@ -29,7 +29,7 @@ void HUD::Render(CMario* mario, int remainingTime)
 	if (game->GetScene() == MAP1_1_1) {
 		Sprite->Draw(x + HUD_POS_X, y + HUD_POS_Y- ADJUST_Y_HUD);
 		font.Draw(x + MAP_POS_X, y + MAP_POS_Y - ADJUST_Y_HUD, FillNumber(std::to_string(1), 1));
-		font.Draw(x + SCORE_POS_X, y + SCORE_POS_Y- ADJUST_Y_HUD, FillNumber(std::to_string(mario->GetCoin()), 7)); // chua co ham get score nen sai tam
+		font.Draw(x + SCORE_POS_X, y + SCORE_POS_Y- ADJUST_Y_HUD, FillNumber(std::to_string(mario->GetScore()), 7)); // chua co ham get score nen sai tam
 		font.Draw(x + COIN_POS_X, y + COIN_POS_Y- ADJUST_Y_HUD, FillNumber(std::to_string(mario->GetCoin()), 2));
 		font.Draw(x + TIME_POS_X, y + TIME_POS_Y- ADJUST_Y_HUD, FillNumber(std::to_string(remainingTime), 3));
 		/*font.Draw(x + LIVE_POS_X, y + LIVE_POS_Y, FillNumber(std::to_string(3), 1));*/
@@ -73,7 +73,7 @@ void HUD::Render(CMario* mario, int remainingTime)
 	else {
 		Sprite->Draw(x + HUD_POS_X, y + HUD_POS_Y);
 		font.Draw(x + MAP_POS_X, y + MAP_POS_Y, FillNumber(std::to_string(1), 1));
-		font.Draw(x + SCORE_POS_X, y + SCORE_POS_Y, FillNumber(std::to_string(mario->GetCoin()), 7)); // chua co ham get score nen sai tam
+		font.Draw(x + SCORE_POS_X, y + SCORE_POS_Y, FillNumber(std::to_string(mario->GetScore()), 7)); // chua co ham get score nen sai tam
 		font.Draw(x + COIN_POS_X, y + COIN_POS_Y, FillNumber(std::to_string(mario->GetCoin()), 2));
 		font.Draw(x + TIME_POS_X, y + TIME_POS_Y, FillNumber(std::to_string(remainingTime), 3));
 		/*font.Draw(x + LIVE_POS_X, y + LIVE_POS_Y, FillNumber(std::to_string(3), 1));*/
