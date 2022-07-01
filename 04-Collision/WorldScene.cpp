@@ -22,6 +22,8 @@ using namespace std;
 #define OBJECT_HAMMER_WORLD_MAP 15
 #define OBJECT_HELP_WORLD_MAP 16
 
+
+
 WorldScene::WorldScene(int id, LPCWSTR filePath) :
 	CScene(id, filePath)
 {
@@ -307,11 +309,10 @@ void WorldScene::Update(DWORD dt)
 void WorldScene::Render()
 {
 	CGame* game = CGame::GetInstance();
-	
 	map->DrawMap();
-
-	for (int i = 0; i < objects.size(); i++)
+	for (int i = 0; i < objects.size(); i++) {
 		objects[i]->Render();
+	}
 	
 }
 

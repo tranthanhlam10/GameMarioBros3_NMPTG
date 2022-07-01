@@ -113,7 +113,6 @@ void CKoopas::OnCollisionWith(LPCOLLISIONEVENT e)
 void CKoopas::OnCollisionWithColorBlock(LPCOLLISIONEVENT e)
 {
 	CColorBlock* block = dynamic_cast<CColorBlock*>(e->obj);
-
 	if (e->ny < 0) 
 		if (state == KOOPAS_STATE_WALKING && model == KOOPAS_RED) {
 			if (x <= block->GetX() )
@@ -224,6 +223,7 @@ void CKoopas::Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects)
 			}
 		}
 	}
+
 
 	CGameObject::Update(dt, coObjects);
 	CCollision::GetInstance()->Process(this, dt, coObjects);

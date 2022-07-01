@@ -143,11 +143,18 @@ void CMario::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 		kick_start = -1;
 	}
 
-	if (isMoveOverBlockColor) { // không nên chỉnh vị trí khi sử lý conllsion
+	if (isMoveOverBlockColor) { 
 		y -= ADJUST_MARIO_COLLISION_WITH_COLOR_BLOCK;
 		vy = -MARIO_JUMP_SPEED_MAX;
 		isMoveOverBlockColor = false;
 	}
+
+	if (isMoveOverBlockColor) { // không nên chỉnh vị trí khi sử lý conllsion
+	
+		isMoveOverBlockColor = false;
+	}
+
+	
 
 	if (GetTickCount64() - shoot_start > MARIO_FIRE_TIME_SHOOT && isPendingShootFireBall) {
 		shoot_start = -1;
@@ -210,6 +217,7 @@ void CMario::OnNoCollision(DWORD dt) // Không có va chạm
 
 void CMario::OnCollisionWith(LPCOLLISIONEVENT e) // xác định xem va chạm với ai
 {
+
 	if (e->ny < 0 && e->obj->IsBlocking())
 	{
 
@@ -326,10 +334,22 @@ void CMario::OnCollisionWithQuestionBrick(LPCOLLISIONEVENT e) {
 }
 void CMario::OnCollisionWithColorBlock(LPCOLLISIONEVENT e)
 {
-	CColorBlock* colorBlock = dynamic_cast<CColorBlock*>(e->obj);
 	if (e->ny > 0) {
 		isMoveOverBlockColor = true;
+		
 	}
+	/*CColorBlock* colorBlock = dynamic_cast<CColorBlock*>(e->obj);
+	if (e->ny < 0) {
+		vy = 0;
+	
+		if (state == MARIO_STATE_RELEASE_JUMP)
+			SetState(MARIO_STATE_IDLE);
+	}
+	if (e->ny > 0) {
+		vy = -MARIO_JUMP_SPEED_MAX;
+		y += dy;
+		isMoveOverBlockColor = true;
+	}*/
 }
 
 void CMario::OnCollisionWithFlower(LPCOLLISIONEVENT e)

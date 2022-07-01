@@ -29,7 +29,7 @@
 class WorldScene : public CScene
 {
 	WorldPlayer* player = NULL;
-	CMario* mario = NULL;
+	CMario* mario ;
 	Time* gameTime = new Time();
 	CGame* game = CGame::GetInstance();
 	int gameTimeRemain = 0;

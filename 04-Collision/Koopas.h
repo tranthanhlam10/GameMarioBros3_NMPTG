@@ -75,6 +75,8 @@ protected:
 	int mario_nx;
 	BOOLEAN isTailAttacked = false;
 	
+
+	
 	virtual int IsCollidable();
 	virtual int IsBlocking() { return 0; }
 	virtual void OnNoCollision(DWORD dt);
@@ -90,11 +92,13 @@ public:
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	virtual void Update(DWORD dt, vector<LPGAMEOBJECT>* coObjects);
 	virtual void Render();
+	
 
 	BOOLEAN isHeld;
 	BOOLEAN isDefend;
 	BOOLEAN isKicked;
 	BOOLEAN isComeback;
 	BOOLEAN isUpside;
+	
 
 };

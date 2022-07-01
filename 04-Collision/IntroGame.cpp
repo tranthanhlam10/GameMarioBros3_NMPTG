@@ -108,8 +108,6 @@ void IntroGame::_ParseSection_ANIMATION_SETS(string line)
 	}
 
 	CAnimationSets::GetInstance()->Add(ani_set_id, s);
-	//back->Add(2, 503);
-	//background->Add(2, 503);
 }
 
 void IntroGame::_ParseSection_OBJECTS(string line)

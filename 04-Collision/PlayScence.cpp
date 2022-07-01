@@ -42,8 +42,7 @@ CPlayScene::CPlayScene(int id, LPCWSTR filePath) :
 
 //#define SCREEN_HEIGHT 300
 #define DISTANCE_FROM_BOTTOM_CAM_TO_TOP_BOARD	90.f
-
-#define GAME_TIME_LIMIT 300
+#define GAME_TIME_LIMIT 369
 
 void CPlayScene::_ParseSection_TEXTURES(string line) // load texture từ file txt
 {

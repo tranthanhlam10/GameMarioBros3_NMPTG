@@ -30,9 +30,6 @@
     <Filter Include="Framework\Scence\Scence">
       <UniqueIdentifier>{ff331dc8-0268-426f-a9f3-633f216ba493}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\PlayScence">
-      <UniqueIdentifier>{bb8e0070-9a75-4e64-b4a9-8d14d93e5c8f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\Game">
       <UniqueIdentifier>{4ee47110-18b5-4b89-8312-871c8dd1abca}</UniqueIdentifier>
     </Filter>
@@ -126,6 +123,9 @@
     <Filter Include="Object\Effect">
       <UniqueIdentifier>{1836d749-183f-446e-b916-be475b7a1267}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\GameScence">
+      <UniqueIdentifier>{bb8e0070-9a75-4e64-b4a9-8d14d93e5c8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -141,7 +141,7 @@
       <Filter>Framework\Scence\Scence</Filter>
     </ClInclude>
     <ClInclude Include="PlayScence.h">
-      <Filter>Framework\PlayScence</Filter>
+      <Filter>Framework\GameScence</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Framework\Game</Filter>
@@ -273,7 +273,7 @@
       <Filter>Framework\WorldMap</Filter>
     </ClInclude>
     <ClInclude Include="WorldScene.h">
-      <Filter>Framework\PlayScence</Filter>
+      <Filter>Framework\GameScence</Filter>
     </ClInclude>
     <ClInclude Include="WorldMapKey.h">
       <Filter>Framework\KeyEventHandler</Filter>
@@ -291,7 +291,7 @@
       <Filter>Framework\KeyEventHandler</Filter>
     </ClInclude>
     <ClInclude Include="IntroGame.h">
-      <Filter>Framework\PlayScence</Filter>
+      <Filter>Framework\GameScence</Filter>
     </ClInclude>
     <ClInclude Include="Effect.h">
       <Filter>Object\Effect</Filter>
@@ -314,7 +314,7 @@
       <Filter>Framework\Scence\Scence</Filter>
     </ClCompile>
     <ClCompile Include="PlayScence.cpp">
-      <Filter>Framework\PlayScence</Filter>
+      <Filter>Framework\GameScence</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Framework\Game</Filter>
@@ -440,7 +440,7 @@
       <Filter>Framework\WorldMap</Filter>
     </ClCompile>
     <ClCompile Include="WorldScene.cpp">
-      <Filter>Framework\PlayScence</Filter>
+      <Filter>Framework\GameScence</Filter>
     </ClCompile>
     <ClCompile Include="WorldMapKey.cpp">
       <Filter>Framework\KeyEventHandler</Filter>
@@ -458,7 +458,7 @@
       <Filter>Framework\KeyEventHandler</Filter>
     </ClCompile>
     <ClCompile Include="IntroGame.cpp">
-      <Filter>Framework\PlayScence</Filter>
+      <Filter>Framework\GameScence</Filter>
     </ClCompile>
     <ClCompile Include="Effect.cpp">
       <Filter>Object\Effect</Filter>
